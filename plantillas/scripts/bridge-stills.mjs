@@ -1,4 +1,6 @@
-// usage: node scripts/bridge-stills.mjs <outPrefix> <frame,frame,...> [scale]  (bundles once, GPU via ANGLE, jpeg)
+// usage: node scripts/bridge-stills.mjs <outPrefix> <frame,frame,...> [scale]  (bundles once, jpeg)
+// REMOTION_GL picks the GL renderer: "swangle" (default, software, works without a GPU) or "angle" (GPU).
+// BROWSER_EXECUTABLE is optional: path to your own Chrome; without it Remotion uses its own Chrome Headless Shell.
 // BRIDGE_ENTRY=src/sandboxes/<name>/index.tsx renders a sandbox copy instead of the main project entry.
 import fs from "node:fs";
 // each bundle copies public/ (~1.3 GB) into the temp dir; C: is full, so keep bundles on D:
@@ -8,8 +10,8 @@ import { bundle } from "@remotion/bundler";
 import { renderStill, selectComposition } from "@remotion/renderer";
 import path from "node:path";
 const [prefix, frames, scale = "0.5"] = process.argv.slice(2);
-const browserExecutable = "C:/Program Files/Google/Chrome/Application/chrome.exe";
-const chromiumOptions = { gl: "swangle" };
+const browserExecutable = process.env.BROWSER_EXECUTABLE || undefined;
+const chromiumOptions = { gl: process.env.REMOTION_GL || "swangle" };
 const serveUrl = await bundle({ entryPoint: path.resolve(process.env.BRIDGE_ENTRY || "src/index.ts"), publicDir: path.resolve("public") });
 const composition = await selectComposition({ serveUrl, id: "BridgeShort", browserExecutable, chromiumOptions });
 const onBrowserLog = (l) => { if (l.type === "error" || l.type === "warning") console.log(`[${l.type}]`, l.text.slice(0, 300)); };

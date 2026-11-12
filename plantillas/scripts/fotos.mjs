@@ -1,9 +1,10 @@
-// usage: node pruebas/stills.mjs <prefix> <f,f,...> [scale]  (bundles once, SwANGLE: software GL, works without a GPU)
+// usage: node pruebas/stills.mjs <prefix> <f,f,...> [scale]  (bundles once)
+// REMOTION_GL picks the GL renderer: "swangle" (default, software, works without a GPU) or "angle" (GPU).
 import { bundle } from "@remotion/bundler";
 import { renderStill, selectComposition } from "@remotion/renderer";
 import path from "node:path";
 const [prefix, frames, scale = "0.5"] = process.argv.slice(2);
-const chromiumOptions = { gl: "swangle" };
+const chromiumOptions = { gl: process.env.REMOTION_GL || "swangle" };
 const inputProps = { mute: true };
 const serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts"), publicDir: path.resolve("public") });
 const composition = await selectComposition({ serveUrl, id: "Alejandro", chromiumOptions, inputProps });
