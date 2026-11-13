@@ -9,3 +9,5 @@ realista/recursos/renderpeople/
 realista/blender/*/cuadros/
 realista/blender/*/render.log
 realista/blender/*/*.mp4
+# Local secrets written by `elevenlabs onboard`
+/.env.local
