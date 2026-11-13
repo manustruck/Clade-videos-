@@ -119,6 +119,19 @@ salieron y cómo bajar el tiempo de render. Hay dos ejemplos completos: `realist
     `npx remotion render src/index.ts <Composición> out/video.mp4 --codec h264 --crf 16`
     y junta el audio con `-map 0:v:0 -map 1:a:0` (Remotion escribe una pista de audio muda).
     Revisa cada cuadro con `python plantillas/scripts/short_qa.py final.mp4 out/qa shots.json`.
+12. **Flyer y textos para publicar** (siempre, al terminar el video; no esperes a que te lo pidan).
+    - Escribe `out/publicacion.json` copiando `plantillas/publicacion_ejemplo.json`:
+      - `titulo`: el gancho del video en 2 líneas cortas, en mayúsculas; `resaltar`: la cifra o palabra clave.
+      - `cuadro` o `segundo`: el cuadro más fuerte del short (una cara o la acción, no un plano lejano). Si no lo
+        pones, la herramienta elige uno sola.
+      - `youtube`: título de menos de 60 caracteres, descripción de 2 frases y hashtags con `shorts` primero.
+      - `tiktok` y `facebook`: una frase con el dato absurdo más una pregunta que invite a comentar.
+      - Hashtags: 5 a 8, mezclando generales (`historia`, `datoscuriosos`) con los del tema. Sin relleno.
+      - `fuentes`: las mismas del guion. `usuario`: la cuenta de la persona (pregúntala si no la sabes).
+    - Corre `python3 herramientas/flyer_y_textos.py final.mp4 out/publicacion.json out/publicar`. Saca
+      `flyer.png` (1080x1920) y `publicacion.md` con los textos de YouTube Shorts, TikTok y Facebook.
+    - Abre el flyer y revísalo: el título no debe tapar caras ni la acción, y debe leerse en chico.
+    - Entrega el video, el flyer y los textos juntos. Los datos del título deben ser los del guion.
 
 ## Lo que aprendimos con Alejandro (revísalo en cada short nuevo)
 - **La primera versión siempre sale «bonita, de día de campo».** Si la historia es una guerra, que se vea guerra:

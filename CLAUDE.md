@@ -33,3 +33,7 @@ La skill está en `SKILL.md` (léela antes de hacer un short). Estas notas son s
   volver a ponerla, o guardarla como secreto de red del entorno para `api.elevenlabs.io` (cabecera `xi-api-key`).
 - En el plan gratis la API solo acepta las voces incluidas («premade»); las de la biblioteca (por ejemplo las
   «David») piden plan de pago.
+
+## Al terminar cada video
+- Genera siempre el flyer de 1080x1920 y los textos (título y hashtags para YouTube Shorts, TikTok y Facebook) con
+  `herramientas/flyer_y_textos.py`, como indica el paso 12 de `SKILL.md`. Entrégalos junto con el video.
