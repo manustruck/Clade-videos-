@@ -26,3 +26,10 @@ La skill está en `SKILL.md` (léela antes de hacer un short). Estas notas son s
 - `realista/recursos/bajar_recursos.sh` baja los recursos libres y reanuda si se corta. El servidor de MakeHuman es
   lento (unos 50 KB/s): los paquetes grandes tardan más de una hora. Lo bajado no se sube a git.
 - Nathan (RenderPeople) se baja a mano con cuenta: ver `realista/recursos/FUENTES.md`.
+
+## Voz con ElevenLabs
+- `herramientas/voz_elevenlabs.py` genera `voz.wav`, `palabras.json` (tiempos por palabra) y `subtitulos.srt`.
+- La clave va en `.env.local` (`ELEVENLABS_API_KEY=`), que no se sube a git y no existe en una sesión nueva: hay que
+  volver a ponerla, o guardarla como secreto de red del entorno para `api.elevenlabs.io` (cabecera `xi-api-key`).
+- En el plan gratis la API solo acepta las voces incluidas («premade»); las de la biblioteca (por ejemplo las
+  «David») piden plan de pago.
