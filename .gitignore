@@ -11,3 +11,5 @@ realista/blender/*/render.log
 realista/blender/*/*.mp4
 # Local secrets written by `elevenlabs onboard`
 /.env.local
+__pycache__/
+realista/blender/*/fotos/
