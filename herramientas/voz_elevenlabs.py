@@ -9,9 +9,10 @@ Saca en la carpeta de salida:
   bloque_NN.mp3    -> el audio de cada bloque tal como lo entregó ElevenLabs
 
 Uso:
-  python3 herramientas/voz_elevenlabs.py guion.txt carpeta_salida --voz ID_DE_VOZ [--ranura 10] [--velocidad 1.0]
+  python3 herramientas/voz_elevenlabs.py guion.txt carpeta_salida --voz ID_DE_VOZ [--ranura 10] [--duracion 60] [--velocidad 1.0]
 
   --ranura N     cada bloque empieza en un múltiplo de N segundos (para clips de N s). Sin esto van seguidos.
+  --duracion N   sin --ranura: ajusta el ritmo (hasta un 20 %) para que toda la narración dure N segundos, de corrido.
   --velocidad V  0.7 a 1.2. Si un bloque no cabe en su ranura, se acelera solo lo necesario.
   --buscar TEXTO lista voces de la biblioteca que coinciden (no genera nada ni gasta caracteres).
 
@@ -98,6 +99,7 @@ def main():
     p.add_argument("--voz")
     p.add_argument("--modelo", default="eleven_multilingual_v2")
     p.add_argument("--ranura", type=float, default=0)
+    p.add_argument("--duracion", type=float, default=0)
     p.add_argument("--velocidad", type=float, default=1.0)
     p.add_argument("--buscar")
     a = p.parse_args()
@@ -108,7 +110,8 @@ def main():
 
     bloques = [" ".join(b.split()) for b in re.split(r"\n\s*\n", open(a.guion, encoding="utf-8").read()) if b.strip()]
     os.makedirs(a.salida, exist_ok=True)
-    partes, palabras, t = [], [], 0.0
+    PAUSA = 0.22  # respiro entre bloques cuando van de corrido
+    crudos = []
     for i, texto in enumerate(bloques):
         r = llamar(f"/v1/text-to-speech/{a.voz}/with-timestamps?output_format=mp3_44100_128", {
             "text": texto, "model_id": a.modelo, "language_code": "es",
@@ -118,19 +121,26 @@ def main():
         })
         mp3 = os.path.join(a.salida, f"bloque_{i + 1:02d}.mp3")
         open(mp3, "wb").write(base64.b64decode(r["audio_base64"]))
-        d = duracion(mp3)
+        crudos.append((mp3, duracion(mp3), r["alignment"]))
+    # ritmo global para llegar a --duracion (de corrido); con --ranura cada bloque se ajusta solo
+    global_tempo = 1.0
+    if a.duracion and not a.ranura:
+        habla = sum(d for _, d, _ in crudos)
+        global_tempo = min(1.2, max(0.85, habla / (a.duracion - 0.3 - PAUSA * (len(crudos) - 1))))
+    partes, palabras, t = [], [], 0.1
+    for i, (mp3, d, al) in enumerate(crudos):
         # si no cabe en su ranura, se acelera solo lo necesario (sin cambiar el tono)
-        tempo = max(1.0, d / (a.ranura - 0.35)) if a.ranura else 1.0
+        tempo = max(1.0, d / (a.ranura - 0.35)) if a.ranura else global_tempo
         inicio = i * a.ranura + 0.15 if a.ranura else t
         wav = os.path.join(a.salida, f"_b{i}.wav")
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", mp3, "-af", f"atempo={tempo:.4f}", "-ar", "44100", "-ac", "1", wav], check=True)
         partes.append((wav, inicio))
-        for w, w0, w1 in palabras_de(r["alignment"]):
+        for w, w0, w1 in palabras_de(al):
             palabras.append({"palabra": w, "inicio": round(inicio + w0 / tempo, 3), "fin": round(inicio + w1 / tempo, 3), "bloque": i + 1})
-        t = inicio + d / tempo + 0.25
-        print(f"bloque {i + 1}: {d:.2f} s" + (f" (acelerado x{tempo:.2f})" if tempo > 1 else ""))
+        t = inicio + d / tempo + PAUSA
+        print(f"bloque {i + 1}: {d:.2f} s" + (f" (ritmo x{tempo:.2f})" if abs(tempo - 1) > 0.005 else ""))
 
-    total = len(bloques) * a.ranura if a.ranura else t
+    total = len(bloques) * a.ranura if a.ranura else (a.duracion or t)
     entradas, filtros = [], []
     for n, (wav, inicio) in enumerate(partes):
         entradas += ["-i", wav]
