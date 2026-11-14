@@ -7,6 +7,7 @@ Saca en la carpeta de salida:
 
 Uso:
   python3 herramientas/flyer_y_textos.py final.mp4 publicacion.json carpeta_salida [--fuente letra.ttf]
+  python3 herramientas/flyer_y_textos.py - publicacion.json carpeta_salida      (solo los textos, sin flyer)
 
 El cuadro de fondo sale de "cuadro" (número de cuadro) o "segundo" en el JSON; si no viene ninguno, se elige
 solo el cuadro más nítido y colorido. En vez de video se puede pasar una imagen. Requiere ffmpeg y pillow.
@@ -181,9 +182,10 @@ def main():
     datos = json.load(open(a.json, encoding="utf-8"))
     os.makedirs(a.salida, exist_ok=True)
     png, md = os.path.join(a.salida, "flyer.png"), os.path.join(a.salida, "publicacion.md")
-    origen = flyer(a.entrada, datos, png, a.fuente)
+    if a.entrada != "-":
+        origen = flyer(a.entrada, datos, png, a.fuente)
+        print(f"flyer: {png} ({W}x{H}, fondo: {origen})")
     avisos = textos(datos, md)
-    print(f"flyer: {png} ({W}x{H}, fondo: {origen})")
     print(f"textos: {md}")
     for av in avisos:
         print("aviso:", av)
