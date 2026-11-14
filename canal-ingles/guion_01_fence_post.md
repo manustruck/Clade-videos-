@@ -13,7 +13,7 @@ Mascot: Norm the garden gnome (see `PROYECTO_CANAL.md`).
 - Sources: Fence Armor (“Why Do Fence Posts Rot at Ground Level?” and “Protecting a Wood Post Set In Concrete”),
   Mr. Handyman (“How to protect wood posts in ground”), Fine Homebuilding forum (“Setting fence posts”).
 
-## Voice-over (104 words)
+## Voice-over (109 words)
 Your fence post will rot. And you're the one who did it.
 
 You dug a hole, dropped in the post, and filled it with concrete. All the way around. Even underneath.
