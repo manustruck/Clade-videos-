@@ -13,3 +13,4 @@ realista/blender/*/*.mp4
 /.env.local
 __pycache__/
 realista/blender/*/fotos/
+capitulos/*/out/
