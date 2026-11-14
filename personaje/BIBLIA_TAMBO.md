@@ -14,11 +14,11 @@ del tamaño de una uña.
 
 | | Referencia (no usar) | Tambo |
 |---|---|---|
-| Cabeza | gorro azul con linterna frontal | chullo rojo con orejeras, franja crema y borla |
-| Ropa | sudadera amarilla con capucha | poncho de aguas verde azulado con zigzag crema |
+| Cabeza | gorro azul con linterna frontal | gorro de punto rojo con orejeras, franja crema en zigzag y borla |
+| Ropa | sudadera amarilla con capucha | chaqueta acolchada verde azulado oversize, cargo ancho y bolso cruzado |
 | Luz | linterna en la frente | farol de mano amarillo |
 | Cara | blanca | piel crema, curita en la mejilla |
-| Compañía | solo | Chispa, su perra |
+| Compañía | solo | Chispa, su perra, con arnés y lucecita |
 | Mundo | genérico | Ecuador y los Andes: páramo, selva, costa, Galápagos |
 
 ## Quién es
@@ -42,22 +42,35 @@ Perra runa (mestiza) color canela, una oreja parada y otra caída, pañuelo rojo
 peligro antes que Tambo**: si Chispa mira fijo a un rincón, el público ya sabe que algo viene. No habla, no hace
 gracias de caricatura. Regla de oro: **a Chispa no le pasa nada malo en pantalla.**
 
-## Cómo se ve
-- **Proporción:** 3 cabezas de alto. Cabeza de frijol, extremidades de palito, contorno ciruela `#241726`.
-- **Chullo** rojo `#b8322a` con franja crema `#f3e6c8` en zigzag, dos orejeras con cordón y una borla crema arriba.
-  Nunca se lo quita. Es su silueta: debe reconocerse solo con la sombra.
-- **Poncho de aguas** verde azulado `#1f8a8a`, con una franja en zigzag crema cerca del borde.
-- **Botas de caucho** negras `#1c1c22`.
-- **Farol de mano** amarillo `#ffd35a`, en la mano derecha. Encendido da un halo cálido; apagado se ve gris.
-- **Cara:** piel crema `#f7e3c8`, ojos ovalados oscuros con un brillo, cejas gruesas, flequillo oscuro bajo el
-  chullo y **una curita en la mejilla izquierda**. La curita nunca se explica: es un misterio del canal.
+## Cómo se ve (versión 2, ropa oversize 2026)
+Chico andino vestido como alguien de su edad hoy: ropa urbana ancha, con un solo guiño a su tierra en el gorro.
+
+- **Proporción:** 3 cabezas de alto. Cabeza de frijol y contorno ciruela `#241726`. La ropa ancha le da el
+  volumen: mangas y piernas gruesas, ya no de palito.
+- **Gorro de punto** rojo `#b8322a`, grande y caído, con canalé, vuelta crema `#f3e6c8` en zigzag, etiqueta verde
+  azulado, dos orejeras con cordón trenzado y una borla crema. Es un chullo en versión actual. Nunca se lo quita:
+  es su silueta y debe reconocerse solo con la sombra.
+- **Chaqueta acolchada oversize** verde azulado `#1f8a8a`: hombros caídos, costuras horizontales, cierre al
+  centro, bolsillos en diagonal y un parche crema con zigzag rojo en el pecho.
+- **Sudadera crema larga** debajo: se ven la capucha tras el cuello, los dos cordones y el borde bajo la chaqueta.
+- **Pantalón cargo ancho** gris carbón `#3a3d4a`, con bolsillos laterales y arrugas en el tobillo.
+- **Zapatillas de suela gruesa** oscuras con suela crema y dos rayas verde azulado.
+- **Bolso cruzado** naranja `#e2622b`, del hombro derecho a la cadera izquierda. Ahí guarda la bitácora.
+- **Farol de camping** recargable, amarillo `#ffd35a`, en la mano derecha. Encendido da un halo cálido; apagado
+  se ve gris.
+- **Guantes sin dedos** oscuros.
+- **Cara:** piel crema `#f7e3c8`, ojos ovalados oscuros con un brillo, cejas gruesas (la derecha partida), rubor
+  suave, flequillo oscuro bajo el gorro y **una curita en la mejilla izquierda**. La curita nunca se explica: es
+  un misterio del canal.
 - **Gestos permitidos (5):** neutral, miedo, decidido, alivio, sorpresa. Nada de caras exageradas ni lágrimas de
   caricatura.
+- **Chispa** lleva pañuelo rojo y un arnés verde azulado con una lucecita amarilla.
 
 ### Reglas de consistencia
-1. Chullo, poncho, farol y curita en **todos** los cuadros y miniaturas. Si falta uno, no es Tambo.
+1. Gorro rojo, chaqueta verde azulado, bolso naranja, farol y curita en **todos** los cuadros y miniaturas. Si
+   falta uno, no es Tambo.
 2. Los colores son los de la paleta, con esos códigos. La escena puede teñirlos (noche azul, fuego naranja), pero
-   el chullo debe seguir leyéndose rojo.
+   el gorro debe seguir leyéndose rojo.
 3. El farol es la única luz cálida de las escenas oscuras. Todo lo demás, frío.
 4. Nunca se ve la cara de lo que lo persigue completa y de frente: siluetas, ojos, manos, sombras.
 5. Sin sangre ni heridas explícitas. El miedo viene de lo que no se ve.
@@ -101,7 +114,7 @@ Cada una usa un lugar real del Ecuador y un dato real de supervivencia.
 ## Miniaturas y títulos
 - **Miniatura:** Tambo de medio cuerpo a la derecha con uno de los 5 gestos, el peligro pequeño al fondo y una
   sola palabra enorme arriba a la izquierda («1 AÑO», «DÍA 100», «PARTE 2»). Máximo 3 palabras.
-- **Color:** fondo frío y oscuro; chullo rojo y farol amarillo como únicos acentos cálidos.
+- **Color:** fondo frío y oscuro; gorro rojo, bolso naranja y farol amarillo como únicos acentos cálidos.
 - **Título:** «Sobreviví 1 año en [lugar]» o «Cómo sobrevivir si [regla del mundo] durante 1 año». Menos de 60
   caracteres.
 - El flyer vertical de cada video sale con `herramientas/flyer_y_textos.py` (paso 12 de `SKILL.md`).
@@ -117,14 +130,14 @@ Antes de elegir, comprueba que el nombre esté libre en YouTube, TikTok y Facebo
 Sube siempre `personaje/hoja_tambo.png` como imagen de referencia y pega este bloque al inicio.
 
 ```
-CHARACTER: Tambo, a 19-year-old from the Ecuadorian Andes. Flat 2D cartoon, bean-shaped head, 3 heads tall, thin stick limbs, thick dark plum outline. He ALWAYS wears: a red knitted chullo hat with ear flaps, a cream zigzag band and a cream pom-pom on top; a teal rain poncho with a cream zigzag stripe near the hem; black rubber boots; a small band-aid on his left cheek. He carries a yellow hand lantern in his right hand. Cream skin, dark oval eyes with a small highlight, thick eyebrows, dark fringe under the hat. Calm, quiet, never exaggerated expressions.
-COMPANION: Chispa, a small cinnamon-brown mixed-breed dog, one ear up and one ear folded, red bandana around her neck. She always notices danger first.
+CHARACTER: Tambo, a 19-year-old from the Ecuadorian Andes dressed in modern oversized 2026 streetwear. Flat 2D cartoon, bean-shaped head, 3 heads tall, thick dark plum outline, detailed clothing. He ALWAYS wears: an oversized slouchy red knit beanie with ear flaps and braided cords, a cream folded cuff with a red zigzag pattern, a small teal label and a cream pom-pom; an oversized teal puffer jacket with dropped shoulders, horizontal quilting, a centre zipper and a small cream patch with a red zigzag on the chest; a long cream hoodie underneath (hood behind the neck, two drawstrings, hem showing below the jacket); wide charcoal cargo pants with side pockets, stacked at the ankle; chunky dark sneakers with thick cream soles; an orange crossbody sling bag; dark fingerless gloves; a small band-aid on his left cheek. He carries a yellow rechargeable camping lantern in his right hand. Cream skin, dark oval eyes with a small highlight, thick eyebrows with a slit in the right one, soft blush, dark fringe under the beanie. Calm, quiet, never exaggerated expressions.
+COMPANION: Chispa, a small cinnamon-brown mixed-breed dog, one ear up and one ear folded, red bandana around her neck and a teal harness with a tiny yellow light. She always notices danger first.
 STYLE: vertical 9:16, hand-painted moody backgrounds with thin black ink outlines, cold desaturated palette, the lantern is the only warm light. Eerie and quiet, no gore, no blood. No text, no logos, no watermark.
 ```
 
 **Hoja de expresiones**
 ```
-[CHARACTER] Expression sheet on a plain cream background: five head-and-shoulders drawings of Tambo, same size, in a row: neutral, scared, determined, relieved, surprised. Same hat, poncho and band-aid in each. Flat colors, thick dark plum outline.
+[CHARACTER] Expression sheet on a plain cream background: five head-and-shoulders drawings of Tambo, same size, in a row: neutral, scared, determined, relieved, surprised. Same beanie, jacket collar and band-aid in each. Flat colors, thick dark plum outline.
 ```
 
 **Miniatura tipo**
