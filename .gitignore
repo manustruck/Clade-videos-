@@ -14,3 +14,4 @@ realista/blender/*/*.mp4
 __pycache__/
 realista/blender/*/fotos/
 capitulos/*/out/
+canal-ingles/*/out/

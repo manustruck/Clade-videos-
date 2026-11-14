@@ -2,6 +2,7 @@ import React from "react";
 import { Composition, Still } from "remotion";
 import { ZombiShort, ZOMBI_CUADROS } from "./videos/virus-zombie/Zombi";
 import { HojaTambo } from "./personaje/Tambo";
+import { FencePost, FENCE_CUADROS, FENCE_FPS } from "./videos/fence-01/Fence";
 import { ReelHuellas, ReelRadio, reelCuadros } from "./videos/tambo-01/Reels";
 import { MiniaturaFaro, FondoFlyerFaro } from "./videos/tambo-01/portadas";
 import { FaroCap1, FARO_CUADROS, FARO_FPS } from "./videos/tambo-01/Faro";
@@ -12,6 +13,7 @@ export const Root: React.FC = () => (
     <Composition id="FaroCap1" component={FaroCap1} durationInFrames={FARO_CUADROS} fps={FARO_FPS} width={1920} height={1080} />
     <Composition id="ReelHuellas" component={ReelHuellas} durationInFrames={reelCuadros("huellas")} fps={FARO_FPS} width={1080} height={1920} />
     <Composition id="ReelRadio" component={ReelRadio} durationInFrames={reelCuadros("radio")} fps={FARO_FPS} width={1080} height={1920} />
+    <Composition id="FencePost" component={FencePost} durationInFrames={FENCE_CUADROS} fps={FENCE_FPS} width={1080} height={1920} />
     <Still id="MiniaturaFaro" component={MiniaturaFaro} width={1920} height={1080} />
     <Still id="FondoFlyerFaro" component={FondoFlyerFaro} width={1080} height={1920} />
     <Still id="HojaTambo" component={HojaTambo} width={1080} height={1920} />

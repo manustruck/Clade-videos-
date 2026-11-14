@@ -13,6 +13,7 @@ Uso:
 
   --ranura N     cada bloque empieza en un múltiplo de N segundos (para clips de N s). Sin esto van seguidos.
   --duracion N   sin --ranura: ajusta el ritmo (hasta un 20 %) para que toda la narración dure N segundos, de corrido.
+  --idioma XX    idioma de la narración (es por defecto; en para inglés).
   --velocidad V  0.7 a 1.2. Si un bloque no cabe en su ranura, se acelera solo lo necesario.
   --buscar TEXTO lista voces de la biblioteca que coinciden (no genera nada ni gasta caracteres).
 
@@ -99,6 +100,7 @@ def main():
     p.add_argument("--voz")
     p.add_argument("--modelo", default="eleven_multilingual_v2")
     p.add_argument("--ranura", type=float, default=0)
+    p.add_argument("--idioma", default="es", help="código del idioma de la voz: es, en...")
     p.add_argument("--duracion", type=float, default=0)
     p.add_argument("--velocidad", type=float, default=1.0)
     p.add_argument("--buscar")
@@ -114,7 +116,7 @@ def main():
     crudos = []
     for i, texto in enumerate(bloques):
         r = llamar(f"/v1/text-to-speech/{a.voz}/with-timestamps?output_format=mp3_44100_128", {
-            "text": texto, "model_id": a.modelo, "language_code": "es",
+            "text": texto, "model_id": a.modelo, "language_code": a.idioma,
             "previous_text": bloques[i - 1] if i else None,
             "next_text": bloques[i + 1] if i + 1 < len(bloques) else None,
             "voice_settings": {"stability": 0.5, "similarity_boost": 0.75, "speed": a.velocidad},
