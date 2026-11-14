@@ -2,7 +2,7 @@
 // La escena horizontal va en una ventana al centro, con una copia ampliada y oscura de fondo, título arriba y
 // subtítulos grandes abajo.
 import React from "react";
-import { AbsoluteFill, useCurrentFrame } from "remotion";
+import { AbsoluteFill, useCurrentFrame, getInputProps } from "remotion";
 import { F, pr } from "./base";
 import { escenaEn, Subtitulo } from "./Faro";
 import cap from "./capitulo.json";
@@ -19,6 +19,7 @@ export const reelCuadros = (id: ReelId) => Math.round(reelSegundos(id) * cap.fps
 const VW = 0.8, VY = 1010, ALTO = 1080 * VW; // ventana de la escena
 export const Reel: React.FC<{ id: ReelId }> = ({ id }) => {
   const r = REELS[id], f = useCurrentFrame(), tau = f / cap.fps;
+  const portada = Boolean((getInputProps() as { portada?: boolean }).portada); // imagen fija para el flyer: sin subtítulo ni barra
   let t = -1, acc = 0;
   for (const s of r.segs) { const d = s.b - s.a; if (tau < acc + d) { t = s.a + (tau - acc); break; } acc += d; }
   const fin = t < 0, uf = fin ? (tau - acc) / (r.cierre.b - r.cierre.a) : 0;
@@ -39,8 +40,9 @@ export const Reel: React.FC<{ id: ReelId }> = ({ id }) => {
             <text x={540} y={400} fontSize={78} fill="#ffd23f" strokeWidth={18}>{r.titulo[1]}</text>
             <text x={540} y={480} fontSize={38} fill="#f3e6c8" strokeWidth={10} letterSpacing={2}>TAMBO · 1 AÑO EN UN FARO</text>
           </g>
-          <Subtitulo t={t} x={540} y={1620} tam={74} />
-          <rect x={0} y={1908} width={1080 * (tau / reelSegundos(id))} height={12} fill="#ffd23f" />
+          {!portada && <Subtitulo t={t} x={540} y={1620} tam={60} />}
+          {!portada && <rect x={0} y={1908} width={1080 * (tau / reelSegundos(id))} height={12} fill="#ffd23f" />}
+          {portada && <text x={540} y={1640} textAnchor="middle" fontFamily={F} fontWeight={800} fontSize={64} fill="#ffd23f" stroke="#0c0810" strokeWidth={16} strokeLinejoin="round" paintOrder="stroke">{r.pregunta}</text>}
         </>}
         {fin && <g fontFamily={F} fontWeight={800} textAnchor="middle" opacity={Math.min(pr(uf, 0, 0.2), 1)} transform={`translate(540 960) scale(${0.96 + 0.06 * uf})`}>
           <text y={-150} fontSize={110} fill="#f3e6c8">{r.pregunta}</text>
