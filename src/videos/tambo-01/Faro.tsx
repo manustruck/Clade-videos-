@@ -27,40 +27,40 @@ const GRUPOS: Grupo[] = (() => {
   return g;
 })();
 
-const Subtitulo: React.FC<{ t: number }> = ({ t }) => {
+export const Subtitulo: React.FC<{ t: number; x?: number; y?: number; tam?: number }> = ({ t, x = W / 2, y = 968, tam = 66 }) => {
   const g = GRUPOS.find((x) => t >= x.a - 0.04 && t < x.b);
   if (!g) return null;
   const pop = 0.92 + 0.08 * pr(t, g.a - 0.04, g.a + 0.08);
   return (
-    <g transform={`translate(${W / 2} 968) scale(${pop})`} fontFamily={F} fontWeight={800} fontSize={66} textAnchor="middle" stroke="#120a12" strokeWidth={18} strokeLinejoin="round" paintOrder="stroke">
+    <g transform={`translate(${x} ${y}) scale(${pop})`} fontFamily={F} fontWeight={800} fontSize={tam} textAnchor="middle" stroke="#120a12" strokeWidth={18} strokeLinejoin="round" paintOrder="stroke">
       <text>{g.ws.map((w, i) => {
         const activa = t >= w.a - 0.03 && t < w.b + 0.06, clave = CLAVE.test(limpia(w.p));
-        return <tspan key={i} fill={activa ? "#ffd23f" : clave ? "#ffe9a6" : "#fff"} fontSize={activa ? 76 : 66}>{(i ? " " : "") + (activa ? w.p.toUpperCase() : w.p)}</tspan>;
+        return <tspan key={i} fill={activa ? "#ffd23f" : clave ? "#ffe9a6" : "#fff"} fontSize={activa ? tam * 1.15 : tam}>{(i ? " " : "") + (activa ? w.p.toUpperCase() : w.p)}</tspan>;
       })}</text>
     </g>
   );
 };
 
+/** la escena del capítulo en el segundo t (sin subtítulos) */
+export const escenaEn = (t: number): React.ReactElement => {
+  const tr = cap.tramos.find((x) => t >= x.a && t < x.b) ?? cap.tramos[cap.tramos.length - 1];
+  const u = cl((t - tr.a) / (tr.b - tr.a));
+  if (tr.tipo === "tarjeta") return <Tarjeta texto={String(tr.id)} u={u} t={t} />;
+  const lista = TOMAS[tr.tipo === "voz" ? `v${tr.id}` : tr.tipo === "pausa" ? `p:${tr.id}` : "titulo"];
+  if (!lista) return <rect width={W} height={H} fill="#300" />;
+  const total = lista.reduce((s, x) => s + x[0], 0);
+  let acc = 0;
+  for (const [peso, dib] of lista) {
+    const a = acc / total, b = (acc + peso) / total; acc += peso;
+    if (u >= a && (u < b || b >= 1)) return dib({ u: cl((u - a) / (b - a)), t });
+  }
+  return lista[lista.length - 1][1]({ u: 1, t });
+};
+
 export const FaroCap1: React.FC = () => {
   const f = useCurrentFrame(), t = f / cap.fps;
   const props = getInputProps() as { sinSubtitulos?: boolean };
-  const tr = cap.tramos.find((x) => t >= x.a && t < x.b) ?? cap.tramos[cap.tramos.length - 1];
-  const u = cl((t - tr.a) / (tr.b - tr.a));
-  let escena: React.ReactElement;
-  if (tr.tipo === "tarjeta") escena = <Tarjeta texto={String(tr.id)} u={u} t={t} />;
-  else {
-    const lista = TOMAS[tr.tipo === "voz" ? `v${tr.id}` : tr.tipo === "pausa" ? `p:${tr.id}` : "titulo"];
-    if (!lista) escena = <rect width={W} height={H} fill="#300" />;
-    else {
-      const total = lista.reduce((s, x) => s + x[0], 0);
-      let acc = 0, hecho: React.ReactElement | null = null;
-      for (const [peso, dib] of lista) {
-        const a = acc / total, b = (acc + peso) / total; acc += peso;
-        if (u >= a && (u < b || b >= 1)) { hecho = dib({ u: cl((u - a) / (b - a)), t }); break; }
-      }
-      escena = hecho ?? lista[lista.length - 1][1]({ u: 1, t });
-    }
-  }
+  const escena = escenaEn(t);
   const negro = Math.max(1 - pr(t, 0, 0.6), pr(t, cap.total - 1.2, cap.total - 0.1));
   return (
     <AbsoluteFill style={{ background: "#05060c" }}>
