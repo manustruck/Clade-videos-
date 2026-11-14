@@ -1,0 +1,20 @@
+{
+  "titulo": ["ALGUIEN CONTESTÓ", "MI RADIO"],
+  "resaltar": ["RADIO"],
+  "subtitulo": "Tambo · 1 año en un faro",
+  "segundo": 20.0,
+  "youtube": {
+    "titulo": "Nadie contestaba su radio… hasta el día 120",
+    "descripcion": "Cada noche Tambo reporta por radio y nadie responde. El día 120 alguien contesta: es su propio reporte de ayer, con su voz. Capítulo completo en el canal.",
+    "hashtags": ["shorts", "tambo", "terror", "historiasdeterror", "supervivencia", "animacion"]
+  },
+  "tiktok": {
+    "texto": "Le contestaron por radio… con SU voz y el reporte de AYER 😳 Capítulo completo en YouTube.",
+    "hashtags": ["tambo", "terror", "historiasdeterror", "supervivencia", "animacion", "miedo", "fyp"]
+  },
+  "facebook": {
+    "texto": "120 noches hablando por radio sin respuesta. Hasta que alguien contestó… con su propia voz. ¿Seguirías en ese faro? 👇",
+    "hashtags": ["tambo", "terror", "historiasdeterror", "animacion", "reels"]
+  },
+  "fuentes": ["Historia de ficción del capítulo 1 de Tambo."]
+}

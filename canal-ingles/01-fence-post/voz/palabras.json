@@ -1,0 +1,680 @@
+[
+ {
+  "palabra": "Your",
+  "inicio": 0.1,
+  "fin": 0.321,
+  "bloque": 1
+ },
+ {
+  "palabra": "fence",
+  "inicio": 0.39,
+  "fin": 0.646,
+  "bloque": 1
+ },
+ {
+  "palabra": "post",
+  "inicio": 0.692,
+  "fin": 0.924,
+  "bloque": 1
+ },
+ {
+  "palabra": "is",
+  "inicio": 0.971,
+  "fin": 1.04,
+  "bloque": 1
+ },
+ {
+  "palabra": "going",
+  "inicio": 1.087,
+  "fin": 1.284,
+  "bloque": 1
+ },
+ {
+  "palabra": "to",
+  "inicio": 1.331,
+  "fin": 1.389,
+  "bloque": 1
+ },
+ {
+  "palabra": "rot!",
+  "inicio": 1.47,
+  "fin": 1.946,
+  "bloque": 1
+ },
+ {
+  "palabra": "And",
+  "inicio": 2.259,
+  "fin": 2.41,
+  "bloque": 1
+ },
+ {
+  "palabra": "guess",
+  "inicio": 2.468,
+  "fin": 2.654,
+  "bloque": 1
+ },
+ {
+  "palabra": "who",
+  "inicio": 2.689,
+  "fin": 2.794,
+  "bloque": 1
+ },
+ {
+  "palabra": "did",
+  "inicio": 2.852,
+  "fin": 2.979,
+  "bloque": 1
+ },
+ {
+  "palabra": "it?",
+  "inicio": 3.026,
+  "fin": 3.27,
+  "bloque": 1
+ },
+ {
+  "palabra": "You",
+  "inicio": 3.629,
+  "fin": 3.792,
+  "bloque": 1
+ },
+ {
+  "palabra": "did!",
+  "inicio": 3.862,
+  "fin": 4.233,
+  "bloque": 1
+ },
+ {
+  "palabra": "You",
+  "inicio": 4.547,
+  "fin": 4.674,
+  "bloque": 1
+ },
+ {
+  "palabra": "dug",
+  "inicio": 4.732,
+  "fin": 4.883,
+  "bloque": 1
+ },
+ {
+  "palabra": "a",
+  "inicio": 4.93,
+  "fin": 4.953,
+  "bloque": 1
+ },
+ {
+  "palabra": "hole,",
+  "inicio": 5.011,
+  "fin": 5.29,
+  "bloque": 1
+ },
+ {
+  "palabra": "dropped",
+  "inicio": 5.324,
+  "fin": 5.592,
+  "bloque": 1
+ },
+ {
+  "palabra": "in",
+  "inicio": 5.615,
+  "fin": 5.661,
+  "bloque": 1
+ },
+ {
+  "palabra": "the",
+  "inicio": 5.684,
+  "fin": 5.754,
+  "bloque": 1
+ },
+ {
+  "palabra": "post,",
+  "inicio": 5.789,
+  "fin": 6.079,
+  "bloque": 1
+ },
+ {
+  "palabra": "and",
+  "inicio": 6.102,
+  "fin": 6.172,
+  "bloque": 1
+ },
+ {
+  "palabra": "filled",
+  "inicio": 6.218,
+  "fin": 6.416,
+  "bloque": 1
+ },
+ {
+  "palabra": "it",
+  "inicio": 6.439,
+  "fin": 6.485,
+  "bloque": 1
+ },
+ {
+  "palabra": "with",
+  "inicio": 6.509,
+  "fin": 6.613,
+  "bloque": 1
+ },
+ {
+  "palabra": "concrete.",
+  "inicio": 6.66,
+  "fin": 7.298,
+  "bloque": 1
+ },
+ {
+  "palabra": "All",
+  "inicio": 7.461,
+  "fin": 7.635,
+  "bloque": 1
+ },
+ {
+  "palabra": "the",
+  "inicio": 7.681,
+  "fin": 7.751,
+  "bloque": 1
+ },
+ {
+  "palabra": "way",
+  "inicio": 7.786,
+  "fin": 7.879,
+  "bloque": 1
+ },
+ {
+  "palabra": "around.",
+  "inicio": 7.914,
+  "fin": 8.401,
+  "bloque": 1
+ },
+ {
+  "palabra": "Even",
+  "inicio": 8.761,
+  "fin": 8.982,
+  "bloque": 1
+ },
+ {
+  "palabra": "underneath!",
+  "inicio": 9.028,
+  "fin": 9.655,
+  "bloque": 1
+ },
+ {
+  "palabra": "Looks",
+  "inicio": 10.236,
+  "fin": 10.468,
+  "bloque": 1
+ },
+ {
+  "palabra": "solid,",
+  "inicio": 10.503,
+  "fin": 10.862,
+  "bloque": 1
+ },
+ {
+  "palabra": "right?",
+  "inicio": 10.886,
+  "fin": 11.257,
+  "bloque": 1
+ },
+ {
+  "palabra": "Nope.",
+  "inicio": 12.163,
+  "fin": 12.569,
+  "bloque": 1
+ },
+ {
+  "palabra": "You",
+  "inicio": 12.929,
+  "fin": 13.057,
+  "bloque": 1
+ },
+ {
+  "palabra": "just",
+  "inicio": 13.126,
+  "fin": 13.277,
+  "bloque": 1
+ },
+ {
+  "palabra": "built",
+  "inicio": 13.324,
+  "fin": 13.51,
+  "bloque": 1
+ },
+ {
+  "palabra": "a",
+  "inicio": 13.556,
+  "fin": 13.579,
+  "bloque": 1
+ },
+ {
+  "palabra": "cup!",
+  "inicio": 13.626,
+  "fin": 14.044,
+  "bloque": 1
+ },
+ {
+  "palabra": "Rain",
+  "inicio": 14.705,
+  "fin": 14.926,
+  "bloque": 1
+ },
+ {
+  "palabra": "runs",
+  "inicio": 14.984,
+  "fin": 15.193,
+  "bloque": 1
+ },
+ {
+  "palabra": "down",
+  "inicio": 15.239,
+  "fin": 15.379,
+  "bloque": 1
+ },
+ {
+  "palabra": "the",
+  "inicio": 15.402,
+  "fin": 15.472,
+  "bloque": 1
+ },
+ {
+  "palabra": "post",
+  "inicio": 15.506,
+  "fin": 15.773,
+  "bloque": 1
+ },
+ {
+  "palabra": "and",
+  "inicio": 15.808,
+  "fin": 15.878,
+  "bloque": 1
+ },
+ {
+  "palabra": "has",
+  "inicio": 15.936,
+  "fin": 16.075,
+  "bloque": 1
+ },
+ {
+  "palabra": "nowhere",
+  "inicio": 16.145,
+  "fin": 16.389,
+  "bloque": 1
+ },
+ {
+  "palabra": "to",
+  "inicio": 16.412,
+  "fin": 16.458,
+  "bloque": 1
+ },
+ {
+  "palabra": "go.",
+  "inicio": 16.505,
+  "fin": 16.83,
+  "bloque": 1
+ },
+ {
+  "palabra": "It",
+  "inicio": 17.19,
+  "fin": 17.318,
+  "bloque": 1
+ },
+ {
+  "palabra": "sits",
+  "inicio": 17.352,
+  "fin": 17.527,
+  "bloque": 1
+ },
+ {
+  "palabra": "right",
+  "inicio": 17.585,
+  "fin": 17.759,
+  "bloque": 1
+ },
+ {
+  "palabra": "here,",
+  "inicio": 17.794,
+  "fin": 17.968,
+  "bloque": 1
+ },
+ {
+  "palabra": "at",
+  "inicio": 17.991,
+  "fin": 18.061,
+  "bloque": 1
+ },
+ {
+  "palabra": "the",
+  "inicio": 18.095,
+  "fin": 18.165,
+  "bloque": 1
+ },
+ {
+  "palabra": "ground",
+  "inicio": 18.2,
+  "fin": 18.421,
+  "bloque": 1
+ },
+ {
+  "palabra": "line.",
+  "inicio": 18.467,
+  "fin": 18.78,
+  "bloque": 1
+ },
+ {
+  "palabra": "Wet",
+  "inicio": 19.094,
+  "fin": 19.291,
+  "bloque": 1
+ },
+ {
+  "palabra": "wood",
+  "inicio": 19.338,
+  "fin": 19.524,
+  "bloque": 1
+ },
+ {
+  "palabra": "plus",
+  "inicio": 19.558,
+  "fin": 19.791,
+  "bloque": 1
+ },
+ {
+  "palabra": "air",
+  "inicio": 19.86,
+  "fin": 20.058,
+  "bloque": 1
+ },
+ {
+  "palabra": "equals",
+  "inicio": 20.15,
+  "fin": 20.464,
+  "bloque": 1
+ },
+ {
+  "palabra": "rot.",
+  "inicio": 20.534,
+  "fin": 20.94,
+  "bloque": 1
+ },
+ {
+  "palabra": "A",
+  "inicio": 21.207,
+  "fin": 21.277,
+  "bloque": 1
+ },
+ {
+  "palabra": "few",
+  "inicio": 21.346,
+  "fin": 21.486,
+  "bloque": 1
+ },
+ {
+  "palabra": "years",
+  "inicio": 21.532,
+  "fin": 21.729,
+  "bloque": 1
+ },
+ {
+  "palabra": "later…",
+  "inicio": 21.799,
+  "fin": 22.275,
+  "bloque": 1
+ },
+ {
+  "palabra": "one",
+  "inicio": 23.181,
+  "fin": 23.343,
+  "bloque": 1
+ },
+ {
+  "palabra": "little",
+  "inicio": 23.366,
+  "fin": 23.552,
+  "bloque": 1
+ },
+ {
+  "palabra": "push.",
+  "inicio": 23.575,
+  "fin": 24.017,
+  "bloque": 1
+ },
+ {
+  "palabra": "Oops!",
+  "inicio": 24.504,
+  "fin": 25.05,
+  "bloque": 1
+ },
+ {
+  "palabra": "Here's",
+  "inicio": 25.282,
+  "fin": 25.514,
+  "bloque": 1
+ },
+ {
+  "palabra": "the",
+  "inicio": 25.537,
+  "fin": 25.607,
+  "bloque": 1
+ },
+ {
+  "palabra": "fix.",
+  "inicio": 25.642,
+  "fin": 26.106,
+  "bloque": 1
+ },
+ {
+  "palabra": "First,",
+  "inicio": 26.687,
+  "fin": 27.105,
+  "bloque": 1
+ },
+ {
+  "palabra": "six",
+  "inicio": 27.198,
+  "fin": 27.418,
+  "bloque": 1
+ },
+ {
+  "palabra": "inches",
+  "inicio": 27.5,
+  "fin": 27.732,
+  "bloque": 1
+ },
+ {
+  "palabra": "of",
+  "inicio": 27.767,
+  "fin": 27.825,
+  "bloque": 1
+ },
+ {
+  "palabra": "gravel,",
+  "inicio": 27.894,
+  "fin": 28.335,
+  "bloque": 1
+ },
+ {
+  "palabra": "so",
+  "inicio": 28.37,
+  "fin": 28.498,
+  "bloque": 1
+ },
+ {
+  "palabra": "water",
+  "inicio": 28.579,
+  "fin": 28.8,
+  "bloque": 1
+ },
+ {
+  "palabra": "drains",
+  "inicio": 28.835,
+  "fin": 29.09,
+  "bloque": 1
+ },
+ {
+  "palabra": "out",
+  "inicio": 29.125,
+  "fin": 29.229,
+  "bloque": 1
+ },
+ {
+  "palabra": "the",
+  "inicio": 29.253,
+  "fin": 29.322,
+  "bloque": 1
+ },
+ {
+  "palabra": "bottom.",
+  "inicio": 29.357,
+  "fin": 29.787,
+  "bloque": 1
+ },
+ {
+  "palabra": "Next,",
+  "inicio": 30.275,
+  "fin": 30.623,
+  "bloque": 1
+ },
+ {
+  "palabra": "pour",
+  "inicio": 30.681,
+  "fin": 30.867,
+  "bloque": 1
+ },
+ {
+  "palabra": "the",
+  "inicio": 30.913,
+  "fin": 30.983,
+  "bloque": 1
+ },
+ {
+  "palabra": "concrete",
+  "inicio": 31.018,
+  "fin": 31.471,
+  "bloque": 1
+ },
+ {
+  "palabra": "around",
+  "inicio": 31.505,
+  "fin": 31.784,
+  "bloque": 1
+ },
+ {
+  "palabra": "the",
+  "inicio": 31.819,
+  "fin": 31.889,
+  "bloque": 1
+ },
+ {
+  "palabra": "post,",
+  "inicio": 31.935,
+  "fin": 32.341,
+  "bloque": 1
+ },
+ {
+  "palabra": "never",
+  "inicio": 32.457,
+  "fin": 32.678,
+  "bloque": 1
+ },
+ {
+  "palabra": "under",
+  "inicio": 32.736,
+  "fin": 32.91,
+  "bloque": 1
+ },
+ {
+  "palabra": "it.",
+  "inicio": 32.957,
+  "fin": 33.2,
+  "bloque": 1
+ },
+ {
+  "palabra": "Then",
+  "inicio": 33.781,
+  "fin": 34.036,
+  "bloque": 1
+ },
+ {
+  "palabra": "slope",
+  "inicio": 34.152,
+  "fin": 34.524,
+  "bloque": 1
+ },
+ {
+  "palabra": "the",
+  "inicio": 34.559,
+  "fin": 34.628,
+  "bloque": 1
+ },
+ {
+  "palabra": "top,",
+  "inicio": 34.675,
+  "fin": 35.093,
+  "bloque": 1
+ },
+ {
+  "palabra": "so",
+  "inicio": 35.255,
+  "fin": 35.418,
+  "bloque": 1
+ },
+ {
+  "palabra": "rain",
+  "inicio": 35.534,
+  "fin": 35.755,
+  "bloque": 1
+ },
+ {
+  "palabra": "runs",
+  "inicio": 35.813,
+  "fin": 36.022,
+  "bloque": 1
+ },
+ {
+  "palabra": "away.",
+  "inicio": 36.068,
+  "fin": 36.498,
+  "bloque": 1
+ },
+ {
+  "palabra": "Same",
+  "inicio": 37.078,
+  "fin": 37.334,
+  "bloque": 1
+ },
+ {
+  "palabra": "post.",
+  "inicio": 37.368,
+  "fin": 37.833,
+  "bloque": 1
+ },
+ {
+  "palabra": "Same",
+  "inicio": 38.495,
+  "fin": 38.796,
+  "bloque": 1
+ },
+ {
+  "palabra": "concrete.",
+  "inicio": 38.843,
+  "fin": 39.516,
+  "bloque": 1
+ },
+ {
+  "palabra": "Twice",
+  "inicio": 40.097,
+  "fin": 40.457,
+  "bloque": 1
+ },
+ {
+  "palabra": "the",
+  "inicio": 40.491,
+  "fin": 40.561,
+  "bloque": 1
+ },
+ {
+  "palabra": "life!",
+  "inicio": 40.619,
+  "fin": 41.246,
+  "bloque": 1
+ }
+]

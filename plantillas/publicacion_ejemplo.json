@@ -1,0 +1,21 @@
+{
+  "titulo": ["47,000 CONTRA", "100,000"],
+  "resaltar": ["100,000"],
+  "subtitulo": "Alejandro Magno en Gaugamela",
+  "usuario": "@tu_usuario",
+  "segundo": 2.4,
+  "youtube": {
+    "titulo": "Alejandro Magno: 47,000 hombres contra 100,000 persas",
+    "descripcion": "En el 331 a. C., Alejandro llegó a Gaugamela con 47,000 hombres. Enfrente lo esperaban 100,000 persas, con elefantes y carros de guerra.",
+    "hashtags": ["shorts", "historia", "alejandromagno", "datoscuriosos", "sabiasque"]
+  },
+  "tiktok": {
+    "texto": "47,000 contra 100,000, con elefantes y carros con cuchillas 😳 ¿Tú te quedabas a pelear?",
+    "hashtags": ["historia", "alejandromagno", "datoscuriosos", "sabiasque", "historiareal", "animacion", "fyp"]
+  },
+  "facebook": {
+    "texto": "Alejandro Magno llegó con 47,000 hombres. Enfrente lo esperaban 100,000. ¿Conocías esta batalla? 👇",
+    "hashtags": ["historia", "alejandromagno", "datoscuriosos", "sabiasque", "reels"]
+  },
+  "fuentes": ["Arriano, Anábasis de Alejandro, libro III", "World History Encyclopedia"]
+}
