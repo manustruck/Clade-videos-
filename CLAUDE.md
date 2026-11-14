@@ -43,3 +43,12 @@ La skill está en `SKILL.md` (léela antes de hacer un short). Estas notas son s
   un guion: ahí están su diseño, sus reglas de consistencia y el formato del canal (la bitácora de reglas).
 - Dibujo en código: `src/personaje/Tambo.tsx` (`Tambo`, `Chispa`, `PALETA`). Hoja: `personaje/hoja_tambo.png`.
 - Tambo es un personaje propio: no copies al personaje, los títulos ni las miniaturas del canal de referencia.
+
+## Capítulos de Tambo (videos largos, horizontales)
+- El capítulo 1 está en `capitulos/01-faro/` (guion, voz, sonido, render) y `src/videos/tambo-01/` (escenas y tomas).
+  Sirve de plantilla para los siguientes: 1920x1080 a 24 cps, dibujo 2D en SVG (rápido sin GPU: unos 56 min de render
+  para 12 min de video).
+- Orden: `guion.py` → `voz.py` (ElevenLabs, guarda cada bloque y no lo vuelve a cobrar) → `armar.py` (línea de
+  tiempo) → `render.sh` (por partes, se puede reanudar) → `sonido.py` (ambiente y efectos) → unir con ffmpeg →
+  miniatura, flyer y textos en `publicar/`.
+- El plan gratis de ElevenLabs da 10 000 caracteres al mes: un capítulo de 12 min gasta unos 5 900.

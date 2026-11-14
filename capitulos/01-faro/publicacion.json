@@ -1,0 +1,20 @@
+{
+  "largo": true,
+  "titulo": ["SOBREVIVÍ 1 AÑO", "EN UN FARO"],
+  "resaltar": ["1", "AÑO"],
+  "subtitulo": "Capítulo 1 · La regla que no escribí",
+  "youtube": {
+    "titulo": "Sobreviví 1 año en un faro de Galápagos (Capítulo 1)",
+    "descripcion": "Tambo y su perra Chispa tienen que cuidar un faro durante 365 días en una roca en medio del Pacífico. Para no olvidarse de nada, Tambo escribe sus reglas en la pared. Hasta que aparece una que él no escribió.\n\nHistoria de ficción. Los datos de supervivencia son reales: en Galápagos el agua dulce se junta de la lluvia o de la garúa, y el fruto del manzanillo es venenoso.",
+    "hashtags": ["tambo", "supervivencia", "terror", "animacion", "historiasdeterror", "faro", "galapagos"]
+  },
+  "tiktok": {
+    "texto": "Regla 9: no mires cuando la luz gire. Tambo no la escribió… pero es su letra 😳 Capítulo completo en YouTube.",
+    "hashtags": ["tambo", "terror", "supervivencia", "historiasdeterror", "animacion", "faro", "fyp"]
+  },
+  "facebook": {
+    "texto": "Un año solo en un faro, con su perra y diez reglas. El problema es que la novena no la escribió él. ¿Tú habrías mirado? 👇",
+    "hashtags": ["tambo", "terror", "supervivencia", "animacion", "historiasdeterror"]
+  },
+  "fuentes": ["Historia de ficción; la isla no existe.", "Datos reales: temporadas y garúa de Galápagos, mallas atrapanieblas, manzanillo (Hippomane mancinella)."]
+}

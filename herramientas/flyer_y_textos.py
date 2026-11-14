@@ -149,14 +149,15 @@ def textos(datos, salida):
         avisos.append(f"El título de YouTube tiene {len(yt['titulo'])} caracteres: el máximo es 100.")
     elif len(yt["titulo"]) > 60:
         avisos.append(f"El título de YouTube tiene {len(yt['titulo'])} caracteres: pasado de 60 se corta en pantalla.")
-    if not any(h.lstrip("#").lower() == "shorts" for h in yt["hashtags"]):
+    largo = bool(datos.get("largo"))  # video largo de YouTube: sin #shorts
+    if not largo and not any(h.lstrip("#").lower() == "shorts" for h in yt["hashtags"]):
         yt["hashtags"] = ["shorts"] + yt["hashtags"]
     for nombre, red, tope in (("YouTube", yt, 15), ("TikTok", tt, 8), ("Facebook", fb, 5)):
         if len(red["hashtags"]) > tope:
             avisos.append(f"{nombre} lleva {len(red['hashtags'])} hashtags: con más de {tope} se ve como relleno.")
     md = [
         "# Textos para publicar", "",
-        "## YouTube Shorts", "", "**Título:**", "```", yt["titulo"], "```", "",
+        "## YouTube" if largo else "## YouTube Shorts", "", "**Título:**", "```", yt["titulo"], "```", "",
         "**Descripción:**", "```", yt["descripcion"], "", etiquetas(yt["hashtags"]), "```", "",
         "## TikTok", "", "```", tt["texto"], "", etiquetas(tt["hashtags"]), "```", "",
         "## Facebook Reels", "", "```", fb["texto"], "", etiquetas(fb["hashtags"]), "```", "",
