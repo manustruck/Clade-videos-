@@ -37,3 +37,9 @@ La skill está en `SKILL.md` (léela antes de hacer un short). Estas notas son s
 ## Al terminar cada video
 - Genera siempre el flyer de 1080x1920 y los textos (título y hashtags para YouTube Shorts, TikTok y Facebook) con
   `herramientas/flyer_y_textos.py`, como indica el paso 12 de `SKILL.md`. Entrégalos junto con el video.
+
+## El personaje del canal
+- Todos los videos nuevos son de **Tambo** (y su perra Chispa). Lee `personaje/BIBLIA_TAMBO.md` antes de escribir
+  un guion: ahí están su diseño, sus reglas de consistencia y el formato del canal (la bitácora de reglas).
+- Dibujo en código: `src/personaje/Tambo.tsx` (`Tambo`, `Chispa`, `PALETA`). Hoja: `personaje/hoja_tambo.png`.
+- Tambo es un personaje propio: no copies al personaje, los títulos ni las miniaturas del canal de referencia.
