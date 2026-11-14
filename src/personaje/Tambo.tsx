@@ -4,8 +4,8 @@
 import React from "react";
 
 export const PALETA = {
-  contorno: "#241726", piel: "#f7e3c8", chullo: "#b8322a", chulloSombra: "#8a221c", crema: "#f3e6c8", chaqueta: "#1f8a8a", chaquetaSombra: "#176b6e",
-  pantalon: "#3a3d4a", pantalonClaro: "#4b4f5e", zapato: "#22222a", bolso: "#e2622b", farol: "#ffd35a", pelo: "#3a2a22",
+  contorno: "#241726", piel: "#e2a56f", chullo: "#b8322a", chulloSombra: "#8a221c", crema: "#f3e6c8", chaqueta: "#1f8a8a", chaquetaSombra: "#176b6e",
+  pantalon: "#3a3d4a", pantalonClaro: "#4b4f5e", zapato: "#22222a", bolso: "#e2622b", farol: "#ffd35a", pelo: "#4a2a1e",
   chispa: "#c98b4b", chispaClaro: "#f1dcc0", panuelo: "#d9482b",
 };
 export type Gesto = "neutral" | "miedo" | "decidido" | "alivio" | "sorpresa";
@@ -17,34 +17,33 @@ const Tubo: React.FC<{ d: string; w: number; c: string; borde?: number }> = ({ d
 );
 
 const Cara: React.FC<{ gesto: Gesto; mira?: [number, number] }> = ({ gesto, mira = [0, 0] }) => {
-  const [mx, my] = [mira[0] * 8, mira[1] * 8];
-  const grande = gesto === "miedo" || gesto === "sorpresa";
+  const [mx, my] = [mira[0] * 11, mira[1] * 9];
+  const pup = gesto === "miedo" ? 13 : gesto === "sorpresa" ? 16 : 22;
   return (
-    <g stroke={C.contorno} strokeLinecap="round" strokeLinejoin="round" transform="translate(0 30)">
-      <ellipse cx={-84} cy={-662} rx={24} ry={13} fill="#f2a08c" opacity={0.45} stroke="none" /><ellipse cx={84} cy={-662} rx={24} ry={13} fill="#f2a08c" opacity={0.45} stroke="none" />
+    <g stroke={C.contorno} strokeLinecap="round" strokeLinejoin="round" transform="translate(0 34)">
       {gesto === "alivio"
-        ? <path d="M-74 -690 q22 -22 44 0 M30 -690 q22 -22 44 0" fill="none" strokeWidth={9} />
-        : <>
-          <ellipse cx={-52 + mx} cy={-694 + my} rx={grande ? 17 : 13} ry={grande ? 23 : 18} fill={C.contorno} stroke="none" />
-          <ellipse cx={52 + mx} cy={-694 + my} rx={grande ? 17 : 13} ry={grande ? 23 : 18} fill={C.contorno} stroke="none" />
-          <circle cx={-47 + mx} cy={-701 + my} r={5} fill="#fff" stroke="none" /><circle cx={57 + mx} cy={-701 + my} r={5} fill="#fff" stroke="none" />
-        </>}
-      {gesto === "neutral" && <path d="M-80 -732 h46 M34 -732 h46" strokeWidth={10} fill="none" />}
-      {gesto === "miedo" && <path d="M-84 -730 l44 -18 M40 -748 l44 18" strokeWidth={10} fill="none" />}
-      {gesto === "decidido" && <path d="M-84 -748 l46 20 M38 -728 l46 -20" strokeWidth={11} fill="none" />}
-      {gesto === "alivio" && <path d="M-82 -736 q24 -10 46 0 M36 -736 q24 -10 46 0" strokeWidth={9} fill="none" />}
-      {gesto === "sorpresa" && <path d="M-82 -752 q24 -14 46 0 M36 -752 q24 -14 46 0" strokeWidth={9} fill="none" />}
-      {/* ceja partida: detalle actual */}
-      <line x1={64} y1={-760} x2={72} y2={-716} stroke={C.piel} strokeWidth={7} />
-      {gesto === "neutral" && <path d="M-20 -628 h40" strokeWidth={9} fill="none" />}
-      {gesto === "miedo" && <path d="M-30 -622 q10 -14 20 0 t20 0 t20 0" strokeWidth={8} fill="none" />}
-      {gesto === "decidido" && <path d="M-26 -624 q26 -10 52 0" strokeWidth={9} fill="none" />}
-      {gesto === "alivio" && <path d="M-30 -636 q30 30 60 0" strokeWidth={9} fill="none" />}
-      {gesto === "sorpresa" && <ellipse cx={0} cy={-624} rx={15} ry={20} fill="#7a2230" strokeWidth={7} />}
+        ? <path d="M-92 -686 q34 -34 68 0 M24 -686 q34 -34 68 0" fill="none" strokeWidth={10} />
+        : [-58, 58].map((u) => <g key={u}>
+          <ellipse cx={u} cy={-690} rx={34} ry={gesto === "decidido" ? 32 : 38} fill="#fff" strokeWidth={7} />
+          <circle cx={u + mx} cy={-688 + my} r={pup} fill={C.contorno} stroke="none" />
+          <circle cx={u + mx - 7} cy={-696 + my} r={pup > 18 ? 7 : 5} fill="#fff" stroke="none" />
+        </g>)}
+      {gesto === "neutral" && <path d="M-96 -738 L-24 -732 M24 -732 L96 -738" strokeWidth={13} fill="none" />}
+      {gesto === "miedo" && <path d="M-98 -736 L-26 -760 M26 -760 L98 -736" strokeWidth={12} fill="none" />}
+      {gesto === "decidido" && <path d="M-100 -748 L-22 -714 M22 -714 L100 -748" strokeWidth={15} fill="none" />}
+      {gesto === "alivio" && <path d="M-96 -742 q34 -14 68 0 M28 -742 q34 -14 68 0" strokeWidth={11} fill="none" />}
+      {gesto === "sorpresa" && <path d="M-96 -758 q34 -18 68 0 M28 -758 q34 -18 68 0" strokeWidth={11} fill="none" />}
+      <line x1={70} y1={-764} x2={78} y2={-712} stroke={C.piel} strokeWidth={7} />
+      <path d="M-4 -652 q10 8 0 14" fill="none" strokeWidth={6} />
+      {gesto === "neutral" && <path d="M-22 -612 q22 -8 44 0" strokeWidth={9} fill="none" />}
+      {gesto === "miedo" && <path d="M-30 -608 q10 -14 20 0 t20 0 t20 0" strokeWidth={8} fill="none" />}
+      {gesto === "decidido" && <path d="M-26 -608 q26 -12 52 0" strokeWidth={10} fill="none" />}
+      {gesto === "alivio" && <path d="M-30 -620 q30 30 60 0" strokeWidth={9} fill="none" />}
+      {gesto === "sorpresa" && <ellipse cx={0} cy={-610} rx={15} ry={20} fill="#7a2230" strokeWidth={7} />}
       {/* la curita: su marca */}
-      <g transform="rotate(-24 -98 -642)" strokeWidth={5}>
-        <rect x={-126} y={-654} width={56} height={24} rx={11} fill="#f0b79a" /><rect x={-108} y={-654} width={20} height={24} fill="#f7d3bd" stroke="none" />
-        <path d="M-102 -646 v8 M-94 -646 v8" strokeWidth={3} />
+      <g transform="rotate(-24 -104 -628)" strokeWidth={5}>
+        <rect x={-132} y={-640} width={56} height={24} rx={11} fill="#f3c9a6" /><rect x={-114} y={-640} width={20} height={24} fill="#fbe3cf" stroke="none" />
+        <path d="M-108 -632 v8 M-100 -632 v8" strokeWidth={3} />
       </g>
     </g>
   );
@@ -81,8 +80,7 @@ export const Tambo: React.FC<{ x: number; y: number; s?: number; gesto?: Gesto; 
           {/* manga izquierda, caída y ancha */}
           <Tubo d="M-158 -520 Q-240 -452 -214 -336" w={70} c={C.chaqueta} />
           <path d="M-244 -438 q30 -2 56 14 M-248 -388 q30 -4 58 10" fill="none" strokeWidth={6} opacity={0.55} />
-          <path d="M-246 -326 q32 14 64 2" stroke={C.crema} strokeWidth={16} /><circle cx={-212} cy={-292} r={22} fill={C.piel} />
-          <path d="M-232 -300 q20 12 40 2" stroke={C.zapato} strokeWidth={12} fill="none" />
+          <path d="M-246 -326 q32 14 64 2" stroke={C.chaquetaSombra} strokeWidth={16} /><circle cx={-212} cy={-292} r={24} fill={C.zapato} /><path d="M-226 -276 q14 12 28 0" stroke={C.piel} strokeWidth={9} fill="none" />
           {/* chaqueta acolchada oversize */}
           <path d="M-100 -582 Q-186 -556 -198 -470 L-186 -384 Q0 -346 186 -384 L198 -470 Q186 -556 100 -582 Q0 -606 -100 -582Z" fill={C.chaqueta} />
           <path d="M-190 -420 Q0 -384 190 -420 L186 -384 Q0 -346 -186 -384Z" fill={C.chaquetaSombra} stroke="none" />
@@ -101,19 +99,20 @@ export const Tambo: React.FC<{ x: number; y: number; s?: number; gesto?: Gesto; 
           </g>
           {/* manga derecha con el farol */}
           <Tubo d={`M158 -520 Q${244} ${-478 - 40 * brazo} ${mx} ${my + 10}`} w={70} c={C.chaqueta} />
-          <path d={`M${mx - 36} ${my - 2} q36 -14 72 2`} stroke={C.crema} strokeWidth={16} fill="none" />
-          <circle cx={mx} cy={my + 30} r={22} fill={C.piel} /><path d={`M${mx - 20} ${my + 22} q20 -12 40 0`} stroke={C.zapato} strokeWidth={12} fill="none" />
+          <path d={`M${mx - 36} ${my - 2} q36 -14 72 2`} stroke={C.chaquetaSombra} strokeWidth={16} fill="none" />
+          <circle cx={mx} cy={my + 30} r={24} fill={C.zapato} /><path d={`M${mx - 14} ${my + 46} q14 10 28 0`} stroke={C.piel} strokeWidth={9} fill="none" />
           {farol && <g transform={`translate(${mx} ${my + 30})`}>
-            <path d="M-20 34 Q0 2 20 34" fill="none" strokeWidth={8} />
-            <rect x={-36} y={32} width={72} height={24} rx={8} fill="#3d3d47" strokeWidth={8} />
-            <rect x={-30} y={56} width={60} height={86} rx={16} fill={luz > 0 ? C.farol : "#7d8590"} strokeWidth={8} />
-            <path d="M-30 78 h60 M-30 100 h60 M-30 122 h60" strokeWidth={4} opacity={0.5} />
-            <rect x={-38} y={140} width={76} height={26} rx={8} fill="#3d3d47" strokeWidth={8} /><circle cx={0} cy={153} r={5} fill={C.chaqueta} stroke="none" />
+            <path d="M-30 52 Q-34 6 0 6 Q34 6 30 52" fill="none" strokeWidth={7} />
+            <path d="M-26 56 Q0 26 26 56Z" fill="#3a3a40" strokeWidth={8} /><rect x={-34} y={54} width={68} height={16} rx={6} fill="#4a4a52" strokeWidth={7} />
+            <rect x={-30} y={70} width={60} height={84} rx={14} fill={luz > 0 ? C.farol : "#7d8590"} strokeWidth={8} />
+            {luz > 0 && <ellipse cx={0} cy={112} rx={15} ry={26} fill="#fff6c9" stroke="none" />}
+            <path d="M-10 70 v84 M10 70 v84 M-30 98 h60 M-30 126 h60" strokeWidth={5} />
+            <path d="M-38 154 h76 l-6 26 h-64Z" fill="#c9a227" strokeWidth={8} />
           </g>}
         </>}
         {/* cabeza de frijol */}
         <ellipse cx={0} cy={-690} rx={152} ry={140} fill={C.piel} />
-        <path d="M-124 -736 Q-96 -712 -64 -740 Q-30 -714 0 -742 Q34 -716 66 -742 Q98 -716 124 -736 L116 -790 H-116Z" fill={C.pelo} strokeWidth={8} />
+        <path d="M-140 -690 Q-130 -640 -112 -610 Q-118 -670 -96 -716 L-80 -690 L-58 -734 L-34 -700 L-8 -740 L18 -702 L44 -738 L66 -704 L92 -730 Q118 -672 112 -612 Q132 -642 140 -692 L128 -796 H-128Z" fill={C.pelo} strokeWidth={8} />
         {/* gorro de punto oversize con orejeras: su silueta */}
         <path d="M-162 -724 Q-176 -900 -30 -916 Q150 -924 164 -724 Q0 -772 -162 -724Z" fill={C.chullo} />
         {[-104, -54, -4, 46, 96].map((u) => <path key={u} d={`M${u} -800 Q${u * 0.86} -860 ${u * 0.5 - 12} -906`} fill="none" stroke={C.chulloSombra} strokeWidth={6} />)}
@@ -123,7 +122,7 @@ export const Tambo: React.FC<{ x: number; y: number; s?: number; gesto?: Gesto; 
         <path d="M-162 -724 Q-192 -640 -152 -566 Q-128 -636 -130 -712Z" fill={C.chullo} /><path d="M162 -724 Q192 -640 152 -566 Q128 -636 130 -712Z" fill={C.chullo} />
         <path d="M-166 -690 q10 6 26 2 M-170 -650 q12 8 30 4 M166 -690 q-10 6 -26 2 M170 -650 q-12 8 -30 4" fill="none" stroke={C.chulloSombra} strokeWidth={5} />
         {[-1, 1].map((k) => <g key={k} transform={`scale(${k} 1)`}>
-          <path d="M152 -566 q8 50 -4 92" fill="none" stroke={C.contorno} strokeWidth={16} /><path d="M152 -566 q8 50 -4 92" fill="none" stroke={C.crema} strokeWidth={8} strokeDasharray="12 7" />
+          <path d="M152 -566 q8 50 -4 92" fill="none" stroke={C.contorno} strokeWidth={24} /><path d="M152 -566 q8 50 -4 92" fill="none" stroke={C.chullo} strokeWidth={13} strokeDasharray="13 6" />
           <path d="M136 -474 l10 34 l12 -34Z" fill={C.chullo} strokeWidth={6} />
         </g>)}
         <circle cx={-18} cy={-936} r={36} fill={C.crema} /><path d="M-40 -950 l10 12 M-14 -958 l2 14 M2 -944 l-10 10 M-30 -924 l12 -6" strokeWidth={4} opacity={0.5} />
@@ -143,15 +142,16 @@ export const Chispa: React.FC<{ x: number; y: number; s?: number; alerta?: boole
     <path d="M60 -80 Q110 -66 124 -120 Q110 -150 76 -150Z" fill={C.chispaClaro} stroke="none" />
     <path d="M-70 -186 q30 -10 56 4 M-96 -150 q24 -6 40 6" fill="none" stroke="#9c6630" strokeWidth={6} />
     {/* arnés reflectivo con luz */}
-    <path d="M22 -196 Q14 -128 30 -62" fill="none" stroke={C.contorno} strokeWidth={30} /><path d="M22 -196 Q14 -128 30 -62" fill="none" stroke={C.chaqueta} strokeWidth={16} />
-    <path d="M20 -160 l6 34" stroke={C.crema} strokeWidth={8} /><circle cx={26} cy={-200} r={11} fill={C.farol} strokeWidth={5} />
+    <path d="M-36 -196 Q-52 -128 -34 -62 Q20 -52 70 -66 Q52 -130 60 -194 Q10 -206 -36 -196Z" fill={C.chaqueta} strokeWidth={9} />
+    <path d="M-40 -150 Q10 -140 56 -152" fill="none" strokeWidth={5} opacity={0.5} /><rect x={-4} y={-128} width={36} height={22} rx={7} fill={C.farol} strokeWidth={5} />
     <circle cx={142} cy={-218} r={84} fill={C.chispa} />
-    <path d={alerta ? "M96 -280 L84 -372 L150 -300Z" : "M96 -280 L60 -340 L140 -306Z"} fill={C.chispa} />
+    <path d={alerta ? "M92 -276 Q70 -372 124 -366 Q150 -330 150 -296Z" : "M92 -276 Q40 -330 60 -372 Q112 -350 146 -302Z"} fill={C.chispa} /><path d={alerta ? "M104 -300 Q96 -350 120 -348" : "M88 -300 Q66 -330 72 -352"} fill="none" stroke="#9c6630" strokeWidth={6} />
     <path d="M176 -292 Q232 -300 226 -238 Q200 -262 170 -262Z" fill="#9c6630" />
-    <ellipse cx={206} cy={-196} rx={46} ry={34} fill={C.chispaClaro} />
-    <ellipse cx={232} cy={-212} rx={15} ry={12} fill={C.contorno} stroke="none" />
-    <circle cx={150} cy={-240} r={alerta ? 13 : 10} fill={C.contorno} stroke="none" /><circle cx={154} cy={-245} r={4} fill="#fff" stroke="none" />
-    <path d="M132 -262 q16 -10 34 -2" fill="none" strokeWidth={6} />
+    <path d="M166 -208 Q176 -236 214 -232 Q256 -226 252 -190 Q244 -160 204 -162 Q170 -166 166 -208Z" fill={C.chispaClaro} />
+    <ellipse cx={240} cy={-212} rx={15} ry={12} fill={C.contorno} stroke="none" />
+    <ellipse cx={150} cy={-240} rx={20} ry={alerta ? 23 : 19} fill="#fff" strokeWidth={6} /><circle cx={155} cy={-238} r={alerta ? 9 : 13} fill={C.contorno} stroke="none" /><circle cx={151} cy={-244} r={4} fill="#fff" stroke="none" />
+    <path d={alerta ? "M124 -274 q22 -14 46 -4" : "M126 -268 q22 -6 46 6"} fill="none" strokeWidth={9} />
+    <path d="M70 -214 l-14 8 l12 8 l-12 10 M110 -150 l-8 14 l14 -2" fill="none" stroke="#9c6630" strokeWidth={6} />
     {alerta ? <path d="M196 -180 q14 12 30 2" fill="none" strokeWidth={7} /> : <path d="M194 -182 q16 20 34 4" fill="none" strokeWidth={7} />}
     <path d="M74 -168 Q110 -128 168 -146 L150 -110 Q100 -100 70 -140Z" fill={C.panuelo} strokeWidth={8} />
   </g>
@@ -169,7 +169,7 @@ export const HojaTambo: React.FC = () => (
   <svg width={1080} height={1920} viewBox="0 0 1080 1920" style={{ background: "#f4efe4" }}>
     <rect width={1080} height={1920} fill="#f4efe4" />
     <text x={60} y={130} fontFamily={F} fontWeight={800} fontSize={104} fill={C.contorno}>TAMBO</text>
-    <text x={64} y={186} fontFamily={F} fontWeight={700} fontSize={36} fill="#6d5f66">y Chispa · hoja de personaje · v2</text>
+    <text x={64} y={186} fontFamily={F} fontWeight={700} fontSize={36} fill="#6d5f66">y Chispa · hoja de personaje · v3</text>
     <line x1={60} y1={214} x2={1020} y2={214} stroke={C.contorno} strokeWidth={6} />
     <ellipse cx={520} cy={1188} rx={470} ry={34} fill="#e4dccb" />
     <Tambo x={330} y={1180} s={0.94} gesto="neutral" brazo={0.4} />
@@ -179,7 +179,7 @@ export const HojaTambo: React.FC = () => (
       <circle cx={px} cy={py} r={7} fill="#6d5f66" />
       <text x={tx} y={ty} fontFamily={F} fontWeight={700} fontSize={27} fill="#6d5f66">{n}</text>
     </g>)}
-    <text x={800} y={1262} textAnchor="middle" fontFamily={F} fontWeight={700} fontSize={30} fill="#6d5f66">Chispa · arnés con luz</text>
+    <text x={800} y={1262} textAnchor="middle" fontFamily={F} fontWeight={700} fontSize={30} fill="#6d5f66">Chispa · chaleco con luz</text>
     <text x={330} y={1262} textAnchor="middle" fontFamily={F} fontWeight={700} fontSize={30} fill="#6d5f66">Tambo · 3 cabezas de alto</text>
     <text x={60} y={1345} fontFamily={F} fontWeight={800} fontSize={40} fill={C.contorno}>Gestos</text>
     {GESTOS.map(([g, n], i) => <g key={g}>
