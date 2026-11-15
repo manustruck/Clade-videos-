@@ -52,3 +52,9 @@ La skill está en `SKILL.md` (léela antes de hacer un short). Estas notas son s
   tiempo) → `render.sh` (por partes, se puede reanudar) → `sonido.py` (ambiente y efectos) → unir con ffmpeg →
   miniatura, flyer y textos en `publicar/`.
 - El plan gratis de ElevenLabs da 10 000 caracteres al mes: un capítulo de 12 min gasta unos 5 900.
+
+## Canal en inglés (Norm)
+- Guía y lista de ideas en `canal-ingles/PROYECTO_CANAL.md`. Videos 1 a 5 hechos; el siguiente es «YOUR PAVERS WILL WAVE».
+- Todo video nuevo lleva subtítulos llamativos (`src/videos/comun/Subtitulos.tsx`) y el cierre «Follow for more backyard
+  builds that won't fail!» con tarjeta FOLLOW y el aviso del siguiente tema.
+- Voz sin costo: `herramientas/voz_piper.py` con `en_US-joe-medium` (CC0). No uses voces de licencia NC si se va a monetizar.

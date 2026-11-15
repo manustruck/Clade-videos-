@@ -139,6 +139,8 @@ hora; los derrumbes con muchas piezas y los acabados finos piden una computadora
 | 1 | YOUR FENCE POST WILL ROT | Hecho (`01-fence-post/`) |
 | 2 | YOUR RETAINING WALL WILL TIP | Hecho (`02-retaining-wall/`) |
 | 3 | YOUR DECK WILL PULL AWAY | Hecho (`03-deck/`), con mensaje final para que nos sigan |
+| 4 | YOUR GATE WILL SAG | Hecho (`04-gate/`), con subtítulos llamativos |
+| 5 | YOUR SHED IS SINKING | Hecho (`05-shed/`), con subtítulos llamativos |
 
 Estilo definido en los dos primeros: alegre y colorido, sin misterio, sin subtítulos (solo título, medidas y sello), voz
 en inglés con energía y música tipo ukelele. Cada video nuevo copia la carpeta del anterior (`src/videos/<nombre>/`,
@@ -153,3 +155,15 @@ Cambia el «NEXT» en cada video; en los dos primeros no está.
 Cuando se acaben los caracteres de ElevenLabs, el video 3 usó Piper con la voz `en_US-joe-medium` (licencia CC0, uso
 comercial permitido): `canal-ingles/03-deck/voz.py`. Evita las voces con licencia «NC» (no comercial), como `ryan` o
 `hfc_male`, si el canal va a monetizar.
+
+## Subtítulos llamativos (desde el video 4)
+Todos los videos nuevos llevan subtítulos: mayúsculas gruesas con borde oscuro, 2 a 3 palabras por pantalla, la palabra
+que suena en amarillo con un «pop», las palabras clave en naranja y cada grupo ligeramente inclinado. Componente:
+`src/videos/comun/Subtitulos.tsx` (recibe los tiempos por palabra de `voz/tiempos.json`). Los videos 1 a 3 salieron sin
+subtítulos; se pueden volver a renderizar con ellos.
+
+## Herramientas comunes
+- `herramientas/voz_piper.py`: voz gratuita con tiempos por palabra (los de palabra son aproximados: se reparten por fonemas).
+- `canal-ingles/comun_sonido.py`: música, efectos y mezcla; cada video solo define sus eventos (`sonido.py`).
+- Proceso de un video nuevo: `guion.json` → `voz_piper.py` → escena 3D en `src/videos/<nombre>/` → `sonido.py` →
+  render (`npx remotion render ... --muted`) → unir con ffmpeg → flyer y textos con `herramientas/flyer_y_textos.py`.
