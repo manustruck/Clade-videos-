@@ -132,3 +132,13 @@ hora; los derrumbes con muchas piezas y los acabados finos piden una computadora
 1. El nombre del canal.
 2. Si Norm te convence como mascota o prefieres otra.
 3. Si hago el piloto del guion 1 aquí, en 3D sencillo.
+
+## Estado de la producción
+| # | Video | Estado |
+|---|---|---|
+| 1 | YOUR FENCE POST WILL ROT | Hecho (`01-fence-post/`) |
+| 2 | YOUR RETAINING WALL WILL TIP | Hecho (`02-retaining-wall/`) |
+
+Estilo definido en los dos primeros: alegre y colorido, sin misterio, sin subtítulos (solo título, medidas y sello), voz
+en inglés con energía y música tipo ukelele. Cada video nuevo copia la carpeta del anterior (`src/videos/<nombre>/`,
+`canal-ingles/<nn-nombre>/`): voz → escena 3D → sonido → render → flyer y textos.

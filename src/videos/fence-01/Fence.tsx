@@ -8,13 +8,13 @@ import { ThreeCanvas } from "@remotion/three";
 import { useThree } from "@react-three/fiber";
 
 export const FENCE_FPS = 30, FENCE_SEG = 43, FENCE_CUADROS = FENCE_FPS * FENCE_SEG;
-const cl = (x: number) => Math.max(0, Math.min(1, x));
-const sm = (x: number) => { const u = cl(x); return u * u * (3 - 2 * u); };
-const pr = (t: number, a: number, b: number) => sm((t - a) / (b - a));
-const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-const azar = (n: number) => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
-const mezcla = (a: string, b: string, t: number) => new THREE.Color(a).lerp(new THREE.Color(b), cl(t));
-const rebote = (u: number) => u >= 1 ? 1 : 1 - Math.abs(Math.cos(u * Math.PI * 2.5)) * (1 - u); // caída con rebote
+export const cl = (x: number) => Math.max(0, Math.min(1, x));
+export const sm = (x: number) => { const u = cl(x); return u * u * (3 - 2 * u); };
+export const pr = (t: number, a: number, b: number) => sm((t - a) / (b - a));
+export const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+export const azar = (n: number) => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+export const mezcla = (a: string, b: string, t: number) => new THREE.Color(a).lerp(new THREE.Color(b), cl(t));
+export const rebote = (u: number) => u >= 1 ? 1 : 1 - Math.abs(Math.cos(u * Math.PI * 2.5)) * (1 - u); // caída con rebote
 
 type V3 = [number, number, number];
 type Cam = { pos: V3; look: V3 };
@@ -41,7 +41,7 @@ const camEn = (t: number): Cam => {
 const FOV = 34;
 
 // ---------------------------------------------------------------- piezas
-const Caja: React.FC<{ p: V3; s: V3; c: THREE.ColorRepresentation; o?: number; sombra?: boolean; recibe?: boolean }> = ({ p, s, c, o = 1, sombra = true, recibe = true }) => (
+export const Caja: React.FC<{ p: V3; s: V3; c: THREE.ColorRepresentation; o?: number; sombra?: boolean; recibe?: boolean }> = ({ p, s, c, o = 1, sombra = true, recibe = true }) => (
   <mesh position={p} castShadow={sombra} receiveShadow={recibe}><boxGeometry args={s} /><meshLambertMaterial color={c} transparent={o < 1} opacity={o} /></mesh>
 );
 const HOYO = { ancho: 0.46, fondo: -0.9, prof: 0.32 }, POSTE = { lado: 0.13, pie: -0.75, alto: 1.5 }, GRAVA = 0.15;
@@ -50,7 +50,7 @@ const HOYO = { ancho: 0.46, fondo: -0.9, prof: 0.32 }, POSTE = { lado: 0.13, pie
 const CUNA = (() => { const sh = new THREE.Shape(); sh.moveTo(POSTE.lado / 2, 0); sh.lineTo(POSTE.lado / 2, 0.1); sh.lineTo(HOYO.ancho / 2 + 0.06, 0.012); sh.lineTo(HOYO.ancho / 2 + 0.06, 0); sh.closePath(); return sh; })();
 
 /** Norm, el gnomo de jardín */
-const Norm: React.FC<{ p: V3; t: number; brazo?: number; gorro?: V3; grieta?: boolean; giro?: number; salto?: number; inclina?: number }> = ({ p, t, brazo = 0, gorro = [0, 0, 0], grieta, giro = -0.5, salto = 0, inclina = 0 }) => (
+export const Norm: React.FC<{ p: V3; t: number; brazo?: number; gorro?: V3; grieta?: boolean; giro?: number; salto?: number; inclina?: number }> = ({ p, t, brazo = 0, gorro = [0, 0, 0], grieta, giro = -0.5, salto = 0, inclina = 0 }) => (
   <group position={[p[0], p[1] + salto, p[2]]} rotation={[0, giro, inclina]} scale={1.15}>
     {[-0.07, 0.07].map((x) => <mesh key={x} position={[x, 0.04, 0.03]} castShadow scale={[1, 0.6, 1.4]}><sphereGeometry args={[0.07, 16, 12]} /><meshLambertMaterial color="#6b4423" /></mesh>)}
     <mesh position={[0, 0.22, 0]} castShadow><cylinderGeometry args={[0.1, 0.17, 0.32, 20]} /><meshLambertMaterial color="#1f7a4a" /></mesh>
