@@ -138,7 +138,18 @@ hora; los derrumbes con muchas piezas y los acabados finos piden una computadora
 |---|---|---|
 | 1 | YOUR FENCE POST WILL ROT | Hecho (`01-fence-post/`) |
 | 2 | YOUR RETAINING WALL WILL TIP | Hecho (`02-retaining-wall/`) |
+| 3 | YOUR DECK WILL PULL AWAY | Hecho (`03-deck/`), con mensaje final para que nos sigan |
 
 Estilo definido en los dos primeros: alegre y colorido, sin misterio, sin subtítulos (solo título, medidas y sello), voz
 en inglés con energía y música tipo ukelele. Cada video nuevo copia la carpeta del anterior (`src/videos/<nombre>/`,
 `canal-ingles/<nn-nombre>/`): voz → escena 3D → sonido → render → flyer y textos.
+
+## Cierre para que nos sigan (desde el video 3)
+Los últimos 2 a 3 segundos de cada video llevan voz y una tarjeta: botón naranja **FOLLOW**, la frase *“Follow for more
+backyard builds that won't fail!”* y el aviso del siguiente tema (*NEXT: YOUR GATE WILL SAG*). Norm saluda debajo.
+Cambia el «NEXT» en cada video; en los dos primeros no está.
+
+## Voz gratuita sin límite de caracteres
+Cuando se acaben los caracteres de ElevenLabs, el video 3 usó Piper con la voz `en_US-joe-medium` (licencia CC0, uso
+comercial permitido): `canal-ingles/03-deck/voz.py`. Evita las voces con licencia «NC» (no comercial), como `ryan` o
+`hfc_male`, si el canal va a monetizar.
