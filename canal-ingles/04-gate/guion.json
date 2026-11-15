@@ -1,0 +1,34 @@
+{
+ "frases": [
+  "Your gate is going to sag!",
+  "Here's why.",
+  "You built a nice square frame, hung it on two hinges, and went inside for lemonade.",
+  "Looks perfect, right?",
+  "But the gate is heavy.",
+  "It pulls down on the far corner, and the square slowly turns into a lean.",
+  "A few months later, it drags on the ground!",
+  "Whoops!",
+  "Here's the fix.",
+  "Add one diagonal brace.",
+  "It runs from the bottom, on the hinge side, up to the top, on the latch side.",
+  "Now the weight pushes straight down the brace, and into the post.",
+  "Same gate. Same hinges. Smooth swing!",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "pausas": [
+  0.2,
+  0.2,
+  0.35,
+  0.15,
+  0.15,
+  0.5,
+  0.55,
+  0.2,
+  0.1,
+  0.15,
+  0.2,
+  0.2,
+  0.28,
+  0.0
+ ]
+}
