@@ -141,6 +141,8 @@ hora; los derrumbes con muchas piezas y los acabados finos piden una computadora
 | 3 | YOUR DECK WILL PULL AWAY | Hecho (`03-deck/`), con mensaje final para que nos sigan |
 | 4 | YOUR GATE WILL SAG | Hecho (`04-gate/`), con subtítulos llamativos |
 | 5 | YOUR SHED IS SINKING | Hecho (`05-shed/`), con subtítulos llamativos |
+| 6 | YOUR PATIO WILL WAVE | Hecho (`06-pavers/`), con gancho de 2 s, subtítulos animados y pregunta para comentarios |
+| 7 | YOUR BASEMENT WILL FLOOD | Hecho (`07-gutter/`), con gancho de 2 s, subtítulos animados y pregunta para comentarios |
 
 Estilo definido en los dos primeros: alegre y colorido, sin misterio, sin subtítulos (solo título, medidas y sello), voz
 en inglés con energía y música tipo ukelele. Cada video nuevo copia la carpeta del anterior (`src/videos/<nombre>/`,
@@ -167,3 +169,13 @@ subtítulos; se pueden volver a renderizar con ellos.
 - `canal-ingles/comun_sonido.py`: música, efectos y mezcla; cada video solo define sus eventos (`sonido.py`).
 - Proceso de un video nuevo: `guion.json` → `voz_piper.py` → escena 3D en `src/videos/<nombre>/` → `sonido.py` →
   render (`npx remotion render ... --muted`) → unir con ffmpeg → flyer y textos con `herramientas/flyer_y_textos.py`.
+
+## Fórmula viral (desde el video 6)
+1. **Gancho de 2 segundos que enseña el desastre desde el segundo 0** (cuadro del fallo ya ocurrido + título grande + golpe de
+   sonido y sacudida de cámara). La frase del gancho termina en ~2 s.
+2. **Curiosidad abierta** en la segunda frase («y no es culpa de los adoquines…», «ahora mismo, y no lo puedes ver»).
+3. **Un cambio de plano cada 2 a 3 segundos** y la cámara siempre en movimiento.
+4. **Subtítulos animados:** cada palabra aparece con rebote cuando suena; palabra activa en amarillo, clave en naranja.
+5. **Barra de progreso** amarilla arriba (retención).
+6. **Pregunta para comentarios** antes del cierre y **tarjeta FOLLOW** con el aviso del siguiente tema.
+7. Duración de 32 a 38 s; datos verificados y aviso legal en la descripción.
