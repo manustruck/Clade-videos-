@@ -55,6 +55,8 @@ Los títulos y textos nuevos ya están en cada `NN-*/publicacion.json`, y se vol
 | 10 | — | Is treated wood safe for raised garden beds? (Flo vs Norm) |
 | 11 | — | Can river rocks explode in a fire pit? (Flo vs Norm) |
 | 12 | — | Concrete control joints: just for looks? (Flo vs Norm) |
+| 13 | — | Deck railing post screwed to the rim? (Flo vs Norm) |
+| 14 | — | Ladder angle: the 4 to 1 rule (Flo vs Norm) |
 
 **Si ya subiste alguno:** en YouTube cambia solo el título, la descripción y los hashtags desde Studio. No lo subas
 otra vez: un video duplicado compite contra sí mismo.
@@ -82,9 +84,10 @@ todavía, así que estas horas son un punto de partida para ajustar con lo que m
 | 1 | — | 18 nov: #3 Deck | 20 nov: #4 Gate |
 | 2 | 23 nov: #5 Shed | 25 nov: #6 Pavers (sin jueves: Acción de Gracias en EE. UU.) | 27 nov: #7 Gutter |
 | 3 | 30 nov: #8 Stairs (debate) | 2 dic: #9 Fabric (debate) | 4 dic: **#10 Treated wood** (debate, nuevo) |
-| 4 | 7 dic: **#11 Fire pit** (debate) | 9 dic: **#12 Concrete slab** (debate) | 11 dic: #13 Railing (por hacer) |
-| 5 | 14 dic: #1 Fence post (re-render) | 16 dic: #2 Retaining wall (re-render) | 18 dic: debate nuevo |
-- El orden respeta la cadena de «Next»: 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12 → 13. Los videos 1 y 2 no anuncian
+| 4 | 7 dic: **#11 Fire pit** (debate) | 9 dic: **#12 Concrete slab** (debate) | 11 dic: **#13 Railing** (debate) |
+| 5 | 14 dic: **#14 Ladder** (debate) | 16 dic: #15 Pergola (por hacer) | 18 dic: #1 Fence post (re-render) |
+| 6 | 21 dic: #2 Retaining wall (re-render) | 23 dic: libre para tendencia | — (fiestas) |
+- El orden respeta la cadena de «Next»: 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12 → 13 → 14 → 15. Los videos 1 y 2 no anuncian
   otro, por eso van después.
 - **Espacio reactivo:** un hueco por semana desde la semana 5 (por ejemplo, una helada que rompe una tubería o hielo
   en los escalones) para temas del momento.
@@ -175,3 +178,12 @@ Después de 3 o 4 semanas, haz más de lo que se repite como ganador (por ejempl
   profundidad de 1/4 del espesor, cortar pronto y vaciar sobre grava compactada.
 - Las tres escenas usan las piezas comunes de `src/videos/comun/Escena.tsx` (cámara, patio, rótulos y marco). Para
   hacerlas todas de una vez: `bash canal-ingles/render_10_12.sh`.
+
+## 6. Videos 13 y 14 (hechos)
+- **13 · Railing** (`13-railing/`): el poste atornillado solo a la viga de borde hace palanca y la arranca. El código
+  (IRC) pide que la baranda aguante 200 lb empujadas arriba, y en pruebas de Virginia Tech algunos postes con solo
+  tornillos se soltaron con cerca de un cuarto de eso. Arreglo: bloqueo, pernos pasantes y un anclaje metálico hacia
+  las viguetas.
+- **14 · Ladder** (`14-ladder/`): muy tendida resbala, muy parada se va hacia atrás. Regla 4 a 1 de OSHA (1 pie afuera
+  por cada 4 de alto), la prueba de los brazos y 3 pies por encima del borde del techo.
+- Render: `bash canal-ingles/render_13_14.sh`.

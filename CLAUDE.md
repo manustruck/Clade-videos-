@@ -54,7 +54,7 @@ La skill está en `SKILL.md` (léela antes de hacer un short). Estas notas son s
 - El plan gratis de ElevenLabs da 10 000 caracteres al mes: un capítulo de 12 min gasta unos 5 900.
 
 ## Canal en inglés (Norm)
-- Guía y lista de ideas en `canal-ingles/PROYECTO_CANAL.md`. Videos 1 a 12 hechos (el 13, «railing», va después). Desde el 10 las escenas usan `src/videos/comun/Escena.tsx`. Calendario y títulos optimizados en `canal-ingles/CRECIMIENTO.md`. Desde el 8 el formato es debate Norm vs Flo (ver la guía).
+- Guía y lista de ideas en `canal-ingles/PROYECTO_CANAL.md`. Videos 1 a 14 hechos (el 15, «pergola», va después). Desde el 10 las escenas usan `src/videos/comun/Escena.tsx`. Calendario y títulos optimizados en `canal-ingles/CRECIMIENTO.md`. Desde el 8 el formato es debate Norm vs Flo (ver la guía).
 - Todo video nuevo lleva subtítulos llamativos (`src/videos/comun/Subtitulos.tsx`) y el cierre «Follow for more backyard
   builds that won't fail!» con tarjeta FOLLOW y el aviso del siguiente tema.
 - Voz sin costo: `herramientas/voz_piper.py` con `en_US-joe-medium` (CC0). No uses voces de licencia NC si se va a monetizar.

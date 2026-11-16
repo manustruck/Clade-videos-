@@ -147,7 +147,9 @@ hora; los derrumbes con muchas piezas y los acabados finos piden una computadora
 | 9 | IS LANDSCAPE FABRIC A SCAM? | Hecho (`09-fabric/`), diálogo Flo vs Norm, like/follow animado, votación de equipos |
 | 10 | TREATED WOOD IN YOUR GARDEN? | Hecho (`10-treated-wood/`), debate Flo vs Norm |
 | 11 | CAN ROCKS EXPLODE? (fire pit) | Hecho (`11-fire-pit/`), debate Flo vs Norm |
-| 12 | YOUR SLAB WILL CRACK | Hecho (`12-concrete-slab/`), debate Flo vs Norm; anuncia el 13 «THIS RAILING WON'T HOLD YOU» |
+| 12 | YOUR SLAB WILL CRACK | Hecho (`12-concrete-slab/`), debate Flo vs Norm |
+| 13 | THIS RAILING WON'T HOLD YOU | Hecho (`13-railing/`), debate Flo vs Norm |
+| 14 | YOUR LADDER ANGLE IS WRONG | Hecho (`14-ladder/`), debate Flo vs Norm; anuncia el 15 «YOUR PERGOLA WILL WOBBLE» |
 
 Estilo definido en los dos primeros: alegre y colorido, sin misterio, sin subtítulos (solo título, medidas y sello), voz
 en inglés con energía y música tipo ukelele. Cada video nuevo copia la carpeta del anterior (`src/videos/<nombre>/`,

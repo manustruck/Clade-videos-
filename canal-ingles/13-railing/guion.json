@@ -1,0 +1,20 @@
+{
+ "frases": [
+  "This deck railing won't hold you!",
+  "Hit like and follow. Flo is leaning on it right now!",
+  "Relax! The post is screwed right into the deck. It's solid!",
+  "Screwed into one board. The outside rim. That's it.",
+  "Lean on the top, and it works like a crowbar. It pries that board right off.",
+  "Come on. How much can one lean do?",
+  "Code says a railing must hold two hundred pounds, pushed on the top.",
+  "In Virginia Tech tests, some screwed posts let go at about a quarter of that.",
+  "Okay. So how do I fix it?",
+  "Tie the post into the deck joists. Blocking, through bolts, and a metal hold down.",
+  "Now the push goes into the whole deck, not one board.",
+  "Fine. I'll lean on it. Carefully.",
+  "A railing screwed to the rim. Safe, or a fall waiting to happen? Team Norm or Team Flo?",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "voces": [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0],
+ "pausas": [0.15, 0.12, 0.12, 0.12, 0.15, 0.1, 0.12, 0.15, 0.1, 0.12, 0.15, 0.2, 0.2, 0.0]
+}
