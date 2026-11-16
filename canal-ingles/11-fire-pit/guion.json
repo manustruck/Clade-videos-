@@ -1,0 +1,20 @@
+{
+ "frases": [
+  "That rock from the river can blow up in your fire pit!",
+  "Hit like and follow. Flo says I'm making it up!",
+  "Rocks don't explode! They're rocks! That's a myth!",
+  "River rocks sat in water for years. Some of it is still trapped inside.",
+  "Light a fire, and that water turns to steam.",
+  "The steam has nowhere to go, so the rock cracks. Sometimes, it pops!",
+  "Okay, but mine are totally dry. I picked them up last summer.",
+  "Dry on the outside. And every rain soaks them up again.",
+  "So what am I supposed to use? Nothing?",
+  "Fire brick inside the ring. Or dense stone made for fire pits.",
+  "Keep river rock out of the flames, and away from the ring.",
+  "Fine. But I'm keeping the cute ones for the garden.",
+  "River rocks in a fire pit. Myth, or real danger? Team Norm or Team Flo?",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "voces": [0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0],
+ "pausas": [0.15, 0.12, 0.12, 0.12, 0.1, 0.15, 0.12, 0.12, 0.1, 0.12, 0.15, 0.2, 0.2, 0.0]
+}

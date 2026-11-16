@@ -1,0 +1,20 @@
+{
+ "frases": [
+  "Your new concrete slab is going to crack!",
+  "Hit like and follow. Flo thinks she beat concrete!",
+  "Not mine! I poured it nice and smooth. No ugly lines!",
+  "Concrete shrinks as it dries. It pulls on itself.",
+  "With no lines, it picks its own spot. Usually right across the middle.",
+  "Wait. Those lines on sidewalks aren't just for looks?",
+  "Nope. They're control joints. A weak spot on purpose, so the crack hides inside the line.",
+  "For a four inch slab, cut a joint every eight to twelve feet.",
+  "About one inch deep, a quarter of the thickness. Cut them early, before it cracks on its own.",
+  "And the dirt under it?",
+  "A compacted gravel base. Soft spots crack it too.",
+  "Fine. My smooth slab was a crack waiting to happen.",
+  "Lines in concrete. Just for looks, or crack control? Team Norm or Team Flo?",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "voces": [0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0],
+ "pausas": [0.15, 0.12, 0.12, 0.1, 0.15, 0.12, 0.15, 0.12, 0.15, 0.1, 0.15, 0.2, 0.2, 0.0]
+}

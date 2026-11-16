@@ -11,6 +11,9 @@ import { PaversVideo, PAV_CUADROS, PAV_FPS } from "./videos/pavers-06/Pavers";
 import { GutterVideo, GUT_CUADROS, GUT_FPS } from "./videos/gutter-07/Gutter";
 import { StairsVideo, STA_CUADROS, STA_FPS } from "./videos/stairs-08/Stairs";
 import { FabricVideo, FAB_CUADROS, FAB_FPS } from "./videos/fabric-09/Fabric";
+import { TreatedVideo, TRE_CUADROS, TRE_FPS } from "./videos/treated-10/Treated";
+import { FirePitVideo, FIRE_CUADROS, FIRE_FPS } from "./videos/firepit-11/FirePit";
+import { SlabVideo, SLAB_CUADROS, SLAB_FPS } from "./videos/slab-12/Slab";
 import { ReelHuellas, ReelRadio, reelCuadros } from "./videos/tambo-01/Reels";
 import { MiniaturaFaro, FondoFlyerFaro } from "./videos/tambo-01/portadas";
 import { FaroCap1, FARO_CUADROS, FARO_FPS } from "./videos/tambo-01/Faro";
@@ -30,6 +33,9 @@ export const Root: React.FC = () => (
     <Composition id="GutterVideo" component={GutterVideo} durationInFrames={GUT_CUADROS} fps={GUT_FPS} width={1080} height={1920} />
     <Composition id="StairsVideo" component={StairsVideo} durationInFrames={STA_CUADROS} fps={STA_FPS} width={1080} height={1920} />
     <Composition id="FabricVideo" component={FabricVideo} durationInFrames={FAB_CUADROS} fps={FAB_FPS} width={1080} height={1920} />
+    <Composition id="TreatedWood" component={TreatedVideo} durationInFrames={TRE_CUADROS} fps={TRE_FPS} width={1080} height={1920} />
+    <Composition id="FirePit" component={FirePitVideo} durationInFrames={FIRE_CUADROS} fps={FIRE_FPS} width={1080} height={1920} />
+    <Composition id="ConcreteSlab" component={SlabVideo} durationInFrames={SLAB_CUADROS} fps={SLAB_FPS} width={1080} height={1920} />
     <Still id="MiniaturaFaro" component={MiniaturaFaro} width={1920} height={1080} />
     <Still id="FondoFlyerFaro" component={FondoFlyerFaro} width={1080} height={1920} />
     <Still id="HojaTambo" component={HojaTambo} width={1080} height={1920} />

@@ -53,6 +53,8 @@ Los títulos y textos nuevos ya están en cada `NN-*/publicacion.json`, y se vol
 | 8 | One step 1 inch taller = you fall? (Team Norm or Flo) | Uneven stairs: can 1 inch really trip you? (Flo vs Norm) |
 | 9 | Is landscape fabric a scam? (Flo vs Norm) | Landscape fabric: scam or worth it? (Flo vs Norm) |
 | 10 | — | Is treated wood safe for raised garden beds? (Flo vs Norm) |
+| 11 | — | Can river rocks explode in a fire pit? (Flo vs Norm) |
+| 12 | — | Concrete control joints: just for looks? (Flo vs Norm) |
 
 **Si ya subiste alguno:** en YouTube cambia solo el título, la descripción y los hashtags desde Studio. No lo subas
 otra vez: un video duplicado compite contra sí mismo.
@@ -80,10 +82,10 @@ todavía, así que estas horas son un punto de partida para ajustar con lo que m
 | 1 | — | 18 nov: #3 Deck | 20 nov: #4 Gate |
 | 2 | 23 nov: #5 Shed | 25 nov: #6 Pavers (sin jueves: Acción de Gracias en EE. UU.) | 27 nov: #7 Gutter |
 | 3 | 30 nov: #8 Stairs (debate) | 2 dic: #9 Fabric (debate) | 4 dic: **#10 Treated wood** (debate, nuevo) |
-| 4 | 7 dic: #1 Fence post (re-render) | 9 dic: #2 Retaining wall (re-render) | 11 dic: #11 debate nuevo |
-| 5 | 14 dic: libre para tendencia | 16 dic: #12 nuevo | 18 dic: #13 debate nuevo |
-
-- El orden respeta la cadena de «Next»: 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10.
+| 4 | 7 dic: **#11 Fire pit** (debate) | 9 dic: **#12 Concrete slab** (debate) | 11 dic: #13 Railing (por hacer) |
+| 5 | 14 dic: #1 Fence post (re-render) | 16 dic: #2 Retaining wall (re-render) | 18 dic: debate nuevo |
+- El orden respeta la cadena de «Next»: 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12 → 13. Los videos 1 y 2 no anuncian
+  otro, por eso van después.
 - **Espacio reactivo:** un hueco por semana desde la semana 5 (por ejemplo, una helada que rompe una tubería o hielo
   en los escalones) para temas del momento.
 - **Reserva:** ten siempre 2 videos terminados por delante. Si una semana no se puede, se publica uno de reserva y
@@ -131,7 +133,7 @@ Después de 3 o 4 semanas, haz más de lo que se repite como ganador (por ejempl
 
 | s | Voz | Imagen |
 |---|---|---|
-| 0–2 | Flo: «Treated wood in your raised bed? That's poison…» | Tomate arrancado, calavera, cámara que se acerca rápido |
+| 0–2 | Flo: «Treated wood in your raised bed? That's poison!» | Tomate arrancado, calavera, cámara que se acerca rápido |
 | 2–4 | Norm: «Hit like and follow…» | PideSeguir sobre la cama elevada |
 | 4–7 | Flo: «Arsenic! Everybody knows that!» | Tablas grises con humo verde caricaturesco |
 | 7–12 | Norm: «That was the old stuff… 2003» | Calendario que pasa a 2004, las tablas viejas salen del cuadro y entran las nuevas |
@@ -162,3 +164,14 @@ Después de 3 o 4 semanas, haz más de lo que se repite como ganador (por ejempl
 - [EPA 2003: fin del CCA para uso residencial](https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/36d23f8c9ec5506a85256cef0059483f.html)
 - [Purdue: treated lumber and alternatives in the garden](https://www.purdue.edu/hla/sites/yardandgarden/?p=2635)
 - [UMaine Extension: pressure-treated lumber for raised beds](https://extension.umaine.edu/gardening/?p=23595)
+
+## 5. Videos 11 y 12 (hechos)
+- **11 · Fire pit** (`11-fire-pit/`): Flo dice que las piedras que explotan son un mito. Norm explica que una piedra de
+  río puede guardar agua adentro: con el fuego se vuelve vapor y la piedra se agrieta o revienta. Solución: ladrillo
+  refractario o piedra densa para fogatas dentro del anillo, y la piedra de río al jardín. Las fuentes son guías y
+  foros, no estudios: por eso el guion dice «can», no «will».
+- **12 · Concrete slab** (`12-concrete-slab/`): sin juntas, la losa se agrieta donde quiere. Las juntas de control
+  esconden la grieta. Regla común: separación en pies de 2 a 3 veces el espesor en pulgadas (de 8 a 12 ft para 4 in),
+  profundidad de 1/4 del espesor, cortar pronto y vaciar sobre grava compactada.
+- Las tres escenas usan las piezas comunes de `src/videos/comun/Escena.tsx` (cámara, patio, rótulos y marco). Para
+  hacerlas todas de una vez: `bash canal-ingles/render_10_12.sh`.

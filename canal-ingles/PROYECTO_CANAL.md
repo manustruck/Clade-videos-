@@ -145,6 +145,9 @@ hora; los derrumbes con muchas piezas y los acabados finos piden una computadora
 | 7 | YOUR BASEMENT WILL FLOOD | Hecho (`07-gutter/`), con gancho de 2 s, subtítulos animados y pregunta para comentarios |
 | 8 | YOUR STAIRS WILL TRIP YOU | Hecho (`08-stairs/`), diálogo Norm vs Flo, like/follow animado, votación de equipos |
 | 9 | IS LANDSCAPE FABRIC A SCAM? | Hecho (`09-fabric/`), diálogo Flo vs Norm, like/follow animado, votación de equipos |
+| 10 | TREATED WOOD IN YOUR GARDEN? | Hecho (`10-treated-wood/`), debate Flo vs Norm |
+| 11 | CAN ROCKS EXPLODE? (fire pit) | Hecho (`11-fire-pit/`), debate Flo vs Norm |
+| 12 | YOUR SLAB WILL CRACK | Hecho (`12-concrete-slab/`), debate Flo vs Norm; anuncia el 13 «THIS RAILING WON'T HOLD YOU» |
 
 Estilo definido en los dos primeros: alegre y colorido, sin misterio, sin subtítulos (solo título, medidas y sello), voz
 en inglés con energía y música tipo ukelele. Cada video nuevo copia la carpeta del anterior (`src/videos/<nombre>/`,
