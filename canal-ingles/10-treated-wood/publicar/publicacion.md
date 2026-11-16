@@ -23,7 +23,7 @@ For general education only. Check the lumber tag and your local Extension office
 ## TikTok
 
 ```
-Is treated wood safe for raised garden beds? Flo says it's poison 🦩 Norm says that was the OLD wood 😬 Team Norm or Team Flo?
+Is treated wood safe for raised garden beds? Flo says it's poison 🦩 Norm says that was the OLD wood 😬 Team Norm or Team Flo? Next: can rocks explode in a fire pit?
 
 #raisedbeds #treatedwood #vegetablegarden #gardening #debate
 ```
