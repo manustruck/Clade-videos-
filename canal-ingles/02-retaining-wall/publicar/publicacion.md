@@ -4,7 +4,7 @@
 
 **Título:**
 ```
-Your retaining wall will tip (here's why)
+Retaining wall drainage: why walls tip over
 ```
 
 **Descripción:**
@@ -13,23 +13,23 @@ Water that can't escape piles up behind a retaining wall and pushes harder with 
 
 For general education only. Building codes vary by location, and tall walls or poor soil need an engineer — check your local code and a licensed professional before you build.
 
-#shorts #diy #retainingwall #backyard #landscaping #homeimprovement
+#shorts #retainingwall #landscaping #diy
 ```
 
 ## TikTok
 
 ```
-Your retaining wall is full of dirt… and water pushing on it 😬 This is why walls tip. What should Norm break next?
+Retaining wall drainage 101: it's not the dirt that pushes your wall over, it's the WATER 😬 Gravel + pipe + an outlet. Does your wall have drainage?
 
-#diy #retainingwall #landscaping #backyard #homeimprovement #fyp
+#retainingwall #landscaping #drainage #diy #backyard
 ```
 
 ## Facebook Reels
 
 ```
-Most retaining walls don't fail from the weight of the dirt — they fail from water with nowhere to go. Here's the 3-part fix. Does your wall have drainage? 👇
+Retaining walls rarely fail from the weight of the dirt. They fail from water with nowhere to go. Does your wall have drainage behind it? 👇
 
-#diy #retainingwall #landscaping #backyard #reels
+#retainingwall #landscaping #diy
 ```
 
 ## Fuentes de los datos

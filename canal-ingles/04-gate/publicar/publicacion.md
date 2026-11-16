@@ -4,7 +4,7 @@
 
 **Título:**
 ```
-Your gate will sag (and the one-board fix)
+Why your gate sags (and which way the brace goes)
 ```
 
 **Descripción:**
@@ -15,23 +15,23 @@ Follow for more backyard builds that won't fail!
 
 For general education only. Building codes and gate hardware vary by location: check your local code and a licensed professional before you build.
 
-#shorts #diy #gate #fence #backyard #woodworking
+#shorts #gate #fence #woodworking
 ```
 
 ## TikTok
 
 ```
-Why every wood gate sags 😬 One diagonal brace fixes it — and the direction matters! Follow for more backyard builds that won't fail. Next: your shed is sinking.
+Why wood gates sag: the frame wants to become a parallelogram 😬 One diagonal brace fixes it, but ONLY if it runs the right way. Which way is yours? Next: sinking sheds.
 
-#diy #gate #fence #backyard #homeimprovement #fyp
+#gate #fencegate #woodworking #diy #backyard
 ```
 
 ## Facebook Reels
 
 ```
-Does your gate drag on the ground? The fix is one board — but it has to run the right way: bottom hinge side up to the top latch side. 👇 Follow for more backyard builds that won't fail!
+Does your gate drag on the ground? One board fixes it, but it must run from the bottom hinge corner up to the top latch corner. Which way is yours braced? 👇
 
-#diy #gate #fence #backyard #reels
+#gate #fence #diy
 ```
 
 ## Fuentes de los datos

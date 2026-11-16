@@ -1,0 +1,20 @@
+{
+ "frases": [
+  "Treated wood in your raised bed? That's poison in your tomatoes!",
+  "Hit like and follow. Flo is about to lose this one!",
+  "It's soaked in chemicals! Arsenic! Everybody knows that!",
+  "That was the old stuff. Arsenic treated wood was pulled from home use at the end of 2003.",
+  "So the new wood is totally clean?",
+  "Not totally. Today it's treated with copper.",
+  "Oregon State built garden beds with it, and tested the soil for years.",
+  "The extra copper stayed within about one inch of the boards.",
+  "And the vegetables? No copper buildup.",
+  "Okay. So where's the catch?",
+  "Never use old boards from before 2004. And plant a few inches in from the wood.",
+  "Fine. My tomatoes live.",
+  "Treated wood in your raised bed. Safe, or poison? Team Norm or Team Flo?",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "voces": [1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+ "pausas": [0.15, 0.12, 0.12, 0.12, 0.1, 0.1, 0.12, 0.12, 0.15, 0.1, 0.15, 0.2, 0.2, 0.0]
+}

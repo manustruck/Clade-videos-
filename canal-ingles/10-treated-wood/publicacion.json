@@ -1,0 +1,23 @@
+{
+  "titulo": ["TREATED WOOD", "IN YOUR GARDEN?"],
+  "resaltar": ["TREATED"],
+  "youtube": {
+    "titulo": "Is treated wood safe for raised garden beds? (Flo vs Norm)",
+    "descripcion": "Flo says treated wood will poison your tomatoes. That was true of the old arsenic-based wood (CCA), which was pulled from residential use at the end of 2003. Today's treated lumber uses copper. In an Oregon State University study of raised beds built with copper azole lumber, extra copper stayed within about 1 inch of the boards and didn't build up in the vegetables. Never reuse old pre-2004 boards, and plant a few inches in from the wood.\n\nTeam Norm or Team Flo? Tell us in the comments!\n\nFollow for more backyard builds that won't fail!\n\nFor general education only. Check the lumber tag and your local Extension office.",
+    "hashtags": ["shorts", "raisedbeds", "gardening", "treatedwood"]
+  },
+  "tiktok": {
+    "texto": "Is treated wood safe for raised garden beds? Flo says it's poison 🦩 Norm says that was the OLD wood 😬 Team Norm or Team Flo?",
+    "hashtags": ["raisedbeds", "treatedwood", "vegetablegarden", "gardening", "debate"]
+  },
+  "facebook": {
+    "texto": "Treated wood in a vegetable garden: safe or poison? The old arsenic wood is gone since 2004, and a university study found today's copper stays near the boards. Would you use it? 👇",
+    "hashtags": ["raisedbeds", "gardening", "diy"]
+  },
+  "fuentes": [
+    "Oregon State University Extension: Pressure-treated wood for raised bed construction (EM 9879)",
+    "EPA (2003): voluntary cancellation of CCA for residential uses, effective Dec. 30, 2003",
+    "Purdue Extension: Treated lumber and alternatives in the garden",
+    "UMaine Extension: Is it safe to use pressure-treated lumber for raised garden beds?"
+  ]
+}

@@ -4,7 +4,7 @@
 
 **Título:**
 ```
-Your shed is sinking (here's why)
+Shed on grass? This is why it's sinking
 ```
 
 **Descripción:**
@@ -15,23 +15,23 @@ Follow for more backyard builds that won't fail!
 
 For general education only. Local rules, soil and shed size vary: check your local code and a licensed professional before you build.
 
-#shorts #diy #shed #backyard #landscaping #homeimprovement
+#shorts #shed #shedfoundation #diy
 ```
 
 ## TikTok
 
 ```
-Don't put your shed straight on the grass 😬 4–6 inches of crushed stone + level = no more sinking or jammed doors. Follow for more backyard builds that won't fail! Next: your pavers will wave.
+Shed foundation mistake: putting it straight on the grass 😬 4–6 in of compacted crushed stone + level = no more jammed doors. What's under your shed? Next: wavy patios.
 
-#diy #shed #backyard #landscaping #homeimprovement #fyp
+#shed #shedfoundation #gravelpad #diy #backyard
 ```
 
 ## Facebook Reels
 
 ```
-Is your shed leaning and the door sticking? Soft soil is washing out from under one corner. A level crushed-stone base fixes it. 👇 Follow for more backyard builds that won't fail!
+Shed leaning and the door sticking? The soil under one corner is washing out. A level crushed-stone base stops it. What's under your shed? 👇
 
-#diy #shed #backyard #landscaping #reels
+#shed #diy #backyard
 ```
 
 ## Fuentes de los datos

@@ -4,7 +4,7 @@
 
 **Título:**
 ```
-Is landscape fabric a scam? (Flo vs Norm)
+Landscape fabric: scam or worth it? (Flo vs Norm)
 ```
 
 **Descripción:**
@@ -15,23 +15,23 @@ Team Fabric or Team No Fabric? Fight in the comments!
 
 Follow for more backyard builds that won't fail!
 
-#shorts #gardening #landscaping #diy #backyard #weeds
+#shorts #landscapefabric #gardening #weeds
 ```
 
 ## TikTok
 
 ```
-Flo says landscape fabric is a SCAM 🦩 Norm says… it depends 😬 Team Fabric or Team No Fabric? 👇 Follow for more backyard builds that won't fail! Next: treated wood in your garden?
+Is landscape fabric a scam? Flo says yes 🦩 Norm says it depends 😬 Skip it in beds, keep it under gravel. Team Fabric or Team No Fabric? Next: treated wood in your garden.
 
-#gardening #landscaping #diy #debate #weeds #fyp
+#landscapefabric #weedcontrol #gardening #landscaping #debate
 ```
 
 ## Facebook Reels
 
 ```
-Landscape fabric: total scam or secret hero? In flower beds weeds grow right on top of it. Under gravel it stops the stones from sinking. Team Fabric or Team No Fabric? 👇 Follow for more!
+Landscape fabric: total scam or secret hero? In flower beds weeds grow right on top of it. Under gravel it stops the stones from sinking. Team Fabric or Team No Fabric? 👇
 
-#gardening #landscaping #diy #backyard #reels
+#gardening #landscaping #diy
 ```
 
 ## Fuentes de los datos

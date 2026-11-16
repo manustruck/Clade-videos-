@@ -4,7 +4,7 @@
 
 **Título:**
 ```
-One step 1 inch taller = you fall? (Team Norm or Flo)
+Uneven stairs: can 1 inch really trip you? (Flo vs Norm)
 ```
 
 **Descripción:**
@@ -17,23 +17,23 @@ Follow for more backyard builds that won't fail!
 
 For general education only. Codes vary by location: check your local code and a licensed professional.
 
-#shorts #diy #stairs #deck #construction #homeimprovement
+#shorts #stairs #deckstairs #diy
 ```
 
 ## TikTok
 
 ```
-Flo thinks 1 inch doesn't matter on stairs 🦩 Norm says it's how you fall 😬 Code says max 3/8 in. Team Norm or Team Flo? 👇 Follow for more backyard builds that won't fail!
+Uneven stair risers: Flo says 1 inch doesn't matter 🦩 Norm says that's how you fall 😬 Code says max 3/8 in. Team Norm or Team Flo? Next: landscape fabric.
 
-#diy #stairs #construction #debate #homeimprovement #fyp
+#stairs #deckstairs #buildingcode #diy #debate
 ```
 
 ## Facebook Reels
 
 ```
-One stair step just 1 inch taller than the rest. Harmless, or a fall waiting to happen? Team Norm or Team Flo? 👇 Follow for more backyard builds that won't fail!
+One stair step just 1 inch taller than the rest. Harmless, or a fall waiting to happen? Team Norm or Team Flo? 👇
 
-#diy #stairs #deck #homeimprovement #reels
+#stairs #deck #diy
 ```
 
 ## Fuentes de los datos

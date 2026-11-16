@@ -4,7 +4,7 @@
 
 **Título:**
 ```
-Your fence post will rot (here's why)
+Fence posts in concrete? Don't build this cup
 ```
 
 **Descripción:**
@@ -13,23 +13,23 @@ Setting a wood post in a full concrete "cup" traps water at the ground line — 
 
 For general education only. Building codes vary by location — check your local code and a licensed professional before you build.
 
-#shorts #diy #fence #backyard #homeimprovement #woodworking
+#shorts #fencepost #fence #diy
 ```
 
 ## TikTok
 
 ```
-You poured concrete all the way around your fence post? You built a cup 😬 Here's the fix. What should Norm break next?
+Setting fence posts in concrete? If the concrete goes UNDER the post, you built a cup 😬 Gravel first, concrete around, slope the top. How did you set yours?
 
-#diy #fence #backyard #homeimprovement #construction #fyp
+#fencepost #fenceinstallation #diy #backyard #homeimprovement
 ```
 
 ## Facebook Reels
 
 ```
-Most fence posts rot at the same spot — and the concrete is why. Here's the 3-step fix. Did you set yours this way? 👇
+Setting fence posts in concrete? Most people pour it under the post too — and that's exactly why posts rot at the ground. How did you set yours? 👇
 
-#diy #fence #backyard #homeimprovement #reels
+#fence #diy #backyard
 ```
 
 ## Fuentes de los datos

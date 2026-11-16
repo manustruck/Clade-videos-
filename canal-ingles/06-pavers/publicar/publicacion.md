@@ -4,7 +4,7 @@
 
 **Título:**
 ```
-Your patio will wave (and it's not the pavers' fault)
+Paver base mistake that makes your patio wavy
 ```
 
 **Descripción:**
@@ -17,23 +17,23 @@ Follow for more backyard builds that won't fail!
 
 For general education only. Soil, climate and codes vary: check your local code and a licensed professional before you build.
 
-#shorts #diy #pavers #patio #backyard #landscaping
+#shorts #pavers #patio #landscaping
 ```
 
 ## TikTok
 
 ```
-Your patio is going to turn into WAVES 😬 and it's not the pavers' fault. 3 layers fix it. Did you skip the base? Tell Norm! Follow for more backyard builds that won't fail. Next: gutter floods your basement.
+Paver base mistake: laying pavers straight on dirt 😬 The fix is 3 layers: crushed stone, 1 in of sand, locked edges. Did you skip the base? Next: your downspout.
 
-#diy #pavers #patio #backyard #homeimprovement #fyp
+#pavers #paverpatio #hardscape #diy #landscaping
 ```
 
 ## Facebook Reels
 
 ```
-Wavy, sinking pavers? It's what's UNDER them: 4–6 in of compacted crushed stone, 1 in of sand, and locked edges. Did you skip the base? 👇 Follow for more backyard builds that won't fail!
+Wavy, sinking pavers? It's what's under them: 4–6 in of compacted crushed stone, 1 in of sand and locked edges. Did yours get a base? 👇
 
-#diy #pavers #patio #backyard #reels
+#pavers #patio #diy
 ```
 
 ## Fuentes de los datos

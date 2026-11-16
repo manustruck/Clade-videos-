@@ -1,18 +1,38 @@
 {
-  "titulo": ["YOUR FENCE POST", "WILL ROT"],
-  "resaltar": ["ROT"],
+  "titulo": [
+    "YOUR FENCE POST",
+    "WILL ROT"
+  ],
+  "resaltar": [
+    "ROT"
+  ],
   "youtube": {
-    "titulo": "Your fence post will rot (here's why)",
+    "titulo": "Fence posts in concrete? Don't build this cup",
     "descripcion": "Setting a wood post in a full concrete \"cup\" traps water at the ground line — exactly where rot starts. Six inches of gravel under the post, concrete around it (never under it), and a sloped top fix it.\n\nFor general education only. Building codes vary by location — check your local code and a licensed professional before you build.",
-    "hashtags": ["shorts", "diy", "fence", "backyard", "homeimprovement", "woodworking"]
+    "hashtags": [
+      "shorts",
+      "fencepost",
+      "fence",
+      "diy"
+    ]
   },
   "tiktok": {
-    "texto": "You poured concrete all the way around your fence post? You built a cup 😬 Here's the fix. What should Norm break next?",
-    "hashtags": ["diy", "fence", "backyard", "homeimprovement", "construction", "fyp"]
+    "texto": "Setting fence posts in concrete? If the concrete goes UNDER the post, you built a cup 😬 Gravel first, concrete around, slope the top. How did you set yours?",
+    "hashtags": [
+      "fencepost",
+      "fenceinstallation",
+      "diy",
+      "backyard",
+      "homeimprovement"
+    ]
   },
   "facebook": {
-    "texto": "Most fence posts rot at the same spot — and the concrete is why. Here's the 3-step fix. Did you set yours this way? 👇",
-    "hashtags": ["diy", "fence", "backyard", "homeimprovement", "reels"]
+    "texto": "Setting fence posts in concrete? Most people pour it under the post too — and that's exactly why posts rot at the ground. How did you set yours? 👇",
+    "hashtags": [
+      "fence",
+      "diy",
+      "backyard"
+    ]
   },
   "fuentes": [
     "Fence Armor: Why Do Fence Posts Rot at Ground Level?",

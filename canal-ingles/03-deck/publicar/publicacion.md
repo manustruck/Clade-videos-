@@ -4,7 +4,7 @@
 
 **Título:**
 ```
-Your deck will pull away from your house
+Deck ledger nailed to the house? Here's the danger
 ```
 
 **Descripción:**
@@ -15,23 +15,23 @@ Follow for more backyard builds that won't fail!
 
 For general education only. Building codes vary by location, and deck connections are safety-critical: check your local code and a licensed professional before you build.
 
-#shorts #diy #deck #backyard #homeimprovement #woodworking
+#shorts #deck #deckbuilding #diy
 ```
 
 ## TikTok
 
 ```
-Nails are NOT enough for a deck 😬 Flashing + bolts or it pulls off the house. Follow for more backyard builds that won't fail! Next: your gate will sag.
+Deck ledger board held by nails? That's how decks pull off houses 😬 Flashing on top + bolts into the frame. Nails or bolts on yours? Next: why gates sag.
 
-#diy #deck #backyard #homeimprovement #construction #fyp
+#deck #deckbuilding #ledgerboard #diy #homeimprovement
 ```
 
 ## Facebook Reels
 
 ```
-Most deck collapses start at the board attached to the house. Is yours held by nails, or bolts? 👇 Follow for more backyard builds that won't fail!
+Most deck collapses start at one board: the ledger attached to the house. Is yours held by nails or by bolts? 👇
 
-#diy #deck #backyard #homeimprovement #reels
+#deck #diy #homeimprovement
 ```
 
 ## Fuentes de los datos

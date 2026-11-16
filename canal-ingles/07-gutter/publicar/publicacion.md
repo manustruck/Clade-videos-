@@ -4,7 +4,7 @@
 
 **Título:**
 ```
-Your gutter is secretly flooding your basement
+Downspout too short? It's flooding your basement
 ```
 
 **Descripción:**
@@ -17,23 +17,23 @@ Follow for more backyard builds that won't fail!
 
 For general education only. Local rules, soil and house design vary: check your local code and a licensed professional.
 
-#shorts #diy #gutters #basement #homeimprovement #waterproofing
+#shorts #gutters #downspout #basement
 ```
 
 ## TikTok
 
 ```
-Your downspout might be flooding your basement RIGHT NOW 😳 Extension 6–10 ft + slope away = dry socks. Does yours dump at the wall? Tell Norm! Follow for more backyard builds that won't fail. Next: your stairs will trip you.
+Short downspout = wet basement 😳 Extend it 6–10 ft and slope the ground away from the house. Does yours dump at the wall? Next: the stair step that trips you.
 
-#diy #gutters #basement #homeimprovement #waterproofing #fyp
+#downspout #gutters #wetbasement #diy #homeimprovement
 ```
 
 ## Facebook Reels
 
 ```
-Does your downspout dump right at the wall? That water ends up in your basement. Extend it 6–10 ft away and slope the ground away from the house. 👇 Follow for more backyard builds that won't fail!
+Does your downspout dump right at the wall? That water ends up in your basement. Extend it 6–10 ft away and slope the ground away. How long is yours? 👇
 
-#diy #gutters #basement #homeimprovement #reels
+#gutters #basement #homeimprovement
 ```
 
 ## Fuentes de los datos
