@@ -1,0 +1,50 @@
+{
+ "frases": [
+  "One step is one inch taller. That's how you fall!",
+  "Smash like and follow. Flo thinks I'm crazy.",
+  "Please! It's one inch. Nobody trips over one inch.",
+  "Your feet do. They don't look at every step.",
+  "Studies show people don't even notice a taller step, and their toe doesn't lift high enough.",
+  "So?",
+  "So that toe catches the edge, and down you go!",
+  "Whoa! Okay. Ow.",
+  "That's why the code allows only three eighths of an inch between steps.",
+  "Measure every riser. Make them all the same.",
+  "Fine. But perfect stairs are boring!",
+  "Boring stairs don't break your ankle.",
+  "Team Norm or Team Flo? Fight in the comments!",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "voces": [
+  0,
+  0,
+  1,
+  0,
+  0,
+  1,
+  0,
+  1,
+  0,
+  0,
+  1,
+  0,
+  0,
+  0
+ ],
+ "pausas": [
+  0.15,
+  0.12,
+  0.12,
+  0.1,
+  0.12,
+  0.1,
+  0.45,
+  0.15,
+  0.1,
+  0.12,
+  0.1,
+  0.2,
+  0.2,
+  0.0
+ ]
+}

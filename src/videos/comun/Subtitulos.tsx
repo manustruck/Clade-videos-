@@ -3,7 +3,7 @@
 // y cada grupo (2 a 3 palabras) cambia de inclinación. Los tiempos vienen de tiempos.json.
 import React, { useMemo } from "react";
 
-export type Palabra = { p: string; a: number; b: number; i: number };
+export type Palabra = { p: string; a: number; b: number; i: number; h?: number };
 type Grupo = { a: number; b: number; ws: Palabra[] };
 const F = "DejaVu Sans, Arial, sans-serif";
 const lim = (s: string) => s.toLowerCase().replace(/[^a-z']/g, "");
@@ -24,7 +24,8 @@ export const agrupar = (palabras: Palabra[], maxChars = 16): Grupo[] => {
   return g;
 };
 
-export const Subtitulos: React.FC<{ palabras: Palabra[]; t: number; claves?: string[]; y?: number; tam?: number; ocultoDesde?: number }> = ({ palabras, t, claves = [], y = 1560, tam = 86, ocultoDesde = 1e9 }) => {
+export type Hablante = { nombre: string; color: string; fondo: string };
+export const Subtitulos: React.FC<{ palabras: Palabra[]; t: number; claves?: string[]; y?: number; tam?: number; ocultoDesde?: number; hablantes?: Hablante[] }> = ({ palabras, t, claves = [], y = 1560, tam = 86, ocultoDesde = 1e9, hablantes }) => {
   const grupos = useMemo(() => agrupar(palabras), [palabras]);
   const set = useMemo(() => new Set(claves.map(lim)), [claves]);
   if (t >= ocultoDesde) return null;
@@ -41,17 +42,24 @@ export const Subtitulos: React.FC<{ palabras: Palabra[]; t: number; claves?: str
     const activa = t >= w.a - 0.02 && t < w.b + 0.12, clave = set.has(lim(w.p));
     const esc = !visible ? 0 : (0.45 + 0.55 * atrasOut(u)) * (activa ? 1.09 + 0.04 * Math.sin((t - w.a) * 22) : 1);
     const rot = clave && visible ? 2.5 * Math.sin(t * 26 + i) * Math.exp(-(t - w.a) * 2) : 0;
-    const col = activa ? "#ffd23f" : clave ? "#ff8a2a" : "#ffffff";
+    const quien = hablantes && w.h !== undefined ? hablantes[w.h] : undefined;
+    const col = activa ? (quien ? quien.color : "#ffd23f") : clave ? "#ff8a2a" : "#ffffff";
     return { cx, esc, rot, col, txt: textos[i], visible, activa };
   });
+  const quien = hablantes && g.ws[0].h !== undefined ? hablantes[g.ws[0].h] : undefined;
+  const etiqueta = quien && (
+    <g transform={`translate(540 ${y - tam * 1.25}) scale(${0.9 + 0.1 * sm((t - g.a) / 0.12)})`} fontFamily={F} fontWeight={800} textAnchor="middle">
+      <rect x={-anchoDe(quien.nombre) * 30 - 34} y={-54} width={anchoDe(quien.nombre) * 60 + 68} height={74} rx={37} fill={quien.fondo} stroke="#fff" strokeWidth={6} />
+      <text y={4} fontSize={54} fill="#fff">{quien.nombre}</text>
+    </g>);
   return (
-    <g transform={`translate(540 ${y}) rotate(${tilt}) scale(${ajuste * (1 + 0.04 * (1 - sm((t - g.a) / 0.12)))})`} fontFamily={F} fontWeight={800} fontSize={tam} textAnchor="middle" strokeLinejoin="round" paintOrder="stroke">
+    <>{etiqueta}<g transform={`translate(540 ${y}) rotate(${tilt}) scale(${ajuste * (1 + 0.04 * (1 - sm((t - g.a) / 0.12)))})`} fontFamily={F} fontWeight={800} fontSize={tam} textAnchor="middle" strokeLinejoin="round" paintOrder="stroke">
       {palabrasDib.map((w, i) => w.visible && (
         <g key={i} transform={`translate(${w.cx} 0) rotate(${w.rot}) scale(${w.esc})`}>
           <text y={12} fill="#0b1a10" stroke="#0b1a10" strokeWidth={36}>{w.txt}</text>
           <text fill={w.col} stroke={w.activa ? "#14321f" : "#14321f"} strokeWidth={22}>{w.txt}</text>
         </g>
       ))}
-    </g>
+    </g></>
   );
 };

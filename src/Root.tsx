@@ -9,6 +9,8 @@ import { GateVideo, GATE_CUADROS, GATE_FPS } from "./videos/gate-04/Gate";
 import { ShedVideo, SHED_CUADROS, SHED_FPS } from "./videos/shed-05/Shed";
 import { PaversVideo, PAV_CUADROS, PAV_FPS } from "./videos/pavers-06/Pavers";
 import { GutterVideo, GUT_CUADROS, GUT_FPS } from "./videos/gutter-07/Gutter";
+import { StairsVideo, STA_CUADROS, STA_FPS } from "./videos/stairs-08/Stairs";
+import { FabricVideo, FAB_CUADROS, FAB_FPS } from "./videos/fabric-09/Fabric";
 import { ReelHuellas, ReelRadio, reelCuadros } from "./videos/tambo-01/Reels";
 import { MiniaturaFaro, FondoFlyerFaro } from "./videos/tambo-01/portadas";
 import { FaroCap1, FARO_CUADROS, FARO_FPS } from "./videos/tambo-01/Faro";
@@ -26,6 +28,8 @@ export const Root: React.FC = () => (
     <Composition id="ShedVideo" component={ShedVideo} durationInFrames={SHED_CUADROS} fps={SHED_FPS} width={1080} height={1920} />
     <Composition id="PaversVideo" component={PaversVideo} durationInFrames={PAV_CUADROS} fps={PAV_FPS} width={1080} height={1920} />
     <Composition id="GutterVideo" component={GutterVideo} durationInFrames={GUT_CUADROS} fps={GUT_FPS} width={1080} height={1920} />
+    <Composition id="StairsVideo" component={StairsVideo} durationInFrames={STA_CUADROS} fps={STA_FPS} width={1080} height={1920} />
+    <Composition id="FabricVideo" component={FabricVideo} durationInFrames={FAB_CUADROS} fps={FAB_FPS} width={1080} height={1920} />
     <Still id="MiniaturaFaro" component={MiniaturaFaro} width={1920} height={1080} />
     <Still id="FondoFlyerFaro" component={FondoFlyerFaro} width={1080} height={1920} />
     <Still id="HojaTambo" component={HojaTambo} width={1080} height={1920} />

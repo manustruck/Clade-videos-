@@ -82,3 +82,15 @@ def mezclar(aqui, eventos, lluvia=None):
     os.makedirs(os.path.join(aqui, "out"), exist_ok=True)
     sf.write(os.path.join(aqui, "out", "mezcla.wav"), m, SR)
     print("mezcla.wav", T, "s")
+
+def pide_seguir(fx, p, a):
+    """los botones de LIKE y FOLLOW: entrada, toque y premio (mismos tiempos que PideSeguir.tsx)"""
+    p(fx, whoosh(0.35), a, db(-14))
+    p(fx, golpe(160, 0.1, 0.9), a + 0.55, db(-10)); p(fx, campanita(1568, 0.4), a + 0.56, db(-11)); p(fx, campanita(2093, 0.35), a + 0.62, db(-13))
+    p(fx, golpe(160, 0.1, 0.9), a + 1.15, db(-10)); p(fx, campanita(1760, 0.4), a + 1.16, db(-11)); p(fx, campanita(2637, 0.35), a + 1.24, db(-13))
+
+def equipos(fx, p, a, b):
+    """la votación TEAM vs TEAM: golpe de entrada y contadores que suben"""
+    p(fx, whoosh(0.4), a, db(-12)); p(fx, golpe(70, 0.5, 0.8), a + 0.1, db(-8))
+    n = int((b - a - 0.4) / 0.09)
+    for k in range(max(0, n)): p(fx, golpe(900 + 300 * (k % 3), 0.03, 1.0), a + 0.35 + k * 0.09, db(-24))
