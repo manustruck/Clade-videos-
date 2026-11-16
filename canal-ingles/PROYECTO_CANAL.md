@@ -143,6 +143,8 @@ hora; los derrumbes con muchas piezas y los acabados finos piden una computadora
 | 5 | YOUR SHED IS SINKING | Hecho (`05-shed/`), con subtítulos llamativos |
 | 6 | YOUR PATIO WILL WAVE | Hecho (`06-pavers/`), con gancho de 2 s, subtítulos animados y pregunta para comentarios |
 | 7 | YOUR BASEMENT WILL FLOOD | Hecho (`07-gutter/`), con gancho de 2 s, subtítulos animados y pregunta para comentarios |
+| 8 | YOUR STAIRS WILL TRIP YOU | Hecho (`08-stairs/`), diálogo Norm vs Flo, like/follow animado, votación de equipos |
+| 9 | IS LANDSCAPE FABRIC A SCAM? | Hecho (`09-fabric/`), diálogo Flo vs Norm, like/follow animado, votación de equipos |
 
 Estilo definido en los dos primeros: alegre y colorido, sin misterio, sin subtítulos (solo título, medidas y sello), voz
 en inglés con energía y música tipo ukelele. Cada video nuevo copia la carpeta del anterior (`src/videos/<nombre>/`,
@@ -179,3 +181,14 @@ subtítulos; se pueden volver a renderizar con ellos.
 5. **Barra de progreso** amarilla arriba (retención).
 6. **Pregunta para comentarios** antes del cierre y **tarjeta FOLLOW** con el aviso del siguiente tema.
 7. Duración de 32 a 38 s; datos verificados y aviso legal en la descripción.
+
+## Formato de debate (desde el video 8)
+- **Flo**, flamenco rosado de jardín con gafas de sol (`src/videos/comun/Flo.tsx`), es la vecina que siempre opina lo
+  contrario. Norm responde con datos verificados; el veredicto es honesto aunque Flo tenga parte de razón.
+- Dos voces gratuitas con licencia comercial: Norm = `en_US-joe-medium` (CC0), Flo = `en_US-ljspeech-high` (dominio
+  público). `herramientas/voz_piper.py` acepta varios modelos y un campo `voces` en `guion.json`.
+- Subtítulos con color y etiqueta por hablante (`hablantes` en `Subtitulos.tsx`).
+- A los ~2,5 s, después del gancho: botones animados de LIKE y FOLLOW (`src/videos/comun/PideSeguir.tsx`) mientras la voz
+  pide like y follow.
+- Antes del cierre: votación «TEAM A vs TEAM B» con contadores (`Equipos` en `src/videos/comun/Tarjetas.tsx`).
+- Temas polémicos pero honestos: el título plantea la pregunta y el video da la respuesta con fuentes.
