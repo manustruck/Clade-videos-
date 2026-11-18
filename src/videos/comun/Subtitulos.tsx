@@ -25,7 +25,7 @@ export const agrupar = (palabras: Palabra[], maxChars = 16): Grupo[] => {
 };
 
 export type Hablante = { nombre: string; color: string; fondo: string };
-export const Subtitulos: React.FC<{ palabras: Palabra[]; t: number; claves?: string[]; y?: number; tam?: number; ocultoDesde?: number; hablantes?: Hablante[] }> = ({ palabras, t, claves = [], y = 1560, tam = 86, ocultoDesde = 1e9, hablantes }) => {
+export const Subtitulos: React.FC<{ palabras: Palabra[]; t: number; claves?: string[]; y?: number; tam?: number; ocultoDesde?: number; hablantes?: Hablante[]; colActiva?: string; colClave?: string; borde?: string; sombra?: string }> = ({ palabras, t, claves = [], y = 1560, tam = 86, ocultoDesde = 1e9, hablantes, colActiva = "#ffd23f", colClave = "#ff8a2a", borde = "#14321f", sombra = "#0b1a10" }) => {
   const grupos = useMemo(() => agrupar(palabras), [palabras]);
   const set = useMemo(() => new Set(claves.map(lim)), [claves]);
   if (t >= ocultoDesde) return null;
@@ -43,7 +43,7 @@ export const Subtitulos: React.FC<{ palabras: Palabra[]; t: number; claves?: str
     const esc = !visible ? 0 : (0.45 + 0.55 * atrasOut(u)) * (activa ? 1.09 + 0.04 * Math.sin((t - w.a) * 22) : 1);
     const rot = clave && visible ? 2.5 * Math.sin(t * 26 + i) * Math.exp(-(t - w.a) * 2) : 0;
     const quien = hablantes && w.h !== undefined ? hablantes[w.h] : undefined;
-    const col = activa ? (quien ? quien.color : "#ffd23f") : clave ? "#ff8a2a" : "#ffffff";
+    const col = activa ? (quien ? quien.color : colActiva) : clave ? colClave : "#ffffff";
     return { cx, esc, rot, col, txt: textos[i], visible, activa };
   });
   const quien = hablantes && g.ws[0].h !== undefined ? hablantes[g.ws[0].h] : undefined;
@@ -56,8 +56,8 @@ export const Subtitulos: React.FC<{ palabras: Palabra[]; t: number; claves?: str
     <>{etiqueta}<g transform={`translate(540 ${y}) rotate(${tilt}) scale(${ajuste * (1 + 0.04 * (1 - sm((t - g.a) / 0.12)))})`} fontFamily={F} fontWeight={800} fontSize={tam} textAnchor="middle" strokeLinejoin="round" paintOrder="stroke">
       {palabrasDib.map((w, i) => w.visible && (
         <g key={i} transform={`translate(${w.cx} 0) rotate(${w.rot}) scale(${w.esc})`}>
-          <text y={12} fill="#0b1a10" stroke="#0b1a10" strokeWidth={36}>{w.txt}</text>
-          <text fill={w.col} stroke={w.activa ? "#14321f" : "#14321f"} strokeWidth={22}>{w.txt}</text>
+          <text y={12} fill={sombra} stroke={sombra} strokeWidth={36}>{w.txt}</text>
+          <text fill={w.col} stroke={borde} strokeWidth={22}>{w.txt}</text>
         </g>
       ))}
     </g></>

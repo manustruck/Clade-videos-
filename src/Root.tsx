@@ -16,6 +16,7 @@ import { FirePitVideo, FIRE_CUADROS, FIRE_FPS } from "./videos/firepit-11/FirePi
 import { SlabVideo, SLAB_CUADROS, SLAB_FPS } from "./videos/slab-12/Slab";
 import { RailingVideo, RAIL_CUADROS, RAIL_FPS } from "./videos/railing-13/Railing";
 import { LadderVideo, LAD_CUADROS, LAD_FPS } from "./videos/ladder-14/Ladder";
+import { LeonidaFiles, leoCuadros, LEO_FPS } from "./videos/leonida/Leonida";
 import { ReelHuellas, ReelRadio, reelCuadros } from "./videos/tambo-01/Reels";
 import { MiniaturaFaro, FondoFlyerFaro } from "./videos/tambo-01/portadas";
 import { FaroCap1, FARO_CUADROS, FARO_FPS } from "./videos/tambo-01/Faro";
@@ -40,6 +41,7 @@ export const Root: React.FC = () => (
     <Composition id="ConcreteSlab" component={SlabVideo} durationInFrames={SLAB_CUADROS} fps={SLAB_FPS} width={1080} height={1920} />
     <Composition id="DeckRailing" component={RailingVideo} durationInFrames={RAIL_CUADROS} fps={RAIL_FPS} width={1080} height={1920} />
     <Composition id="LadderAngle" component={LadderVideo} durationInFrames={LAD_CUADROS} fps={LAD_FPS} width={1080} height={1920} />
+    {[1, 2, 3, 4, 5].map((n) => <Composition key={n} id={`Leonida${n}`} component={LeonidaFiles} durationInFrames={leoCuadros(n)} fps={LEO_FPS} width={1080} height={1920} defaultProps={{ parte: n }} />)}
     <Still id="MiniaturaFaro" component={MiniaturaFaro} width={1920} height={1080} />
     <Still id="FondoFlyerFaro" component={FondoFlyerFaro} width={1080} height={1920} />
     <Still id="HojaTambo" component={HojaTambo} width={1080} height={1920} />
