@@ -2,6 +2,9 @@
 import os, sys
 AQUI = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, os.path.join(AQUI, "..", "..", "motor"))
 from vector import render
+import shutil
+if not os.path.exists(os.path.join(AQUI, "voz", "voz.wav")):   # usa la voz del capítulo 1 para las pruebas
+    shutil.copy(os.path.join(AQUI, "..", "..", "temporada1", "cap01", "voz", "voz.wav"), os.path.join(AQUI, "voz", "voz.wav"))
 TOMAS = [
     dict(a=0, b=5, escena="mansion", cam=[(700, 1250, 1.25), (800, 1200, 1.45)],
          actores=[dict(quien="uva", x=1180, s=0.75, emo="sorpresa", pose="tapa", z=-1), dict(quien="pina", x=470, s=0.95, emo=[(0, "enojo"), (1.6, "malvada")], pose=[(0, "ofrece"), (1.0, "jarra")], prop="vaso"),
