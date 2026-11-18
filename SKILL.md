@@ -2,9 +2,10 @@
 name: shorts-animados-3d
 description: >-
   Crea shorts verticales animados de dos estilos, caricatura 2D en un mundo 3D
-  con Three.js y Remotion, o animación 3D realista con Blender. Úsala cuando
+  con Three.js y Remotion, o animación 3D realista con Blender; además series y
+  frutinovelas en 2D hechas con Python, con ganchos y cliffhangers. Úsala cuando
   pidan la skill de shorts de LuisPa, un video como el de Alejandro o el puente,
-  o animaciones realistas como las de puntadas en Blender.
+  animaciones realistas como las de puntadas en Blender, o una novela por capítulos.
 ---
 
 # Shorts animados 3D (three.js + Remotion)
@@ -20,7 +21,8 @@ Si el entorno permite mostrar imágenes o reproducir videos, muestra ambos ejemp
 
 Habla en español sencillo. Pregunta una cosa por vez cuando la persona sea principiante, explica cualquier término técnico y acompaña la instalación sin asumir que sabe programar. Comprueba sistema operativo, programas disponibles y requisitos de la ruta elegida; explica las opciones y posibles costos antes de que el usuario elija proveedores externos de voz u otros servicios. No solicites claves en el chat. El paquete contiene plantillas, no un video terminado ni un proyecto que funcione automáticamente al descargarlo.
 
-Después pide la idea y la duración. Ayuda a preparar y revisar guion, voz y escenas; genera avances y deja espacio para que la persona indique correcciones. Continúa hacia el render y verifica que se haya producido un MP4 con imagen y audio cuando las herramientas y recursos estén disponibles. No prometas calidad o resultado automático: si falta algo, explica qué está pendiente y cómo resolverlo. Sigue `realista/REALISTA.md` solo para Blender; para caricatura sigue el proceso de abajo.
+Después pide la idea y la duración. Ayuda a preparar y revisar guion, voz y escenas; genera avances y deja espacio para que la persona indique correcciones. Continúa hacia el render y verifica que se haya producido un MP4 con imagen y audio cuando las herramientas y recursos estén disponibles. No prometas calidad o resultado automático: si falta algo, explica qué está pendiente y cómo resolverlo. Sigue `realista/REALISTA.md` solo para Blender; para caricatura sigue el proceso de abajo. Si piden una **novela o serie por capítulos** (por ejemplo frutinovelas en 2D, sin Remotion), sigue
+`frutinovelas/FRUTINOVELAS.md` y la sección «Series y novelas: ganchos y cliffhangers».
 
 ### Entrega sencilla en Mac y Windows
 
@@ -132,6 +134,71 @@ salieron y cómo bajar el tiempo de render. Hay dos ejemplos completos: `realist
       `flyer.png` (1080x1920) y `publicacion.md` con los textos de YouTube Shorts, TikTok y Facebook.
     - Abre el flyer y revísalo: el título no debe tapar caras ni la acción, y debe leerse en chico.
     - Entrega el video, el flyer y los textos juntos. Los datos del título deben ser los del guion.
+
+## Series y novelas: ganchos y cliffhangers (úsalo en todo video por capítulos)
+Para series, novelas y frutinovelas: la ruta 2D en Python está en `frutinovelas/FRUTINOVELAS.md` y el ejemplo
+completo en `frutinovelas/temporada1/cap01/`.
+
+**Qué es cada cosa**
+- **Gancho (hook):** lo que pasa en los primeros 1 a 3 segundos para que no deslicen el dedo. No hay saludo ni
+  presentación: el video empieza en el momento más fuerte.
+- **Cliffhanger:** el final que deja una pregunta sin responder, para que sigan la cuenta y vean el siguiente
+  capítulo. El capítulo termina justo antes de la respuesta.
+
+**1. Antes del primer capítulo: el mapa de la temporada.** Escribe los 6 a 10 capítulos en una tabla con
+título, qué pasa y su cliffhanger (ver `frutinovelas/BIBLIA.md`). Cada final empuja al siguiente. Marca los hechos
+con ✅ y el que está en curso con ✍️.
+
+**2. Fórmula de cada capítulo (55 a 75 s)**
+| Parte | Qué hace | Ejemplo (Corazón de Fresa, cap. 1) |
+|---|---|---|
+| **Gancho en pleno momento fuerte** (0–5 s) | Empieza en la escena más intensa del capítulo, sin contexto | «En plena fiesta de compromiso, Doña Piña le arrojó un jugo en la cara a una fresa.» |
+| **Grito o frase del personaje** | Una línea corta con emoción | «¡Yo no robé nada!» |
+| **«Todo empezó…»** | Salto al pasado con destello y la carta «3 DÍAS ANTES…» | «Y todo empezó tres días antes.» |
+| **Mundo y deseo** | Quién es, qué quiere, en 2 o 3 frases | La juguera humilde del mercado |
+| **Chispa** | Llega alguien o algo que lo cambia todo | El mango heredero prueba su jugo |
+| **Humillación o injusticia** | Lo que hace que el público se ponga de su lado | La acusan y la echan bajo la lluvia |
+| **Giro** | Algo que el público no veía venir | «Esa niña no es una fresa cualquiera.» |
+| **Cliffhanger** | Una pregunta abierta, con «CONTINUARÁ…» | «Doña Piña sabe quién metió ese anillo…» |
+| **Pedido** | Una línea: seguir para el próximo capítulo | «Sigue la serie para el capítulo dos.» |
+
+**3. Tipos de gancho** (cambia de tipo entre capítulos)
+- **Momento fuerte:** la humillación, el golpe o la caída, en el primer cuadro.
+- **Pérdida:** un número que cae, como $25,000 → $0.
+- **Pregunta prohibida:** «¿Por qué un hombre libre conoce una prisión?».
+- **Contradicción:** «Lo que nadie sabe es que…».
+- **Cuenta o lista:** «3 pistas…» o «7 cosas antes de…»: el espectador sabe cuánto falta.
+- **Consecuencia primero:** «Este ronquido le costó el trabajo a su propia esposa.»
+
+**4. Tipos de cliffhanger**
+- **Revelación a medias:** «Esa niña no es…» y se corta.
+- **El villano sabe algo:** el público ve lo que la protagonista no ve.
+- **Llegada inesperada:** alguien entra por la puerta y la imagen se congela.
+- **Decisión imposible:** «O la herencia, o ella.»
+- **Prueba perdida:** el teléfono con la grabación desaparece.
+- **Pregunta a los comentarios:** «¿Quién crees que fue?». Abre el debate y el algoritmo lo premia.
+
+**5. Reglas de ritmo**
+- Algo cambia en pantalla cada 1,5 a 3 segundos: corte, zoom, emoción, texto o efecto.
+- El **zoom triple** de telenovela (tres acercamientos con tres golpes «dun») va solo en la revelación más fuerte,
+  una vez por capítulo.
+- Un **destello blanco** marca cada salto en el tiempo.
+- Pide seguir al cuadro 3 a 5 s, una sola vez, sin tapar la acción. El pedido largo va en el cierre.
+- Cada capítulo retoma el cliffhanger anterior en su primera frase, con un «Anteriormente…» de 1 línea como
+  máximo.
+- Una voz de narrador para toda la serie y la misma voz para cada personaje en todos los capítulos.
+
+**6. Voz actuada con ElevenLabs v3:** antes de cada párrafo, una etiqueta de emoción entre corchetes:
+`[dramatic]`, `[shocked]`, `[calm, storytelling]`, `[sarcastic]`, `[angry]`, `[mysterious]`, `[amused]`,
+`[whispers]`, `[gasps]`. Pega todo el capítulo de una vez y descarga un solo archivo. Si no hay ElevenLabs, usa
+Piper con una voz distinta para cada tipo de personaje (`herramientas/voz_piper.py`, campo `voces`).
+
+**7. Revisión antes de publicar**
+- ¿El primer segundo ya tiene acción?
+- ¿Se entiende sin sonido gracias a los subtítulos?
+- ¿El final deja una pregunta clara?
+- ¿El título del video es el gancho, no el nombre de la serie?
+- ¿La portada muestra la cara de la emoción más fuerte?
 
 ## Lo que aprendimos con Alejandro (revísalo en cada short nuevo)
 - **La primera versión siempre sale «bonita, de día de campo».** Si la historia es una guerra, que se vea guerra:

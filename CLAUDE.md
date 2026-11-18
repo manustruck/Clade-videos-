@@ -58,3 +58,11 @@ La skill está en `SKILL.md` (léela antes de hacer un short). Estas notas son s
 - Todo video nuevo lleva subtítulos llamativos (`src/videos/comun/Subtitulos.tsx`) y el cierre «Follow for more backyard
   builds that won't fail!» con tarjeta FOLLOW y el aviso del siguiente tema.
 - Voz sin costo: `herramientas/voz_piper.py` con `en_US-joe-medium` (CC0). No uses voces de licencia NC si se va a monetizar.
+
+## Frutinovelas (2D con Python)
+- Canal «Corazón de Fresa»: biblia y mapa de la temporada en `frutinovelas/BIBLIA.md`; proceso en `frutinovelas/FRUTINOVELAS.md`.
+- Motor propio sin Remotion: `frutinovelas/motor/fruti.py` (Pillow + numpy + ffmpeg) y `motor/sonido_novela.py`.
+  Un capítulo de 60 s tarda pocos minutos sin GPU. Ejemplo completo: `frutinovelas/temporada1/cap01/` (`render.sh`).
+- Voces gratis en español con licencia comercial: `es_MX-ald-medium` (narrador), `es_MX-claude-high` (mujer),
+  `es_ES-davefx-medium` (hombre); se bajan de los tarballs `vits-piper-*` de sherpa-onnx (tts-models) en GitHub.
+- La fórmula de capítulo, los tipos de gancho y de cliffhanger están en `SKILL.md` («Series y novelas»).
