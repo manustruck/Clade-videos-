@@ -1,0 +1,50 @@
+{
+ "frases": [
+  "Your pergola is going to wobble like jelly!",
+  "Hit like and follow. Flo built this one herself!",
+  "Four big posts, beams on top. It's rock solid!",
+  "Push it sideways, and the square turns into a diamond.",
+  "That's called racking. Every gust of wind makes it a little worse.",
+  "So I just need bigger posts?",
+  "Nope. You need triangles.",
+  "A forty five degree knee brace, where every post meets the beam.",
+  "On both sides. Brace one direction, and it still wobbles the other way.",
+  "And the bottom of the posts?",
+  "Anchor them solid. Deep in the ground, or bolted down tight.",
+  "Fine. Triangles. My pergola is a math class now.",
+  "Bigger posts, or knee braces? Team Norm or Team Flo?",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "voces": [
+  0,
+  0,
+  1,
+  0,
+  0,
+  1,
+  0,
+  0,
+  0,
+  1,
+  0,
+  1,
+  0,
+  0
+ ],
+ "pausas": [
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.0
+ ]
+}

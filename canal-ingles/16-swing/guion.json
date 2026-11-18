@@ -1,0 +1,50 @@
+{
+ "frases": [
+  "That swing is about to drop you on your back!",
+  "Hit like and follow. Flo hung this one in five minutes!",
+  "Two screw hooks into the porch ceiling. Easy!",
+  "Into the ceiling boards? Those aren't holding anything up.",
+  "And a screw hook only grips with its threads. Every swing pulls it a little looser.",
+  "It held me yesterday!",
+  "Swinging adds force. Bounce a little, and it all lands on those threads.",
+  "Okay, okay. What's the right way?",
+  "Find the joist above the ceiling. Use an eye bolt that goes all the way through it.",
+  "Washer and nut on top. Now the wood carries the load, not the threads.",
+  "And use closed hooks or quick links, so the chain can't jump off.",
+  "Fine. I'll go find the joist.",
+  "Screw hooks, or through bolts? Team Norm or Team Flo?",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "voces": [
+  0,
+  0,
+  1,
+  0,
+  0,
+  1,
+  0,
+  1,
+  0,
+  0,
+  0,
+  1,
+  0,
+  0
+ ],
+ "pausas": [
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.0
+ ]
+}

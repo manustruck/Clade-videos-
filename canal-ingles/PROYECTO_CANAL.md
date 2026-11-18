@@ -149,7 +149,9 @@ hora; los derrumbes con muchas piezas y los acabados finos piden una computadora
 | 11 | CAN ROCKS EXPLODE? (fire pit) | Hecho (`11-fire-pit/`), debate Flo vs Norm |
 | 12 | YOUR SLAB WILL CRACK | Hecho (`12-concrete-slab/`), debate Flo vs Norm |
 | 13 | THIS RAILING WON'T HOLD YOU | Hecho (`13-railing/`), debate Flo vs Norm |
-| 14 | YOUR LADDER ANGLE IS WRONG | Hecho (`14-ladder/`), debate Flo vs Norm; anuncia el 15 «YOUR PERGOLA WILL WOBBLE» |
+| 14 | YOUR LADDER ANGLE IS WRONG | Hecho (`14-ladder/`), debate Flo vs Norm |
+| 15 | YOUR PERGOLA WILL WOBBLE | Hecho (`15-pergola/`), debate Flo vs Norm |
+| 16 | DON'T HANG A SWING LIKE THIS | Hecho (`16-swing/`), debate Flo vs Norm; anuncia el 17 «YOUR TREEHOUSE IS KILLING THE TREE» |
 
 Estilo definido en los dos primeros: alegre y colorido, sin misterio, sin subtítulos (solo título, medidas y sello), voz
 en inglés con energía y música tipo ukelele. Cada video nuevo copia la carpeta del anterior (`src/videos/<nombre>/`,
