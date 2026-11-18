@@ -61,7 +61,9 @@ La skill está en `SKILL.md` (léela antes de hacer un short). Estas notas son s
 
 ## Frutinovelas (2D con Python)
 - Canal «Corazón de Fresa»: biblia y mapa de la temporada en `frutinovelas/BIBLIA.md`; proceso en `frutinovelas/FRUTINOVELAS.md`.
-- Motor propio sin Remotion: `frutinovelas/motor/fruti.py` (Pillow + numpy + ffmpeg) y `motor/sonido_novela.py`.
+- Motor actual: `frutinovelas/motor/vector.py` (estilo vector de la referencia; reglas en `frutinovelas/ESTILO.md`). `motor/fruti.py`
+  es la versión 1 (cap. 1). Música: `motor/sonido_novela.py`. Fuente Anton (OFL) en `motor/fuentes/`.
+- El usuario pidió NO hacer videos hasta que dé toda la información: confirma antes de renderizar o gastar créditos.
   Un capítulo de 60 s tarda pocos minutos sin GPU. Ejemplo completo: `frutinovelas/temporada1/cap01/` (`render.sh`).
 - Voces gratis en español con licencia comercial: `es_MX-ald-medium` (narrador), `es_MX-claude-high` (mujer),
   `es_ES-davefx-medium` (hombre); se bajan de los tarballs `vits-piper-*` de sherpa-onnx (tts-models) en GitHub.

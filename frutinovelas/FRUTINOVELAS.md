@@ -1,5 +1,11 @@
 # Frutinovelas en 2D con Python (proceso)
 
+> **Motor actual: `motor/vector.py`.** Usa el estilo vector de la referencia: cabeza de fruta con cuerpo con ropa,
+> contorno grueso, cámara siempre en movimiento, luces, paralaje y subtítulo de una palabra. Las reglas están en
+> `ESTILO.md` y la prueba en `pruebas/estilo/prueba.py`. `motor/fruti.py` es la versión 1 (la del capítulo 1) y se
+> conserva solo para ese capítulo. En `vector.py` los actores usan `quien=` con las claves de `ELENCO`
+> (`valentina`, `rodrigo`, `pina`, `uva`, `lucho`, `coco`) en vez de `tipo=`.
+
 Ruta de la skill para telenovelas cortas animadas con personajes fruta, sin Remotion ni Blender: todo se dibuja
 con **Pillow + numpy** y se arma con **ffmpeg**. Corre igual en Windows, Mac y Linux y no necesita tarjeta gráfica.
 Un capítulo de 60 s se renderiza en pocos minutos en una computadora normal.

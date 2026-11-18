@@ -188,6 +188,13 @@ con ✅ y el que está en curso con ✍️.
   máximo.
 - Una voz de narrador para toda la serie y la misma voz para cada personaje en todos los capítulos.
 
+**Cámara viva (obligatorio en novelas):**
+- La imagen nunca se queda quieta: movimiento base, deriva de mano, respiración del zoom, golpe de zoom en las
+  palabras clave, temblor en los impactos, paralaje y barrido entre tomas.
+- Siempre hay luz que brilla, degradado de tono, polvo flotando y viñeta.
+- El último cuadro de cada capítulo es «CONTINUARÁ…» con el botón SÍGUEME y «PARA EL CAPÍTULO N».
+- Detalle en `frutinovelas/ESTILO.md`.
+
 **6. Voz actuada con ElevenLabs v3:** antes de cada párrafo, una etiqueta de emoción entre corchetes:
 `[dramatic]`, `[shocked]`, `[calm, storytelling]`, `[sarcastic]`, `[angry]`, `[mysterious]`, `[amused]`,
 `[whispers]`, `[gasps]`. Pega todo el capítulo de una vez y descarga un solo archivo. Si no hay ElevenLabs, usa
