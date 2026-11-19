@@ -63,6 +63,34 @@ VERSIONES = {
 }
 
 # ------------------------------------------------------------------ utilidades
+# ------------------------------------------------------------------ caras de los asesores (para no taparlas)
+CARAS_ARCHIVO = os.path.join(AQUI, "out", "caras.json")
+_CARAS = {int(k): v for k, v in json.load(open(CARAS_ARCHIVO)).items()} if os.path.exists(CARAS_ARCHIVO) else {}
+CARA_PANTALLA = None   # caja de la cara en el cuadro actual (x0, y0, x1, y1), ya con margen; la usan los textos
+
+def cara_en(clip, t):
+    """caja de la cara más grande del clip cerca del segundo t (en el clip normalizado 1080x1920)"""
+    m = [s for s in _CARAS.get(clip, []) if s and abs(s[0][0] - t) < 0.6]
+    if not m: return None
+    caras = min(m, key=lambda s: abs(s[0][0] - t))
+    c = max(caras, key=lambda r: (r[3] - r[1]) * (r[4] - r[2]))
+    return None if c[3] - c[1] < 70 else c[1:]
+
+def _choca(a, b):
+    return a[0] < b[2] and a[2] > b[0] and a[1] < b[3] and a[3] > b[1]
+
+def libre(x, y, ancho, alto, mover_x=False):
+    """devuelve (x, y) para que una caja ancho x alto centrada en (x, y) no tape la cara"""
+    c = CARA_PANTALLA
+    if c is None or not _choca((x - ancho / 2, y - alto / 2, x + ancho / 2, y + alto / 2), c): return x, y
+    if mover_x:
+        for nx in (W - x, 150 + ancho / 2 if x > W / 2 else W - 150 - ancho / 2):
+            if not _choca((nx - ancho / 2, y - alto / 2, nx + ancho / 2, y + alto / 2), c) and ancho / 2 <= nx <= W - ancho / 2: return nx, y
+    ops = [c[1] - 20 - alto / 2, c[3] + 20 + alto / 2]
+    ops = [v for v in ops if alto / 2 + 20 <= v <= H - alto / 2 - 20]
+    if not ops: ops = [max(alto / 2 + 20, min(H - alto / 2 - 20, c[3] + 20 + alto / 2))]
+    return x, min(ops, key=lambda v: abs(v - y))
+
 def cl(x): return max(0.0, min(1.0, x))
 def sm(x): u = cl(x); return u * u * (3 - 2 * u)
 def atras(u):
@@ -136,6 +164,7 @@ def texto(d, x, y, s, tam, col=BLANCO, borde=OSCURO, bw=None, anchor="mm", cual=
 def impacto(im, s, dt, dur, y, tam, col, borde=OSCURO, rot=-4, fondo=None):
     """texto que entra grande con rebote y sale rápido"""
     if dt < 0 or dt > dur: return
+    _, y = libre(540, y, ImageDraw.Draw(im).textlength(s, font=fuente(tam)) + 80, tam * 1.3)
     e = atras(dt / 0.25); sale = 1 - sm((dt - (dur - 0.18)) / 0.18)
     capa = Image.new("RGBA", (W, 420), (0, 0, 0, 0)); d = ImageDraw.Draw(capa)
     if fondo:
@@ -150,6 +179,7 @@ def etiqueta(im, s, dt, dur, x, y, col, tam=70, desde=1):
     if dt < 0 or dt > dur: return
     e = atras(dt / 0.22); sale = 1 - sm((dt - (dur - 0.15)) / 0.15)
     d = ImageDraw.Draw(im); tw = d.textlength(s, font=fuente(tam))
+    x, y = libre(x, y, tw + 70, tam * 1.3)
     xx = x + desde * (1 - e) * 500 + desde * (1 - sale) * 700
     d.rounded_rectangle([xx - tw / 2 - 34, y - tam * 0.62, xx + tw / 2 + 34, y + tam * 0.62], radius=tam * 0.5, fill=col, outline=BLANCO, width=6)
     texto(d, xx, y, s, tam, BLANCO, OSCURO, 5)
@@ -162,6 +192,7 @@ def logo(im, a=1.0, x=40, y=70, tam=46):
         if a < 1: lg.putalpha(lg.getchannel("A").point(lambda v: int(v * a)))
         im.alpha_composite(lg, (x, y)); return
     d = ImageDraw.Draw(im); tw = d.textlength("OPAC CASE", font=fuente(tam))
+    if CARA_PANTALLA is not None and _choca((x, y, x + tw + 50, y + tam + 34), CARA_PANTALLA): x = W - 40 - tw - 50
     d.rounded_rectangle([x, y, x + tw + 50, y + tam + 34], radius=24, fill=(31, 79, 216, int(235 * a)), outline=(255, 255, 255, int(255 * a)), width=4)
     d.text((x + 25, y + 17), "OPAC CASE", font=fuente(tam), fill=(255, 255, 255, int(255 * a)))
 
@@ -173,7 +204,12 @@ def destellos(d, cx, cy, r, t, n=10):
 
 def promo_png(im, dt, cy=520, ancho=980, t=0.0):
     if dt < 0: return
-    e = atras(dt / 0.35); p = promo(); w = int(ancho * e * (1 + 0.025 * math.sin(t * 5))); h = int(p.height * w / p.width)
+    p = promo()
+    if CARA_PANTALLA is not None and _choca((540 - ancho / 2, cy - ancho * p.height / p.width / 2, 540 + ancho / 2, cy + ancho * p.height / p.width / 2), CARA_PANTALLA):
+        c = CARA_PANTALLA; arriba = c[1] - 20; abajo = H - 330 - c[3]                      # achica y acomoda donde quepa sin tapar la cara
+        hmax = max(arriba, abajo); ancho = min(ancho, hmax * p.width / p.height); h0 = ancho * p.height / p.width
+        cy = (arriba - h0 / 2) if arriba >= abajo else (c[3] + 20 + h0 / 2)
+    e = atras(dt / 0.35); w = int(ancho * e * (1 + 0.025 * math.sin(t * 5))); h = int(p.height * w / p.width)
     if w < 4: return
     im.alpha_composite(p.resize((w, h), Image.BICUBIC), (int(540 - w / 2), int(cy - h / 2)))
     destellos(ImageDraw.Draw(im), 540, cy, ancho * 0.5, t)
@@ -181,6 +217,7 @@ def promo_png(im, dt, cy=520, ancho=980, t=0.0):
 def sello50(im, dt, x=820, y=1180, r=150, t=0.0):
     """estrella amarilla con «2.º PRODUCTO 50% OFF»"""
     if dt < 0: return
+    x, y = libre(x, y, 2 * r, 2 * r, mover_x=True)
     e = atras(dt / 0.3); rr = r * e; d = ImageDraw.Draw(im)
     if rr < 4: return
     pts = []
@@ -199,6 +236,7 @@ def aclaracion(im):
 
 def calendario(im, tiempos, t, y=1080):
     """tres tarjetas de calendario que aparecen una por una (MARTES, MIÉRCOLES, JUEVES)"""
+    _, y = libre(540, y, 1040, 340)
     d = ImageDraw.Draw(im)
     for i, (dia, t0) in enumerate(zip(["MARTES", "MIÉRCOLES", "JUEVES"], tiempos)):
         if t0 is None or t < t0: continue
@@ -212,6 +250,7 @@ def calendario(im, tiempos, t, y=1080):
         d.text((x, y + h * 0.36), "50% 2.º", font=fuente(max(8, int(36 * e))), fill=ROJO, anchor="mm")
 
 def reloj(im, x, y, r, t):
+    x, y = libre(x, y, 2 * r + 20, 2 * r + 20, mover_x=True)
     d = ImageDraw.Draw(im); d.ellipse([x - r, y - r, x + r, y + r], fill=BLANCO, outline=ROJO, width=10)
     for k in range(12): a = k / 12 * math.pi * 2; d.line([(x + math.cos(a) * r * 0.78, y + math.sin(a) * r * 0.78), (x + math.cos(a) * r * 0.9, y + math.sin(a) * r * 0.9)], fill=OSCURO, width=5)
     for (vel, largo, ancho) in ((6.0, 0.75, 8), (0.5, 0.5, 12)):
@@ -223,7 +262,8 @@ def iconos_compartir(im, dt, t):
     for i, (col, letra) in enumerate([("#25d366", "wa"), ("#1877f2", "f"), ("#e1306c", "ig")]):
         e = atras((dt - i * 0.15) / 0.3)
         if e <= 0: continue
-        x, y, r = 300 + i * 240, 1120 - 30 * abs(math.sin(t * 4 + i)), 95 * e
+        _, yb = libre(540, 1120, 760, 260)
+        x, y, r = 300 + i * 240, yb - 30 * abs(math.sin(t * 4 + i)), 95 * e
         if letra == "wa":
             d.ellipse([x - r, y - r, x + r, y + r], fill=col, outline=BLANCO, width=8)
             d.ellipse([x - r * 0.55, y - r * 0.55, x + r * 0.55, y + r * 0.55], outline=BLANCO, width=max(2, int(r * 0.1)))
@@ -255,7 +295,8 @@ def subtitulos(im, palabras, t):
     d = ImageDraw.Draw(im)
     while sum(d.textlength(s + " ", font=fuente(tam)) for s in ws) > 960 and tam > 46: tam -= 4
     tot = sum(d.textlength(s + " ", font=fuente(tam)) for s in ws); x = 540 - tot / 2
-    e = atras((t - g[0]) / 0.18); y = 1560 + 30 * (1 - e)
+    _, yb = libre(540, 1560, tot + 40, tam * 1.4)
+    e = atras((t - g[0]) / 0.18); y = yb + 30 * (1 - e)
     for w, s in zip(g[2], ws):
         act = w["a"] - 0.02 <= t < w["b"] + 0.08; clave = s.lower().strip("¡!¿?") in CLAVES
         col = AMARILLO if act else ("#7fd3ff" if clave else BLANCO)
@@ -304,7 +345,6 @@ def eventos(p, t, palabras):
     elif i == "revela":
         tm = m("mitad"); punch(m("segundo"), 0.12); punch(tm, 0.22, 0.5); tb = 1.0 if tm is not None and 0 <= t - tm < 0.35 else 0
         dib.append(lambda im: promo_png(im, t - (tm if tm is not None else p["t0"] + 1.5) + 0.25, 520, 1000, t))
-        dib.append(lambda im: sello50(im, t - (tm or 99) - 0.3, 860, 1220, 140, t))
         dib.append(lambda im: aclaracion(im) if tm is not None and t >= tm else None)
     elif i == "revela2":
         punch(m("normal"), 0.08); punch(m("mitad"), 0.16)
@@ -415,6 +455,10 @@ def mezcla(piezas, total, palabras, salida):
 
 # ------------------------------------------------------------------ render
 def render(version, fotos=None):
+    global CARA_PANTALLA, _CARAS
+    if not os.path.exists(CARAS_ARCHIVO):                       # detecta las caras la primera vez
+        subprocess.run([sys.executable, os.path.join(AQUI, "caras.py")], check=True)
+        _CARAS = {int(k): v for k, v in json.load(open(CARAS_ARCHIVO)).items()}
     piezas, total, palabras = armar(version)
     os.makedirs(os.path.join(AQUI, "out"), exist_ok=True); os.makedirs(os.path.join(AQUI, "publicar"), exist_ok=True)
     mudo = os.path.join(AQUI, "out", f"{version}_mudo.mp4")
@@ -431,6 +475,7 @@ def render(version, fotos=None):
         t = fi / FPS
         p = next((x for x in piezas if x["t0"] <= t < x["t1"]), piezas[-1]); dt = t - p["t0"]
         if p.get("tipo") == "final":
+            CARA_PANTALLA = None
             im = pantalla_final(t, dt, version)
         else:
             clip, a, b = p["clip"], p["a"], p["b"]
@@ -440,10 +485,18 @@ def render(version, fotos=None):
             fr = src(p, clip, a, b) if not fotos else cuadros(clip, a + dt_src, a + dt_src + 1 / FPS)
             img = Image.fromarray(fr[min(len(fr) - 1, int(dt_src * FPS))] if not fotos else fr[0])
             z, tb, dib = eventos(p, t, palabras)
-            cx, cy = CARA.get(clip, (0.5, 0.4)); cx, cy = cx * W, cy * H
+            caja = cara_en(clip, a + dt_src)
+            if caja: cx, cy = (caja[0] + caja[2]) / 2, (caja[1] + caja[3]) / 2 + (caja[3] - caja[1]) * 0.3
+            else: cx, cy = CARA.get(clip, (0.5, 0.4)); cx, cy = cx * W, cy * H
             cx += 6 * math.sin(t * 1.3); cy += 4 * math.cos(t * 1.7)
             if tb: cx += 22 * tb * math.sin(t * 90); cy += 16 * tb * math.cos(t * 77)
             cw, ch = W / z, H / z; cx = min(max(cx, cw / 2), W - cw / 2); cy = min(max(cy, ch / 2), H - ch / 2)
+            if caja:   # la cara en el cuadro final, con margen para el pelo y la barbilla
+                bw, bh = caja[2] - caja[0], caja[3] - caja[1]
+                x0, y0, x1, y1 = caja[0] - bw * 0.25, caja[1] - bh * 0.45, caja[2] + bw * 0.25, caja[3] + bh * 0.3
+                ox, oy = cx - cw / 2, cy - ch / 2
+                CARA_PANTALLA = ((x0 - ox) * z, (y0 - oy) * z, (x1 - ox) * z, (y1 - oy) * z)
+            else: CARA_PANTALLA = None
             img = img.crop((int(cx - cw / 2), int(cy - ch / 2), int(cx + cw / 2), int(cy + ch / 2))).resize((W, H), Image.BILINEAR).convert("RGBA")
             # barrido de entrada en cada corte
             if dt < 0.1 and p["t0"] > 0: img = img.filter(ImageFilter.BoxBlur(int(18 * (1 - dt / 0.1))))
