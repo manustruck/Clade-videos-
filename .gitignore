@@ -15,3 +15,7 @@ __pycache__/
 realista/blender/*/fotos/
 capitulos/*/out/
 canal-ingles/*/out/
+
+# Comerciales de clientes: los videos con caras de terceros no se suben a git
+comerciales/*/publicar/*.mp4
+comerciales/*/out/
