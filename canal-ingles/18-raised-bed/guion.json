@@ -1,0 +1,50 @@
+{
+ "frases": [
+  "Your raised bed is about to burst open!",
+  "Hit like and follow. Flo filled this one to the top!",
+  "Tall boards, four corners, and lots of soil. Perfect!",
+  "Wet soil is heavy, and it pushes out on every wall.",
+  "The middle of the long side takes the most push. That's where it bows first.",
+  "So I just need thicker boards?",
+  "Thicker helps. But the real fix is a tie across the middle.",
+  "A board or a threaded rod, from one long side to the other. It holds both walls in.",
+  "Longer than eight feet? Use two ties.",
+  "And the corners keep moving!",
+  "Strong corner posts, screwed, not nailed. And sink them into the ground.",
+  "Fine. My garden bed is wearing a belt.",
+  "Thicker boards, or a tie across the middle? Team Norm or Team Flo?",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "voces": [
+  0,
+  0,
+  1,
+  0,
+  0,
+  1,
+  0,
+  0,
+  0,
+  1,
+  0,
+  1,
+  0,
+  0
+ ],
+ "pausas": [
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.0
+ ]
+}

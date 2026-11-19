@@ -67,9 +67,11 @@ export const Preguntas: React.FC<{ t: number; a: number; p: V3 }> = ({ t, a, p }
 export const ventana = (t: number, a: number, b: number) => Math.min(pr(t, a, a + 0.22), 1 - pr(t, b - 0.18, b));
 
 /** texto grande centrado con borde */
-export const Grande: React.FC<{ s: string; o: number; col: string; borde: string; tam?: number; y?: number }> = ({ s, o, col, borde, tam = 100, y = 300 }) => o <= 0 ? null : (
-  <text x={540} y={y - 15 * (1 - o)} opacity={o} fontSize={tam} fill={col} stroke={borde} strokeWidth={tam * 0.2} strokeLinejoin="round" paintOrder="stroke">{s}</text>
-);
+export const Grande: React.FC<{ s: string; o: number; col: string; borde: string; tam?: number; y?: number }> = ({ s, o, col, borde, tam = 100, y = 300 }) => {
+  if (o <= 0) return null;
+  const t = Math.min(tam, 990 / (s.length * 0.68));   // que nunca se salga del cuadro
+  return <text x={540} y={y - 15 * (1 - o)} opacity={o} fontSize={t} fill={col} stroke={borde} strokeWidth={t * 0.2} strokeLinejoin="round" paintOrder="stroke">{s}</text>;
+};
 
 /** etiqueta pequeña con borde, en cualquier punto de la pantalla (se mantiene dentro del cuadro) */
 export const Etiqueta: React.FC<{ s: string; x: number; y: number; o: number; col: string; borde?: string; tam?: number }> = ({ s, x, y, o, col, borde = "#fff", tam = 60 }) => {

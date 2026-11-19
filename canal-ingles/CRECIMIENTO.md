@@ -86,8 +86,9 @@ todavía, así que estas horas son un punto de partida para ajustar con lo que m
 | 3 | 30 nov: #8 Stairs (debate) | 2 dic: #9 Fabric (debate) | 4 dic: **#10 Treated wood** (debate, nuevo) |
 | 4 | 7 dic: **#11 Fire pit** (debate) | 9 dic: **#12 Concrete slab** (debate) | 11 dic: **#13 Railing** (debate) |
 | 5 | 14 dic: **#14 Ladder** (debate) | 16 dic: **#15 Pergola** (debate) | 18 dic: **#16 Swing** (debate) |
-| 6 | 21 dic: #1 Fence post (re-render) | 23 dic: #2 Retaining wall (re-render) | — (fiestas) |
-- El orden respeta la cadena de «Next»: 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12 → 13 → 14 → 15 → 16 → 17. Los videos 1 y 2 no anuncian
+| 6 | 21 dic: **#17 Treehouse** (debate) | 23 dic: **#18 Raised bed** (debate) | — (fiestas) |
+| 7 | 28 dic: #1 Fence post (re-render) | 30 dic: #2 Retaining wall (re-render) | — |
+- El orden respeta la cadena de «Next»: 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12 → 13 → 14 → 15 → 16 → 17 → 18 → 19. Los videos 1 y 2 no anuncian
   otro, por eso van después.
 - **Espacio reactivo:** un hueco por semana desde la semana 5 (por ejemplo, una helada que rompe una tubería o hielo
   en los escalones) para temas del momento.
