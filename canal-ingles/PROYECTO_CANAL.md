@@ -153,7 +153,10 @@ hora; los derrumbes con muchas piezas y los acabados finos piden una computadora
 | 15 | YOUR PERGOLA WILL WOBBLE | Hecho (`15-pergola/`), debate Flo vs Norm |
 | 16 | DON'T HANG A SWING LIKE THIS | Hecho (`16-swing/`), debate Flo vs Norm |
 | 17 | YOUR TREEHOUSE IS KILLING THE TREE | Hecho (`17-treehouse/`), debate Flo vs Norm |
-| 18 | YOUR RAISED BED WILL BURST | Hecho (`18-raised-bed/`), debate Flo vs Norm; anuncia el 19 «YOUR DRAIN IS RUNNING UPHILL» |
+| 18 | YOUR RAISED BED WILL BURST | Hecho (`18-raised-bed/`), debate Flo vs Norm |
+| 19 | YOUR DRAIN RUNS UPHILL | Hecho (`19-drain/`), debate + cámara viva |
+| 20 | YOUR PATIO FLOODS YOUR HOUSE | Hecho (`20-patio/`), debate + cámara viva |
+| 21 | YOUR NEW POST IS LEANING | Hecho (`21-post-lean/`), debate + cámara viva; anuncia el 22 «YOUR DECK BOARDS WILL CUP» |
 
 Estilo definido en los dos primeros: alegre y colorido, sin misterio, sin subtítulos (solo título, medidas y sello), voz
 en inglés con energía y música tipo ukelele. Cada video nuevo copia la carpeta del anterior (`src/videos/<nombre>/`,
@@ -201,3 +204,12 @@ subtítulos; se pueden volver a renderizar con ellos.
   pide like y follow.
 - Antes del cierre: votación «TEAM A vs TEAM B» con contadores (`Equipos` en `src/videos/comun/Tarjetas.tsx`).
 - Temas polémicos pero honestos: el título plantea la pregunta y el video da la respuesta con fuentes.
+
+## Cámara viva (desde el video 19)
+`hacerCamaraViva` en `src/videos/comun/Escena.tsx` reemplaza a `hacerCamara` en los videos nuevos. La cámara nunca se queda quieta:
+- **Órbita** alrededor de lo que mira, alternando el sentido en cada toma (`orbita`, en radianes).
+- **Arranque rápido** (`ease: "expo"`) en los cortes fuertes y **dolly zoom** en el gancho (`dolly: 0.3`).
+- **Cámara en mano**: un vaivén suave constante.
+- **Golpe de zoom** (−14 % de campo de visión, 0,5 s) en las palabras clave: `golpesDe(PAL, [...])`.
+- **Giro** (`roll`) y **sacudida** en los impactos.
+- **Barrido** de 0,15 s con desenfoque al empezar cada toma (`blur={desenfoque(t)}` en `Marco`) y un whoosh en el sonido.

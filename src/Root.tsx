@@ -21,6 +21,9 @@ import { PergolaVideo, PER_CUADROS, PER_FPS } from "./videos/pergola-15/Pergola"
 import { SwingVideo, SWI_CUADROS, SWI_FPS } from "./videos/swing-16/Swing";
 import { TreehouseVideo, TRE17_CUADROS, TRE17_FPS } from "./videos/treehouse-17/Treehouse";
 import { RaisedBedVideo, RB_CUADROS, RB_FPS } from "./videos/raisedbed-18/RaisedBed";
+import { DrainVideo, DRA_CUADROS, DRA_FPS } from "./videos/drain-19/Drain";
+import { PatioVideo, PAT_CUADROS, PAT_FPS } from "./videos/patio-20/Patio";
+import { PostLeanVideo, PL_CUADROS, PL_FPS } from "./videos/postlean-21/PostLean";
 import { ReelHuellas, ReelRadio, reelCuadros } from "./videos/tambo-01/Reels";
 import { MiniaturaFaro, FondoFlyerFaro } from "./videos/tambo-01/portadas";
 import { FaroCap1, FARO_CUADROS, FARO_FPS } from "./videos/tambo-01/Faro";
@@ -49,6 +52,9 @@ export const Root: React.FC = () => (
     <Composition id="SwingHang" component={SwingVideo} durationInFrames={SWI_CUADROS} fps={SWI_FPS} width={1080} height={1920} />
     <Composition id="TreehouseTree" component={TreehouseVideo} durationInFrames={TRE17_CUADROS} fps={TRE17_FPS} width={1080} height={1920} />
     <Composition id="RaisedBedBurst" component={RaisedBedVideo} durationInFrames={RB_CUADROS} fps={RB_FPS} width={1080} height={1920} />
+    <Composition id="DrainUphill" component={DrainVideo} durationInFrames={DRA_CUADROS} fps={DRA_FPS} width={1080} height={1920} />
+    <Composition id="PatioSlope" component={PatioVideo} durationInFrames={PAT_CUADROS} fps={PAT_FPS} width={1080} height={1920} />
+    <Composition id="PostLean" component={PostLeanVideo} durationInFrames={PL_CUADROS} fps={PL_FPS} width={1080} height={1920} />
     {[1, 2, 3, 4, 5].map((n) => <Composition key={n} id={`Leonida${n}`} component={LeonidaFiles} durationInFrames={leoCuadros(n)} fps={LEO_FPS} width={1080} height={1920} defaultProps={{ parte: n }} />)}
     <Still id="MiniaturaFaro" component={MiniaturaFaro} width={1920} height={1080} />
     <Still id="FondoFlyerFaro" component={FondoFlyerFaro} width={1080} height={1920} />

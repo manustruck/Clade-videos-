@@ -32,10 +32,62 @@ export const hacerCamara = (tramos: Tramo[], sacude: (t: number) => number = () 
   return { camEn, pantalla };
 };
 
-export const PonerCamara: React.FC<{ cam: Cam }> = ({ cam }) => {
+export const PonerCamara: React.FC<{ cam: Cam & { fov?: number; roll?: number } }> = ({ cam }) => {
   const { camera } = useThree(), pc = camera as THREE.PerspectiveCamera;
-  pc.position.set(...cam.pos); pc.fov = FOV; pc.near = 0.1; pc.far = 80; pc.updateProjectionMatrix(); pc.lookAt(...cam.look);
+  pc.position.set(...cam.pos); pc.fov = cam.fov ?? FOV; pc.near = 0.1; pc.far = 80; pc.updateProjectionMatrix(); pc.lookAt(...cam.look);
+  if (cam.roll) pc.rotateZ(cam.roll);
   return null;
+};
+
+// ------------------------------------------------------------------ cámara viva (desde el video 19)
+/** opciones de un tramo: órbita alrededor del punto que mira (rad), giro de cámara (rad), arranque rápido y «dolly zoom» */
+export type Extra = { orbita?: number; roll?: number; ease?: "expo" | "suave"; dolly?: number };
+export type TramoVivo = [number, number, Cam, Cam] | [number, number, Cam, Cam, Extra];
+export type CamViva = Cam & { fov: number; roll: number };
+const golpe = (d: number) => (d < 0 || d > 0.55 ? 0 : d < 0.08 ? d / 0.08 : Math.exp(-(d - 0.08) * 7));
+
+/** tiempos de las palabras que llevan golpe de zoom */
+export const golpesDe = (palabras: Palabra[], lista: string[]) => {
+  const l = new Set(lista.map((w) => w.toLowerCase()));
+  return palabras.filter((w) => l.has(w.p.toLowerCase().replace(/[^a-z0-9']/g, ""))).map((w) => w.a);
+};
+
+/** cámara que nunca se queda quieta: movimiento de la toma con órbita alterna, cámara en mano, golpes de zoom en
+ *  palabras clave, giro en los impactos, barrido rápido entre tomas (con desenfoque) y dolly zoom opcional */
+export const hacerCamaraViva = (tramos: TramoVivo[], o: { sacude?: (t: number) => number; golpes?: number[]; mano?: number } = {}) => {
+  const sacude = o.sacude ?? (() => 0), golpes = o.golpes ?? [], mano = o.mano ?? 0.025;
+  const tramoEn = (t: number) => { const i = tramos.findIndex((x) => t >= x[0] && t < x[1]); return i < 0 ? tramos.length - 1 : i; };
+  const camEn = (t: number): CamViva => {
+    const i = tramoEn(t), s = tramos[i], ex: Extra = (s as [number, number, Cam, Cam, Extra])[4] ?? {};
+    const u = cl((t - s[0]) / (s[1] - s[0]));
+    const k = ex.ease === "expo" ? 1 - Math.pow(2, -9 * u) : ex.ease === "suave" ? u * u * (3 - 2 * u) : 1 - Math.pow(1 - u, 2.4);
+    const m = (p: V3, q: V3): V3 => [lerp(p[0], q[0], k), lerp(p[1], q[1], k), lerp(p[2], q[2], k)];
+    let pos = m(s[2].pos, s[3].pos); const look = m(s[2].look, s[3].look);
+    // órbita: gira la cámara alrededor de lo que mira (alterna el sentido en cada toma)
+    const orb = (ex.orbita ?? (i % 2 ? 0.14 : -0.14)) * (k - 0.5);
+    const dx = pos[0] - look[0], dz = pos[2] - look[2];
+    pos = [look[0] + dx * Math.cos(orb) - dz * Math.sin(orb), pos[1], look[2] + dx * Math.sin(orb) + dz * Math.cos(orb)];
+    // cámara en mano
+    pos = [pos[0] + mano * Math.sin(t * 1.1) + mano * 0.4 * Math.sin(t * 2.9), pos[1] + mano * 0.6 * Math.sin(t * 1.7 + 1), pos[2]];
+    // barrido rápido al empezar la toma
+    const dt0 = t - s[0], dir = i % 2 ? 1 : -1;
+    if (i > 0 && dt0 < 0.16) { const w = Math.pow(1 - dt0 / 0.16, 2); look[0] += dir * 0.9 * w; pos[0] += dir * 0.35 * w; }
+    // sacudida y giro en los impactos
+    const a = sacude(t);
+    pos = [pos[0] + Math.sin(t * 61) * a, pos[1] + Math.cos(t * 73) * a, pos[2]];
+    let roll = (ex.roll ?? 0) * k + 0.012 * Math.sin(t * 0.8) + a * 1.6 * Math.sin(t * 47);
+    // golpes de zoom en las palabras clave y dolly zoom
+    let fov = FOV * (ex.dolly ? lerp(1 + ex.dolly, 1, k) : 1);
+    for (const g of golpes) fov *= 1 - 0.14 * golpe(t - g);
+    return { pos, look, fov, roll };
+  };
+  const desenfoque = (t: number) => { const i = tramoEn(t), dt0 = t - tramos[i][0]; return i > 0 && dt0 < 0.14 ? 9 * (1 - dt0 / 0.14) : 0; };
+  const pc = new THREE.PerspectiveCamera(FOV, 1080 / 1920, 0.1, 80), v = new THREE.Vector3();
+  const pantalla = (t: number, p: V3): [number, number] => {
+    const c = camEn(t); pc.position.set(...c.pos); pc.fov = c.fov; pc.updateProjectionMatrix(); pc.lookAt(...c.look); if (c.roll) pc.rotateZ(c.roll);
+    pc.updateMatrixWorld(); v.set(...p).project(pc); return [(v.x + 1) * 540, (1 - v.y) * 960];
+  };
+  return { camEn, pantalla, desenfoque };
 };
 
 /** luz, sol, nubes, suelo cortado en z = 0, piedras en la tierra, un árbol y pasto (sin pasto en los `huecos` de x) */
@@ -88,11 +140,13 @@ export const Titulo: React.FC<{ t: number; fin: number; arriba: string; abajo: s
 };
 
 /** el cuadro completo: mundo 3D, rótulos SVG, subtítulos, barra de progreso y fundido de entrada y salida */
-export const Marco: React.FC<{ t: number; seg: number; mundo: React.ReactNode; rotulos: React.ReactNode; palabras: Palabra[]; claves: string[]; ocultoDesde: number }> = ({ t, seg, mundo, rotulos, palabras, claves, ocultoDesde }) => {
+export const Marco: React.FC<{ t: number; seg: number; mundo: React.ReactNode; rotulos: React.ReactNode; palabras: Palabra[]; claves: string[]; ocultoDesde: number; blur?: number }> = ({ t, seg, mundo, rotulos, palabras, claves, ocultoDesde, blur = 0 }) => {
   const blanco = Math.max(1 - pr(t, 0, 0.2), pr(t, seg - 0.5, seg));
   return (
     <AbsoluteFill style={{ background: "linear-gradient(#55b8ff 0%, #bfeaff 62%, #e9fbff 100%)" }}>
-      <ThreeCanvas width={1080} height={1920} shadows camera={{ fov: FOV, near: 0.1, far: 80 }} gl={{ antialias: true }}>{mundo}</ThreeCanvas>
+      <AbsoluteFill style={blur > 0.3 ? { filter: `blur(${blur}px)`, transform: "scale(1.03)" } : undefined}>
+        <ThreeCanvas width={1080} height={1920} shadows camera={{ fov: FOV, near: 0.1, far: 80 }} gl={{ antialias: true }}>{mundo}</ThreeCanvas>
+      </AbsoluteFill>
       <svg width={1080} height={1920} style={{ position: "absolute", inset: 0 }} fontFamily={F} fontWeight={800} textAnchor="middle">{rotulos}</svg>
       <svg width={1080} height={1920} style={{ position: "absolute", inset: 0 }}>
         <Subtitulos palabras={palabras} t={t} claves={claves} y={1580} hablantes={HABLA} ocultoDesde={ocultoDesde} />
