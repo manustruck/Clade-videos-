@@ -39,7 +39,8 @@ Si a las 2 semanas las estadísticas muestran que tu público está más activo 
   - **Calentamiento:** TikTok arma el «Para ti» según la región; con IP de EE. UU. te mostrará mucho contenido en inglés y estadounidense, justo lo contrario de lo que queremos para un canal en español.
   - **Pagos:** los programas de pago de EE. UU. piden residencia, documentos y datos fiscales de EE. UU. al cobrar. Fingir la ubicación va contra las condiciones de TikTok y puede terminar en pagos retenidos o en la cuenta bloqueada, justo cuando ya creció.
   - **Lo seguro:** usar tu conexión real de Ecuador y revisar en la app qué programas de monetización están disponibles para tu país.
- (20–30 min al día, en 2 sesiones)
+
+## Qué hacer en cada sesión de calentamiento (días 1 a 5)
 1. **Busca** términos del nicho y mira videos completos (ver hasta el final es la señal más fuerte):
    - *historias de la Biblia*, *misterios de la Biblia*, *arqueología bíblica*, *rollos del mar Muerto*
    - *reflexiones cristianas*, *versículos de la Biblia*, *Proverbios*, *fe en Dios*
