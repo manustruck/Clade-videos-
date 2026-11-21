@@ -156,7 +156,10 @@ hora; los derrumbes con muchas piezas y los acabados finos piden una computadora
 | 18 | YOUR RAISED BED WILL BURST | Hecho (`18-raised-bed/`), debate Flo vs Norm |
 | 19 | YOUR DRAIN RUNS UPHILL | Hecho (`19-drain/`), debate + cámara viva |
 | 20 | YOUR PATIO FLOODS YOUR HOUSE | Hecho (`20-patio/`), debate + cámara viva |
-| 21 | YOUR NEW POST IS LEANING | Hecho (`21-post-lean/`), debate + cámara viva; anuncia el 22 «YOUR DECK BOARDS WILL CUP» |
+| 21 | YOUR NEW POST IS LEANING | Hecho (`21-post-lean/`), debate + cámara viva |
+| 22 | YOUR DECK BOARDS ARE CUPPING | Hecho (`22-deck-cup/`), debate + cámara viva |
+| 23 | YOUR FIRE PIT IS TOO CLOSE | Hecho (`23-fire-pit-close/`), debate + cámara viva |
+| 24 | YOUR GUTTERS OVERFLOW | Hecho (`24-gutter-pitch/`), debate + cámara viva; anuncia el 25 «YOUR SHED DOOR WILL STICK» |
 
 Estilo definido en los dos primeros: alegre y colorido, sin misterio, sin subtítulos (solo título, medidas y sello), voz
 en inglés con energía y música tipo ukelele. Cada video nuevo copia la carpeta del anterior (`src/videos/<nombre>/`,

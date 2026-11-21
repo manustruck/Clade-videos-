@@ -24,6 +24,9 @@ import { RaisedBedVideo, RB_CUADROS, RB_FPS } from "./videos/raisedbed-18/Raised
 import { DrainVideo, DRA_CUADROS, DRA_FPS } from "./videos/drain-19/Drain";
 import { PatioVideo, PAT_CUADROS, PAT_FPS } from "./videos/patio-20/Patio";
 import { PostLeanVideo, PL_CUADROS, PL_FPS } from "./videos/postlean-21/PostLean";
+import { DeckCupVideo, DC_CUADROS, DC_FPS } from "./videos/deckcup-22/DeckCup";
+import { FirePitCloseVideo, FC_CUADROS, FC_FPS } from "./videos/firepit2-23/FirePitClose";
+import { GutterPitchVideo, GP_CUADROS, GP_FPS } from "./videos/gutter-24/GutterPitch";
 import { ReelHuellas, ReelRadio, reelCuadros } from "./videos/tambo-01/Reels";
 import { MiniaturaFaro, FondoFlyerFaro } from "./videos/tambo-01/portadas";
 import { FaroCap1, FARO_CUADROS, FARO_FPS } from "./videos/tambo-01/Faro";
@@ -55,6 +58,9 @@ export const Root: React.FC = () => (
     <Composition id="DrainUphill" component={DrainVideo} durationInFrames={DRA_CUADROS} fps={DRA_FPS} width={1080} height={1920} />
     <Composition id="PatioSlope" component={PatioVideo} durationInFrames={PAT_CUADROS} fps={PAT_FPS} width={1080} height={1920} />
     <Composition id="PostLean" component={PostLeanVideo} durationInFrames={PL_CUADROS} fps={PL_FPS} width={1080} height={1920} />
+    <Composition id="DeckCup" component={DeckCupVideo} durationInFrames={DC_CUADROS} fps={DC_FPS} width={1080} height={1920} />
+    <Composition id="FirePitClose" component={FirePitCloseVideo} durationInFrames={FC_CUADROS} fps={FC_FPS} width={1080} height={1920} />
+    <Composition id="GutterPitch" component={GutterPitchVideo} durationInFrames={GP_CUADROS} fps={GP_FPS} width={1080} height={1920} />
     {[1, 2, 3, 4, 5].map((n) => <Composition key={n} id={`Leonida${n}`} component={LeonidaFiles} durationInFrames={leoCuadros(n)} fps={LEO_FPS} width={1080} height={1920} defaultProps={{ parte: n }} />)}
     <Still id="MiniaturaFaro" component={MiniaturaFaro} width={1920} height={1080} />
     <Still id="FondoFlyerFaro" component={FondoFlyerFaro} width={1080} height={1920} />
