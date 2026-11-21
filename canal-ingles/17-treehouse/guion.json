@@ -1,0 +1,50 @@
+{
+ "frases": [
+  "Your treehouse is slowly killing the tree!",
+  "Hit like and follow. Flo built it in one weekend!",
+  "Two hundred nails, and a rope around the trunk. It's not going anywhere!",
+  "Every nail is a wound. Lots of small holes means lots of dead wood.",
+  "And that rope? The tree grows, the rope doesn't. It strangles the bark.",
+  "Wait. I'm hurting my tree?",
+  "Builders say one big bolt beats a dozen small fasteners.",
+  "Special treehouse bolts. Just a few, and big. The tree heals around them.",
+  "And the rope?",
+  "Take it off. Nothing should wrap around the trunk.",
+  "And leave the tree room to grow, and to sway in the wind.",
+  "Fine. My treehouse goes on a diet. Fewer nails.",
+  "Two hundred nails, or a few big bolts? Team Norm or Team Flo?",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "voces": [
+  0,
+  0,
+  1,
+  0,
+  0,
+  1,
+  0,
+  0,
+  1,
+  0,
+  0,
+  1,
+  0,
+  0
+ ],
+ "pausas": [
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.0
+ ]
+}

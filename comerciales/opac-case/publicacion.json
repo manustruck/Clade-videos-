@@ -1,0 +1,18 @@
+{
+  "titulo": ["¡EL 2.º PRODUCTO", "A MITAD DE PRECIO!"],
+  "resaltar": ["MITAD"],
+  "segundo": 21.0,
+  "youtube": {
+    "titulo": "¡El segundo producto a mitad de precio! 📱 Opac Case",
+    "descripcion": "Martes, miércoles y jueves en las islas de Opac Case: llévate tu segundo producto a mitad de precio. Estuches, cargadores, audífonos y todos los accesorios para tu celular. ¡Te esperamos!\n\nDescuento aplicado al producto de menor valor. Aplican condiciones.",
+    "hashtags": ["shorts", "opaccase", "accesorioscelular", "promocion", "estuches"]
+  },
+  "tiktok": {
+    "texto": "¡ALTO! 🛑 Martes, miércoles y jueves tu SEGUNDO producto va a MITAD DE PRECIO en Opac Case 📱 Estuches, cargadores, audífonos y más. ¡Envíaselo a quien necesita accesorios! Aplican condiciones.",
+    "hashtags": ["opaccase", "promocion", "accesoriosparacelular", "estuches", "ofertas"]
+  },
+  "facebook": {
+    "texto": "📱 ¡El segundo producto a mitad de precio! Solo martes, miércoles y jueves en nuestras islas de Opac Case. Etiqueta a quien necesita un estuche nuevo 👇 (Descuento aplicado al producto de menor valor. Aplican condiciones.)",
+    "hashtags": ["opaccase", "promocion", "accesorios"]
+  }
+}

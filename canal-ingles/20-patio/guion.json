@@ -1,0 +1,50 @@
+{
+ "frases": [
+  "Your patio is pouring the rain right into your house!",
+  "Hit like and follow. Flo made hers perfectly flat!",
+  "Flat is level. Level is good. Everybody knows that!",
+  "Flat means the water has nowhere to go. It sits there, or runs to the wall.",
+  "Puddles by the door, water against the foundation, and soon a wet basement.",
+  "So it's supposed to be crooked?",
+  "Not crooked. Sloped. Away from the house.",
+  "About a quarter inch per foot. A ten foot patio drops about two and a half inches.",
+  "Put a four foot level on it. The low end should sit about an inch lower.",
+  "Won't my chairs slide off?",
+  "Nope. You'll never feel it. But the rain will.",
+  "Fine. A tiny tilt. I can live with that.",
+  "Perfectly flat, or sloped away? Team Norm or Team Flo?",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "voces": [
+  0,
+  0,
+  1,
+  0,
+  0,
+  1,
+  0,
+  0,
+  0,
+  1,
+  0,
+  1,
+  0,
+  0
+ ],
+ "pausas": [
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.0
+ ]
+}

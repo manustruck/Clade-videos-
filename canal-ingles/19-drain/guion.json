@@ -1,0 +1,50 @@
+{
+ "frases": [
+  "Your drain is running uphill!",
+  "Hit like and follow. Flo dug this one with no level!",
+  "A pipe in a trench. Water goes in, water goes out. Done!",
+  "Water only flows downhill. Your pipe has a dip in the middle.",
+  "Water sits in that low spot, and dirt settles in it. Soon, it's clogged.",
+  "So I just dig deeper at the end?",
+  "You need a steady fall, the whole way. No dips.",
+  "At least one eighth of an inch per foot. That's about an inch every eight feet.",
+  "Check it with a string line or a level as you go.",
+  "And where does it come out?",
+  "At the lowest point of your yard, out in the open. That's called daylight.",
+  "Fine. My drain goes downhill. Just like my weekend.",
+  "Just dig it, or slope it right? Team Norm or Team Flo?",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "voces": [
+  0,
+  0,
+  1,
+  0,
+  0,
+  1,
+  0,
+  0,
+  0,
+  1,
+  0,
+  1,
+  0,
+  0
+ ],
+ "pausas": [
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.0
+ ]
+}

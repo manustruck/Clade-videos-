@@ -1,0 +1,42 @@
+{
+  "titulo": [
+    "YOUR GATE WILL",
+    "SAG"
+  ],
+  "resaltar": [
+    "SAG"
+  ],
+  "youtube": {
+    "titulo": "Why your gate sags (and which way the brace goes)",
+    "descripcion": "A gate frame is a rectangle that wants to turn into a parallelogram. The gate's weight pulls down on the latch corner until it drags. One diagonal brace, running from the bottom on the hinge side up to the top on the latch side, works in compression and keeps the gate square.\n\nFollow for more backyard builds that won't fail!\n\nFor general education only. Building codes and gate hardware vary by location: check your local code and a licensed professional before you build.",
+    "hashtags": [
+      "shorts",
+      "gate",
+      "fence",
+      "woodworking"
+    ]
+  },
+  "tiktok": {
+    "texto": "Why wood gates sag: the frame wants to become a parallelogram 😬 One diagonal brace fixes it, but ONLY if it runs the right way. Which way is yours? Next: sinking sheds.",
+    "hashtags": [
+      "gate",
+      "fencegate",
+      "woodworking",
+      "diy",
+      "backyard"
+    ]
+  },
+  "facebook": {
+    "texto": "Does your gate drag on the ground? One board fixes it, but it must run from the bottom hinge corner up to the top latch corner. Which way is yours braced? 👇",
+    "hashtags": [
+      "gate",
+      "fence",
+      "diy"
+    ]
+  },
+  "fuentes": [
+    "Hoover Fence: DIY wood gate plans",
+    "Jackson's Fencing: which way should a garden gate be braced",
+    "Hunker: How to build a no-sag gate"
+  ]
+}

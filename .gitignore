@@ -1,0 +1,21 @@
+node_modules
+out/
+.remotion/
+# recursos que baja realista/recursos/bajar_recursos.sh (cada quien los baja de su fuente)
+realista/recursos/mpfb/packs/
+realista/recursos/ambientcg/
+realista/recursos/renderpeople/
+# salidas de render
+realista/blender/*/cuadros/
+realista/blender/*/render.log
+realista/blender/*/*.mp4
+# Local secrets written by `elevenlabs onboard`
+/.env.local
+__pycache__/
+realista/blender/*/fotos/
+capitulos/*/out/
+canal-ingles/*/out/
+
+# Comerciales de clientes: los videos con caras de terceros no se suben a git
+comerciales/*/publicar/*.mp4
+comerciales/*/out/

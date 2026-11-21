@@ -1,0 +1,44 @@
+{
+  "titulo": [
+    "YOUR NEW POST",
+    "IS LEANING"
+  ],
+  "resaltar": [
+    "LEANING"
+  ],
+  "segundo": 1.0,
+  "youtube": {
+    "titulo": "Fence post leaning already? It's too shallow (Flo vs Norm)",
+    "descripcion": "Flo set her fence post in a hole one foot deep. The wind pushes the fence like a sail, and where the ground freezes, frost heave lifts the post a little more every winter. A common rule: bury about one third of the post (an 8 ft post goes almost 3 ft deep), go below your local frost line in cold climates, and tamp the gravel or soil every few inches.\n\nTeam 1 Foot or Team 1/3 Deep? Tell us in the comments!\n\nFollow for more backyard builds that won't fail!\n\nFor general education only. Check your local frost depth with your building department.",
+    "hashtags": [
+      "shorts",
+      "fencepost",
+      "fence",
+      "diy"
+    ]
+  },
+  "tiktok": {
+    "texto": "Brand new fence post already leaning? 😬 Flo dug 1 foot 🦩 Norm says bury 1/3 of the post and go below the frost line. Team 1 Foot or Team 1/3 Deep? Next: your deck boards will cup.",
+    "hashtags": [
+      "fencepost",
+      "fenceinstallation",
+      "diy",
+      "backyard",
+      "debate"
+    ]
+  },
+  "facebook": {
+    "texto": "A post set only a foot deep will lean: wind pushes the fence like a sail and frost lifts it every winter. Bury about a third of the post and tamp every layer. How deep are yours? 👇",
+    "hashtags": [
+      "fence",
+      "diy",
+      "backyard"
+    ]
+  },
+  "fuentes": [
+    "Univ. of Wisconsin Extension: Setting posts (below the frost line)",
+    "Tractor Supply: How to set fence posts in concrete and gravel (tamp in layers)",
+    "Hunker: How to prevent frost heave in fence posts",
+    "Call Fantastic Fence: how deep should I dig wood fence posts"
+  ]
+}

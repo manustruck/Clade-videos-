@@ -1,0 +1,50 @@
+{
+ "frases": [
+  "Landscape fabric is a total scam!",
+  "Hit like and follow. This one starts a war!",
+  "You lay it down, cover it with mulch, and three years later? Weeds! On top of it!",
+  "Okay, she's not wrong. Mulch breaks down into soil, right on the fabric, and seeds love it.",
+  "And the roots grow right through it. Good luck pulling that out!",
+  "So it's useless. Rip it all out!",
+  "Not so fast!",
+  "Under a gravel path, it's a hero.",
+  "It keeps the stones from sinking into the mud below.",
+  "Wait. So it depends?",
+  "In flower beds, skip it, and use thick mulch. Under gravel, keep it.",
+  "Ugh. I hate it when you're right.",
+  "Team Fabric or Team No Fabric? Fight in the comments!",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "voces": [
+  1,
+  0,
+  1,
+  0,
+  1,
+  1,
+  0,
+  0,
+  0,
+  1,
+  0,
+  1,
+  0,
+  0
+ ],
+ "pausas": [
+  0.15,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.1,
+  0.08,
+  0.15,
+  0.1,
+  0.15,
+  0.2,
+  0.2,
+  0.0
+ ]
+}

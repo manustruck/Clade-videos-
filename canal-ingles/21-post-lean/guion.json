@@ -1,0 +1,50 @@
+{
+ "frases": [
+  "Your brand new fence post is already leaning!",
+  "Hit like and follow. Flo set this one in ten minutes!",
+  "I dug a hole one foot deep. That's plenty for a post!",
+  "Too shallow. The wind pushes the fence like a sail, and the post tips.",
+  "And where it freezes, the frozen ground swells. It lifts the post a little more every winter.",
+  "So how deep is deep enough?",
+  "A common rule: bury about one third of the post.",
+  "An eight foot post? Almost three feet in the ground.",
+  "And in cold climates, go below your local frost line.",
+  "And what do I pack around it?",
+  "Gravel or soil, a few inches at a time. Tamp every layer hard.",
+  "Fine. A deeper hole. My arms hate you.",
+  "One foot deep, or one third of the post? Team Norm or Team Flo?",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "voces": [
+  0,
+  0,
+  1,
+  0,
+  0,
+  1,
+  0,
+  0,
+  0,
+  1,
+  0,
+  1,
+  0,
+  0
+ ],
+ "pausas": [
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.0
+ ]
+}

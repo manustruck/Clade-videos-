@@ -1,0 +1,34 @@
+{
+ "frases": [
+  "Your shed is going to sink!",
+  "Here's why.",
+  "You set it right on the grass, because it looked flat enough.",
+  "Looks fine, right?",
+  "Then it rains.",
+  "The soft soil washes out under one corner, and the shed starts to lean.",
+  "The door jams. The floor rots.",
+  "Whoops!",
+  "Here's the fix.",
+  "First, dig out the grass, and add four to six inches of crushed stone.",
+  "Next, pack it down tight, and make it level.",
+  "Now the shed sits on a solid base, and the water drains away.",
+  "Same shed. Same door. No more jamming!",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "pausas": [
+  0.2,
+  0.2,
+  0.3,
+  0.15,
+  0.1,
+  0.5,
+  0.45,
+  0.2,
+  0.1,
+  0.2,
+  0.2,
+  0.28,
+  0.28,
+  0.0
+ ]
+}

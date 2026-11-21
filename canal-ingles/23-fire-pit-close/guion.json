@@ -1,0 +1,50 @@
+{
+ "frases": [
+  "That fire pit is way too close to your house!",
+  "Hit like and follow. Flo wanted it right by the door!",
+  "It's cozy! I can grab snacks without walking!",
+  "Sparks float up and drift. Wood siding, a deck, a tree branch, they can all catch.",
+  "And under that tree? The heat rises right into the leaves.",
+  "So how far is far enough?",
+  "Most safety guides say at least ten feet from your house and anything that burns.",
+  "Some towns say twenty five. Check your local fire rules.",
+  "Keep it out from under branches, and never on a covered porch.",
+  "And if it gets out of hand?",
+  "Keep a hose or an extinguisher close, and never leave the fire alone.",
+  "Fine. Ten steps for snacks. I'll survive.",
+  "Cozy by the door, or ten feet away? Team Norm or Team Flo?",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "voces": [
+  0,
+  0,
+  1,
+  0,
+  0,
+  1,
+  0,
+  0,
+  0,
+  1,
+  0,
+  1,
+  0,
+  0
+ ],
+ "pausas": [
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.0
+ ]
+}

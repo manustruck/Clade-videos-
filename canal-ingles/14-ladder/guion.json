@@ -1,0 +1,20 @@
+{
+ "frases": [
+  "Your ladder is about to slide right out from under you!",
+  "Hit like and follow. Flo thinks flatter is safer!",
+  "Flatter is safer! It can't tip over if it's almost lying down!",
+  "Too flat, and the feet kick out. You ride it down the wall.",
+  "Then I'll stand it straight up!",
+  "Too steep, and you tip over backward. Even worse.",
+  "So what's the magic angle?",
+  "The four to one rule. For every four feet up, the feet go one foot out.",
+  "Ten feet up to the gutter? Two and a half feet out.",
+  "Quick check: toes at the feet, arms straight out. Your hands should land on a rung.",
+  "Climbing onto a roof? Let it stick up three feet past the edge.",
+  "Fine. Four to one. I'll even count my steps.",
+  "Ladder angle. Flatter is safer, or four to one? Team Norm or Team Flo?",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "voces": [0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+ "pausas": [0.15, 0.12, 0.12, 0.12, 0.1, 0.15, 0.1, 0.12, 0.15, 0.12, 0.15, 0.2, 0.2, 0.0]
+}

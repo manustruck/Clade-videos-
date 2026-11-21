@@ -1,0 +1,42 @@
+{
+  "titulo": [
+    "YOUR STAIRS",
+    "WILL TRIP YOU"
+  ],
+  "resaltar": [
+    "TRIP"
+  ],
+  "youtube": {
+    "titulo": "Uneven stairs: can 1 inch really trip you? (Flo vs Norm)",
+    "descripcion": "Flo says one inch doesn't matter. Norm says your feet disagree. Research shows people don't notice a slightly taller stair riser, and their toe doesn't lift high enough to clear it. That's why US building codes allow no more than 3/8 inch difference between risers in a flight. Measure every riser and make them all the same.\n\nTeam Norm or Team Flo? Fight in the comments!\n\nFollow for more backyard builds that won't fail!\n\nFor general education only. Codes vary by location: check your local code and a licensed professional.",
+    "hashtags": [
+      "shorts",
+      "stairs",
+      "deckstairs",
+      "diy"
+    ]
+  },
+  "tiktok": {
+    "texto": "Uneven stair risers: Flo says 1 inch doesn't matter 🦩 Norm says that's how you fall 😬 Code says max 3/8 in. Team Norm or Team Flo? Next: landscape fabric.",
+    "hashtags": [
+      "stairs",
+      "deckstairs",
+      "buildingcode",
+      "diy",
+      "debate"
+    ]
+  },
+  "facebook": {
+    "texto": "One stair step just 1 inch taller than the rest. Harmless, or a fall waiting to happen? Team Norm or Team Flo? 👇",
+    "hashtags": [
+      "stairs",
+      "deck",
+      "diy"
+    ]
+  },
+  "fuentes": [
+    "IRC R311.7.5.1 (riser height, 3/8 in max variation) — e.g. S.C. Code Regs. § 8-1210",
+    "PLOS ONE / NCBI: Using a stair horizontal-vertical illusion to increase foot clearance over an inconsistently taller stair-riser",
+    "Applied Ergonomics: Negotiating stairs with an inconsistent riser"
+  ]
+}

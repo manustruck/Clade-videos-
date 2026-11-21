@@ -1,0 +1,47 @@
+{
+ "frases": [
+  "Your deck boards are curling up like potato chips!",
+  "Hit like and follow. Flo says it's all about the bark!",
+  "Everybody knows it! Bark side up, and boards never cup!",
+  "The bark side helps a little. But that's not the real problem.",
+  "Your deck sits a few inches off wet dirt. The bottom stays damp, and the sun dries the top.",
+  "The wet side swells, the dry side shrinks, and the board cups.",
+  "So the bark thing is a myth?",
+  "Mostly. Experts say the moisture under the deck matters a lot more.",
+  "Give it room to breathe. Open the sides so air can flow underneath.",
+  "And put gravel over a ground cover, so the dirt can't wet the boards.",
+  "Fine. My deck gets a breeze, not a bark lecture.",
+  "Bark side up, or airflow underneath? Team Norm or Team Flo?",
+  "Follow for more backyard builds that won't fail!"
+ ],
+ "voces": [
+  0,
+  0,
+  1,
+  0,
+  0,
+  0,
+  1,
+  0,
+  0,
+  0,
+  1,
+  0,
+  0
+ ],
+ "pausas": [
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.12,
+  0.0
+ ]
+}
