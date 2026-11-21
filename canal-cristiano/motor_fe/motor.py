@@ -41,6 +41,7 @@ STARTS = ENDS = CUTS = None
 TOTAL = NF = 0
 PALABRAS = []   # [{w, t, d, plano, clave, peligro}]
 BLOQUES = []    # grupos de palabras que se muestran juntos
+SIN_SUBS = False  # True para sacar cuadros limpios (portadas)
 
 
 # ------------------------------------------------------------------ carga y tiempos
@@ -56,6 +57,10 @@ def cargar(carpeta):
     PLANOS = GUION["planos"]
     CANAL = dict(json.load(open(os.path.join(HERE, "canal.json"), encoding="utf-8")))
     CANAL.update(GUION.get("canal", {}))
+    for S in PLANOS:  # todos los videos terminan con el cierre de marca (canal.json: "cierre": "marca")
+        if S["esc"] == "cierre" and CANAL.get("cierre") == "marca":
+            S["esc"] = "cierre_marca"
+            S.setdefault("cola", 2.6)
     voces = []
     for i in range(len(PLANOS)):
         with open(os.path.join(CARPETA, "voz", "{:02d}.json".format(i)), encoding="utf-8") as f:
@@ -66,7 +71,7 @@ def cargar(carpeta):
         t += PLANOS[i].get("pre", 0.0)
         STARTS.append(t)
         t += e + GAP + PLANOS[i].get("post", 0.0)
-    TOTAL = round(t - GAP + TAIL + PLANOS[-1].get("cola", 2.4 if PLANOS[-1]["esc"] == "cierre" else 0.0), 2)
+    TOTAL = round(t - GAP + TAIL + PLANOS[-1].get("cola", 2.4 if PLANOS[-1]["esc"].startswith("cierre") else 0.0), 2)
     NF = int(TOTAL * FPS)
     CUTS = [0.0] + [STARTS[i] - GAP / 2 - PLANOS[i].get("pre", 0.0) * 0.6 for i in range(1, len(PLANOS))] + [TOTAL]
     # palabras del guion (con *clave* y _peligro_) alineadas con los tiempos de la voz
@@ -149,7 +154,7 @@ def timeline():
                 ens = S[key].get("en", "")
                 for en in (ens if isinstance(ens, list) else [ens]):
                     ev.append(dict(t=t_palabra(i, en) if en else STARTS[i], tipo=key))
-        if S["esc"] == "cierre":
+        if S["esc"].startswith("cierre"):
             ev.append(dict(t=CUTS[i], tipo="cierre"))
         for tt in S.get("_truenos", []):
             ev.append(dict(t=tt, tipo="trueno"))
@@ -165,6 +170,10 @@ def timeline():
             ev.append(dict(t=t_palabra(i, S["subida"]), tipo="subida"))
         if S.get("revelar"):
             ev.append(dict(t=CUTS[i], tipo="revelar"))
+        if isinstance(S.get("rompe"), (int, float)) and S["rompe"] >= 0:
+            ev.append(dict(t=CUTS[i] + S["rompe"], tipo="rompe"))
+            if "lanza" in S:
+                ev.append(dict(t=CUTS[i] + S["lanza"], tipo="lanza"))
     musica = [dict(t0=CUTS[i], t1=CUTS[i + 1], nivel=0.0 if S.get("silencio") else float(S.get("musica", 1.0)))
               for i, S in enumerate(PLANOS)]
     return dict(total=TOTAL, starts=STARTS, ends=ENDS, cuts=CUTS, musica=musica, eventos=sorted(ev, key=lambda e: e["t"]))
@@ -258,6 +267,14 @@ def dibuja_plano(c, i, t, extra_z=1.0, dy=0.0):
     if isinstance(cen[0], list):
         f = vivo((t - CUTS[i]) / max(0.1, S["_dur"]))
         cen = [cen[0][0] + (cen[1][0] - cen[0][0]) * f, cen[0][1] + (cen[1][1] - cen[0][1]) * f]
+    if S["esc"] == "cierre_marca":  # ocupa todo el cuadro, sin cámara del plano
+        c.save()
+        c.translate(W / 2, H / 2 + dy)
+        c.scale(extra_z, extra_z)
+        c.translate(-W / 2, -H / 2)
+        ESCENAS[S["esc"]](c, T, k, S)
+        c.restore()
+        return
     if "foco" not in S and "vertigo" not in S:
         c.save()
         _transformar(c, z * extra_z, x, y, r, cen, dy)
@@ -498,10 +515,12 @@ def draw_frame(c, t):
         clima(c, a if e < 0.5 else b, t)
         rotulos(c, a if e < 0.5 else b, t)
         reloj(c, a if e < 0.5 else b, t)
-    papel(c, 0.18)
-    vineta(c)
-    grano(c, t, CANAL.get("grano", 0.05))
-    subtitulos(c, t)
+    if PLANOS[plano_en(t)]["esc"] != "cierre_marca":
+        papel(c, 0.18)
+        vineta(c)
+        grano(c, t, CANAL.get("grano", 0.05))
+    if not SIN_SUBS:
+        subtitulos(c, t)
     # entrada y salida del video
     if t < 0.25:
         c.drawRect(skia.Rect(0, 0, W, H), P("#000000", 1 - suave(t / 0.25)))

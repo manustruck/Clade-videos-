@@ -6,6 +6,19 @@ subtítulos karaoke en letra Poppins y **la imagen siempre en movimiento**.
 
 Reemplaza al motor de terror (`../motor_2d/`), que queda solo como referencia.
 
+## Producir un capítulo con un solo comando
+
+```bash
+python producir.py ../capitulos/capNN_tema 3
+```
+Hace voz → chequeo de movimiento (se detiene si hay tramos quietos) → hoja de contacto → sonido → video → portada. Avisa si el video pasa de 30 MB (sube `crf` o baja `grano` en el bloque `canal` del guion).
+
+Archivos nuevos:
+- `cierre_marca.py`: el cierre animado de Fe en Escena (logo real que se revela con un brillo, botón que invita a tocarlo, dedo índice que lo presiona con estallido y anillo, redes que rebotan, usuario que se escribe solo, «Compártelo» y próximo capítulo). Todos los planos `cierre` lo usan (`canal.json`: `"cierre": "marca"`, `"tema_cierre": "verde"` o `"claro"`; por plano: `"tema"`). `python cierre_marca.py verde|claro` saca los cuadros clave.
+- `portada.py`: portada vertical y 16:9 con el bloque `"portada": {"t", "titulo", "resaltar", "etiqueta"}` del guion (sin subtítulos).
+- `objetos.py`: vasija que se rompe (`rompe`, `rompe_i`), piedra lanzada (`lanza`), rollo que se desenrolla, códice y cabras.
+- Escenarios nuevos: `desierto` (acantilados con cuevas, `cabras`, `cuevas`), `cueva` (`vasijas`, `lanza`, `rompe`) y `rollo` (`abre`, `comparar`, `brillo`). Personajes nuevos: `beduino` y `anciano`.
+
 ## Pasos para un video
 
 Desde esta carpeta (`motor_fe/`), con el Python que tiene `skia-python`, `numpy` y `edge-tts`:

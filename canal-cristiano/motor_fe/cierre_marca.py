@@ -306,42 +306,116 @@ def mano_indice(c, tx, ty, k_llegar, k_presion, ang=-18.0, escala=1.0):
 T_TOQUE = 2.0
 
 
+def destellos(c, x, y, k, n=10, color=NEGRO, seed=3):
+    """Estallido de estrellitas de 4 puntas al presionar."""
+    if not (0 < k < 1):
+        return
+    rnd = random.Random(seed)
+    for i in range(n):
+        ang = i / n * 2 * math.pi + rnd.uniform(-0.2, 0.2)
+        d = 60 + 220 * suave(k) * rnd.uniform(0.7, 1.1)
+        r = 16 * (1 - k) * rnd.uniform(0.6, 1.2)
+        px_, py_ = x + math.cos(ang) * d, y + math.sin(ang) * d
+        st = skia.Path()
+        st.moveTo(px_, py_ - r)
+        st.quadTo(px_, py_, px_ + r, py_)
+        st.quadTo(px_, py_, px_, py_ + r)
+        st.quadTo(px_, py_, px_ - r, py_)
+        st.quadTo(px_, py_, px_, py_ - r)
+        c.drawPath(st, P(color if i % 2 else "#ffffff", 0.9 * (1 - k)))
+
+
+def _logo_animado(c, T, claro):
+    """El logo se revela desde el centro, la cruz cae con rebote y un brillo lo cruza en diagonal."""
+    y0 = 360 + 8 * math.sin(T * 1.3)
+    k = clamp(T / 0.7)
+    c.saveLayer(None, None)
+    # revelado vertical desde el centro
+    rev = suave(clamp((T - 0.1) / 0.6))
+    cy = y0 + 330
+    c.save()
+    c.clipRect(skia.Rect(0, cy - 420 * rev - 2, W, cy + 420 * rev + 2))
+    if not logo_imagen(c, W / 2, y0, k, 1 + 0.01 * math.sin(T * 2.0)):
+        logo(c, W / 2, y0 + 70, k, 1 + 0.01 * math.sin(T * 2.0))
+    c.restore()
+    # brillo que cruza el logo (solo sobre la tinta)
+    kb = (T - 0.8) / 0.7
+    if 0 < kb < 1:
+        xb = -300 + (W + 600) * kb
+        sh = skia.GradientShader.MakeLinear([(xb - 120, 0), (xb + 120, 0)],
+                                            [C("#ffffff", 0), C("#ffffff", 0.55), C("#ffffff", 0)])
+        pb = skia.Paint(Shader=sh, BlendMode=skia.BlendMode.kSrcATop)
+        c.save()
+        c.rotate(-14, W / 2, cy)
+        c.drawRect(skia.Rect(-400, cy - 700, W + 400, cy + 700), pb)
+        c.restore()
+    c.restore()
+
+
 def cuadro(c, T, canal=None, tema=None):
     canal = canal or {}
     tema = tema or canal.get("tema_cierre", "verde")
     claro = tema == "claro"
+    # cámara del cierre: acercamiento lento + sacudida corta cuando el dedo presiona
+    c.save()
+    z = 1.0 + 0.04 * suave(T / 4.0)
+    sx = sy = 0.0
+    d = T - T_TOQUE
+    if 0 <= d < 0.25:
+        amp = 9 * (1 - d / 0.25)
+        sx, sy = amp * math.sin(d * 120), amp * 0.6 * math.cos(d * 97)
+    c.translate(W / 2 + sx, H / 2 + sy)
+    c.scale(z, z)
+    c.translate(-W / 2, -H / 2)
     (fondo_claro if claro else fondo)(c, T)
-    # logo: entra con rebote y respira despacio
-    k_logo = clamp(T / 0.6)
-    if not logo_imagen(c, W / 2, 360 + 8 * math.sin(T * 1.3), k_logo, 1 + 0.01 * math.sin(T * 2.0)):
-        logo(c, W / 2, 430 + 8 * math.sin(T * 1.3), k_logo, 1 + 0.01 * math.sin(T * 2.0))
-    # botón seguir
+    _logo_animado(c, T, claro)
+    # botón seguir: aparece con rebote y 'respira' con un halo que invita a tocarlo
     bx, by = W / 2, 1290
     k_btn = clamp((T - 0.55) / 0.45)
+    if 0.9 < T < T_TOQUE:
+        ph = ((T - 0.9) * 1.6) % 1
+        c.drawRoundRect(skia.Rect(bx - 230 - 40 * ph, by - 58 - 30 * ph, bx + 230 + 40 * ph, by + 58 + 30 * ph),
+                        60 + 30 * ph, 60 + 30 * ph, P(NEGRO, 0.35 * (1 - ph), stroke=4))
     pres = math.sin(clamp((T - (T_TOQUE - 0.12)) / 0.3) * math.pi) if T_TOQUE - 0.12 < T < T_TOQUE + 0.18 else 0.0
     sig = T >= T_TOQUE
     boton(c, bx, by, k_btn, pres, sig, (T - T_TOQUE) / 0.35 if sig else 0)
     onda(c, bx + 178, by, (T - T_TOQUE) / 0.9)
-    # redes y usuario
-    k_red = suave((T - 0.8) / 0.5)
-    if k_red > 0:
-        iconos_redes(c, W / 2, 1480 + 20 * (1 - k_red), a=k_red)
+    destellos(c, bx + 178, by, (T - T_TOQUE) / 0.7, color=NEGRO)
+    # redes: cada ícono entra rebotando, uno tras otro; el usuario se escribe letra por letra
+    for i in range(3):
+        ki = clamp((T - 0.8 - 0.12 * i) / 0.4)
+        if ki > 0:
+            c.save()
+            x = W / 2 + (i - 1) * 86
+            c.translate(x, 1480)
+            c.scale(rebote(ki), rebote(ki))
+            c.translate(-x, -1480)
+            c.save()
+            c.clipRect(skia.Rect(x - 40, 1440, x + 40, 1520))
+            iconos_redes(c, W / 2, 1480)
+            c.restore()
+            c.restore()
+    u = canal.get("usuario", "@cristianonovelas")
+    n = int(clamp((T - 1.1) / 0.6) * len(u))
+    if n > 0:
         f = font("bold", 52)
-        u = canal.get("usuario", "@cristianonovelas")
-        c.drawString(u, W / 2 - f.measureText(u) / 2, 1585 + 20 * (1 - k_red), f, P(NEGRO, k_red))
-    # compartir + próximo capítulo
-    k_sh = suave((T - 2.6) / 0.5)
+        full = f.measureText(u)
+        c.drawString(u[:n], W / 2 - full / 2, 1585, f, P(NEGRO))
+        if n < len(u) and int(T * 8) % 2 == 0:
+            c.drawRect(skia.Rect(W / 2 - full / 2 + f.measureText(u[:n]) + 4, 1545, W / 2 - full / 2 + f.measureText(u[:n]) + 9, 1595), P(NEGRO))
+    # compartir: sube y la flecha se mueve; luego el próximo capítulo
+    k_sh = suave((T - 2.5) / 0.45)
     if k_sh > 0:
-        y = 1720
-        pul = 1 + 0.06 * math.sin(T * 6)
+        y = 1720 + 40 * (1 - k_sh)
         f = skia.Font(_tf("Anton-Regular.ttf"), 56)
         txt = "COMPÁRTELO"
         tw = f.measureText(txt)
         x0 = W / 2 - (tw + 76) / 2
         c.save()
         c.translate(x0 + 28, y - 20)
-        c.scale(pul * k_sh, pul * k_sh)
+        c.scale(k_sh * (1 + 0.06 * math.sin(T * 6)), k_sh * (1 + 0.06 * math.sin(T * 6)))
         c.drawCircle(0, 0, 30, P(NEGRO))
+        c.rotate(12 * math.sin(T * 5))
         fl = skia.Path()
         fl.moveTo(-13, 10)
         fl.quadTo(-12, -8, 8, -8)
@@ -353,14 +427,22 @@ def cuadro(c, T, canal=None, tema=None):
         c.drawPath(fl, P(CREMA_FONDO if claro else "#d9f26a"))
         c.restore()
         c.drawString(txt, x0 + 76, y, f, P(NEGRO, k_sh))
-        f2 = font("semi", 38)
-        prox = canal.get("proximo", "Próximo capítulo muy pronto")
-        c.drawString(prox, W / 2 - f2.measureText(prox) / 2, y + 70, f2, P(NEGRO, 0.8 * k_sh))
+        k_px = suave((T - 2.9) / 0.4)
+        if k_px > 0:
+            f2 = font("semi", 38)
+            prox = canal.get("proximo", "Próximo capítulo muy pronto")
+            c.drawString(prox, W / 2 - f2.measureText(prox) / 2, y + 70 + 20 * (1 - k_px), f2, P(NEGRO, 0.85 * k_px))
     # el dedo índice llega, presiona y se va
     lleg = clamp((T - 1.0) / 0.9) if T < 2.6 else 1 - clamp((T - 2.6) / 0.8)
     mano_indice(c, bx + 182, by - 4, lleg, pres)
     if claro:
         grano_claro(c, T)
+    c.restore()
+
+
+def esc_cierre_marca(c, T, k, S):
+    """Escenario para el motor: el cierre de marca ocupa todo el cuadro (no usa la cámara del plano)."""
+    cuadro(c, T, S.get("_canal", {}), S.get("tema"))
 
 
 def main():

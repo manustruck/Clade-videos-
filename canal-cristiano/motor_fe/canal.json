@@ -4,5 +4,7 @@
   "iniciales": "FE",
   "logo_sub": "EN ESCENA",
   "proximo": "Próximo capítulo muy pronto",
-  "grano": 0.05
+  "grano": 0.05,
+  "cierre": "marca",
+  "tema_cierre": "verde"
 }

@@ -17,6 +17,8 @@ TIPOS = {
     "biblica": dict(tunica=("#5b7fa6", "#38587a"), manto=("#d8c7a5", "#b29d76"), pelo="#2e1d12", barba=False, piel="#c98e63", largo=True, velo=True, desgaste=0.6),
     "moderno": dict(tunica=("#2f8f9d", "#1f5f6a"), manto=None, pelo="#1d1410", barba=False, piel="#c98e63", largo=False, pantalon="#2d3550"),
     "moderna": dict(tunica=("#c0566b", "#8c3a4c"), manto=None, pelo="#3a2216", barba=False, piel="#e0a77a", largo=True, pantalon="#2d3550"),
+    "beduino": dict(tunica=("#8a6a4a", "#5e4630"), manto=("#3e2f24", "#2a1f17"), pelo="#1d1410", barba=False, piel="#b97a52", largo=False, velo=True, desgaste=0.9),
+    "anciano": dict(tunica=("#9a8f7a", "#6e6454"), manto=("#4f3b2a", "#33261b"), pelo="#cfc8bd", barba=True, piel="#c98e63", largo=False, desgaste=0.5),
     "nino":    dict(tunica=("#e0a44a", "#b47a26"), manto=None, pelo="#2b1a10", barba=False, piel="#d9a47c", largo=False, pantalon="#3b4a6b"),
 }
 
@@ -215,6 +217,14 @@ def persona(c, x, y, s=1.0, tipo="biblico", T=0.0, pose="abajo", mira=0.0, a=1.0
         v.quadTo(-66, -60, -62, 100)
         v.close()
         c.drawPath(v, _grad("#efe4cc", "#c8b690", -96, 100, a))
+        if tipo == "beduino":  # kufiya con rayas rojas y agal (cordón negro)
+            c.save()
+            c.clipPath(v, skia.ClipOp.kIntersect, True)
+            for yy in range(-90, 100, 22):
+                c.drawLine(-90, yy, 90, yy + 10, P("#b0303a", 0.45 * a, stroke=4))
+            c.restore()
+            c.drawRoundRect(skia.Rect(-70, -66, 70, -48), 9, 9, P("#1a1412", a))
+            c.drawRoundRect(skia.Rect(-70, -50, 70, -36), 7, 7, P("#2a201c", a))
     c.restore()
     c.restore()
 

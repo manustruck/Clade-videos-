@@ -1,0 +1,40 @@
+>> narrar.py /home/user/clade-videos-/canal-cristiano/capitulos/cap01_rollos_mar_muerto
+frases=16 palabras=231 voz=79.3s ritmo=2.91 palabras/s
+ 
+>> motor.py /home/user/clade-videos-/canal-cristiano/capitulos/cap01_rollos_mar_muerto movimiento
+cuadros=2615 tramos_quietos=0 [] diferencia_minima=0.097
+listo: total=87.19s cuadros=2615 planos=16
+ 
+>> motor.py /home/user/clade-videos-/canal-cristiano/capitulos/cap01_rollos_mar_muerto hoja 0.6
+listo: total=87.19s cuadros=2615 planos=16
+ 
+>> audio.py /home/user/clade-videos-/canal-cristiano/capitulos/cap01_rollos_mar_muerto
+AUDIO_OK 87.2s voz=-18.8dB musica=-25.7dB efectos=-22.1dB
+ 
+>> render.py /home/user/clade-videos-/canal-cristiano/capitulos/cap01_rollos_mar_muerto 4
+parte 0 cuadro 0 de 653 1s
+parte 1961 cuadro 0 de 654 1s
+parte 1307 cuadro 0 de 654 1s
+parte 653 cuadro 0 de 654 1s
+parte 0 cuadro 150 de 653 53s
+parte 1961 cuadro 150 de 654 55s
+parte 653 cuadro 150 de 654 55s
+parte 1307 cuadro 150 de 654 56s
+parte 1307 cuadro 300 de 654 110s
+parte 1961 cuadro 300 de 654 112s
+parte 653 cuadro 300 de 654 112s
+parte 0 cuadro 300 de 653 112s
+parte 1307 cuadro 450 de 654 168s
+parte 653 cuadro 450 de 654 169s
+parte 0 cuadro 450 de 653 178s
+parte 1961 cuadro 450 de 654 178s
+parte 1307 cuadro 600 de 654 228s
+parte 653 cuadro 600 de 654 230s
+parte 1961 cuadro 600 de 654 244s
+parte 0 cuadro 600 de 653 249s
+VIDEO_OK cuadros=2615 273s
+ 
+>> portada.py /home/user/clade-videos-/canal-cristiano/capitulos/cap01_rollos_mar_muerto
+PORTADA_OK /home/user/clade-videos-/canal-cristiano/capitulos/cap01_rollos_mar_muerto/portada.png
+ 
+LISTO: /home/user/clade-videos-/canal-cristiano/capitulos/cap01_rollos_mar_muerto/final.mp4 (51.7 MB)  ¡ojo: más de 30 MB, sube 'crf' o baja 'grano'!

@@ -1,0 +1,364 @@
+{
+ "titulo": "Capítulo 1: La piedra que encontró la Biblia",
+ "pilar": "misterios",
+ "receta": "A (historia real asombrosa) + serie con cliffhanger",
+ "fuentes": [
+  "https://www.britannica.com/topic/Dead-Sea-Scrolls",
+  "https://en.wikipedia.org/wiki/Isaiah_Scroll",
+  "https://www.deadseascrolls.org.il/learn-about-the-scrolls/discovery-sites",
+  "https://www.historyhit.com/the-copper-scroll-decoding-historys-most-elusive-treasure-map/"
+ ],
+ "canal": {
+  "proximo": "Capítulo 2: El rollo de cobre",
+  "crf": 25,
+  "grano": 0.025
+ },
+ "planos": [
+  {
+   "esc": "cueva",
+   "tr": "corte",
+   "lanza": 0.15,
+   "rompe": 1.25,
+   "rompe_i": 1,
+   "cam": {
+    "z": [
+     1.18,
+     1.32
+    ],
+    "centro": [
+     640,
+     1250
+    ]
+   },
+   "voz": {
+    "rate": "+14%",
+    "pitch": "+2Hz"
+   },
+   "n": "Un pastor lanzó una *piedra* dentro de una cueva, y algo se rompió."
+  },
+  {
+   "esc": "cueva",
+   "tr": "corte",
+   "rompe": -1.0,
+   "rompe_i": 1,
+   "cam": {
+    "z": [
+     2.0,
+     2.3
+    ],
+    "centro": [
+     760,
+     1480
+    ]
+   },
+   "n": "Lo que había ahí dentro cambió la forma en que leemos la *Biblia*."
+  },
+  {
+   "esc": "desierto",
+   "tr": "negro",
+   "revelar": "niebla",
+   "revelar_d": 1.2,
+   "cabras": 3,
+   "cam": {
+    "z": [
+     1.0,
+     1.12
+    ],
+    "y": [
+     30,
+     -20
+    ]
+   },
+   "cifra": {
+    "num": "1947",
+    "cuenta": false,
+    "en": "mil",
+    "y": 820
+   },
+   "n": "Año mil novecientos cuarenta y siete. Desierto de Judea, junto al mar Muerto."
+  },
+  {
+   "esc": "desierto",
+   "tr": "corte",
+   "cabras": 1,
+   "cam": {
+    "z": [
+     2.1,
+     2.3
+    ],
+    "centro": [
+     380,
+     1080
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "beduino",
+     "x": 380,
+     "y": 1640,
+     "s": 1.0,
+     "mira": 0.5
+    }
+   ],
+   "n": "Un joven pastor beduino buscaba un animal perdido de su rebaño."
+  },
+  {
+   "esc": "desierto",
+   "tr": "fundido",
+   "cam": {
+    "z": [
+     1.15,
+     1.9
+    ],
+    "centro": [
+     [
+      540,
+      1200
+     ],
+     [
+      640,
+      1090
+     ]
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "beduino",
+     "x": 300,
+     "y": 1640,
+     "s": 0.9,
+     "pose": "senalar",
+     "mira": 0.8
+    }
+   ],
+   "n": "Vio una abertura en la roca, demasiado alta para entrar. Y, según el relato más conocido, hizo lo que haría cualquiera."
+  },
+  {
+   "esc": "cueva",
+   "tr": "corte",
+   "lanza": 0.2,
+   "rompe": 1.0,
+   "rompe_i": 1,
+   "pre": 0.3,
+   "cam": {
+    "z": [
+     1.12,
+     1.3
+    ],
+    "centro": [
+     640,
+     1300
+    ]
+   },
+   "n": "Lanzó una piedra. Y desde la oscuridad, se oyó barro *rompiéndose*."
+  },
+  {
+   "esc": "cueva",
+   "tr": "fundido",
+   "rompe": -1.0,
+   "rompe_i": 1,
+   "revelar": "luz",
+   "revelar_d": 0.8,
+   "cam": {
+    "z": [
+     1.4,
+     1.6
+    ],
+    "centro": [
+     700,
+     1420
+    ]
+   },
+   "cifra": {
+    "num": "2000",
+    "uni": "años",
+    "en": "dos",
+    "y": 760
+   },
+   "n": "Dentro de las vasijas había rollos envueltos en lino. Rollos de casi *dos* mil años."
+  },
+  {
+   "esc": "rollo",
+   "tr": "luz",
+   "abre": 0.3,
+   "cam": {
+    "z": [
+     1.05,
+     1.2
+    ]
+   },
+   "cifra": {
+    "num": "66",
+    "uni": "capítulos",
+    "en": "sesenta",
+    "y": 640
+   },
+   "n": "Uno de ellos era el libro de *Isaías*. Completo: los sesenta y seis capítulos, en un rollo de más de siete metros."
+  },
+  {
+   "esc": "rollo",
+   "tr": "desliz",
+   "comparar": true,
+   "abre": 0.0,
+   "cam": {
+    "z": [
+     1.1,
+     1.22
+    ]
+   },
+   "cifra": {
+    "num": "1000",
+    "uni": "años",
+    "en": "mil",
+    "y": 640
+   },
+   "n": "Hasta entonces, la copia completa más antigua de Isaías en hebreo era unos *mil* años más reciente."
+  },
+  {
+   "esc": "rollo",
+   "tr": "zoom",
+   "vertigo": 0.65,
+   "latido": true,
+   "bpm": 78,
+   "musica": 0.35,
+   "brillo": 0.3,
+   "abre": -2,
+   "cam": {
+    "z": [
+     1.25,
+     1.25
+    ],
+    "centro": [
+     540,
+     1000
+    ]
+   },
+   "voz": {
+    "rate": "+2%",
+    "pitch": "-2Hz"
+   },
+   "n": "Y aquí estaba la gran pregunta: después de mil años de copias hechas a mano, ¿cuánto habría _cambiado_ el texto?"
+  },
+  {
+   "esc": "cielo",
+   "tr": "corte",
+   "silencio": true,
+   "dur": 1.4,
+   "n": "",
+   "cam": {
+    "z": [
+     1.1,
+     1.22
+    ]
+   }
+  },
+  {
+   "esc": "rollo",
+   "tr": "luz",
+   "musica": 1.0,
+   "brillo": 1.0,
+   "abre": -2,
+   "subida": "mismo",
+   "cam": {
+    "z": [
+     1.3,
+     1.08
+    ]
+   },
+   "voz": {
+    "rate": "-4%",
+    "pitch": "-2Hz"
+   },
+   "n": "El texto era prácticamente el *mismo*. Las diferencias eran, sobre todo, de ortografía."
+  },
+  {
+   "esc": "atardecer",
+   "tr": "fundido",
+   "cam": {
+    "z": [
+     1.05,
+     1.18
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "anciano",
+     "x": 540,
+     "y": 1500,
+     "s": 1.0,
+     "pose": "orar",
+     "brillo": 0.4
+    }
+   ],
+   "cita": "Isaías 40:8 (RV 1909)",
+   "pergamino": {
+    "titulo": "Isaías 40:8",
+    "texto": "Sécase la hierba, cáese la flor: mas la palabra del Dios nuestro permanece para siempre.",
+    "en": "permanece"
+   },
+   "voz": {
+    "rate": "-10%",
+    "pitch": "-4Hz"
+   },
+   "n": "Como dice ese mismo rollo: la palabra de nuestro Dios *permanece* para siempre."
+  },
+  {
+   "esc": "cueva",
+   "tr": "match",
+   "rompe": -1.0,
+   "rompe_i": 1,
+   "cam": {
+    "z": [
+     1.18,
+     1.32
+    ],
+    "centro": [
+     640,
+     1250
+    ]
+   },
+   "n": "Todo empezó con una piedra lanzada al azar. O tal vez, no tan al azar."
+  },
+  {
+   "esc": "desierto",
+   "tr": "negro",
+   "hora": 0.8,
+   "trueno": [
+    "tesoros"
+   ],
+   "trueno_x": 760,
+   "musica": 0.5,
+   "cam": {
+    "z": [
+     1.1,
+     1.3
+    ],
+    "centro": [
+     [
+      540,
+      1150
+     ],
+     [
+      640,
+      1090
+     ]
+    ]
+   },
+   "n": "Pero en otra de esas cuevas apareció algo más extraño: un rollo de *cobre*, con una lista de tesoros escondidos."
+  },
+  {
+   "esc": "cierre",
+   "tr": "fundido",
+   "n": "¿Qué decía esa lista? Te lo cuento en el capítulo dos. Síguenos y compártelo."
+  }
+ ],
+ "portada": {
+  "t": 1.42,
+  "titulo": "Una piedra encontró la Biblia más antigua",
+  "resaltar": [
+   "PIEDRA",
+   "BIBLIA"
+  ],
+  "etiqueta": "CAPÍTULO 1"
+ }
+}

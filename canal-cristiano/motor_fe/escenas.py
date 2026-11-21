@@ -13,6 +13,7 @@ from estilo import (C, H, P, W, bokeh, brillo_radial, degradado, estrellas, hace
                     texto, partir, clamp)
 from personajes import ave, paloma, persona
 from texturas import mano_divina, onda_presion, pasto, textura_en, trueno
+from objetos import cabra, codice, piedra, rollo, vasija
 
 # ------------------------------------------------------------------ piezas reutilizables
 
@@ -394,4 +395,115 @@ def esc_cierre(c, T, k, S):
     particulas(c, T, seed=18, n=50, color="#ffe2a8", a=0.6)
 
 
+def _acantilado(c, base, alto, col, seed, px, f, cuevas=()):
+    """Pared de roca con estratos y bocas de cueva."""
+    rnd = random.Random(seed)
+    p = skia.Path()
+    p.moveTo(-300 + px * f, H + 300)
+    x = -300
+    p.lineTo(x + px * f, base - alto * 0.6)
+    while x < W + 300:
+        x += rnd.uniform(60, 140)
+        p.lineTo(x + px * f, base - alto * rnd.uniform(0.75, 1.0))
+    p.lineTo(W + 300 + px * f, H + 300)
+    p.close()
+    c.drawPath(p, P(col))
+    textura_en(c, p, "piedra", 0.55, 0.9)
+    c.save()
+    c.clipPath(p, skia.ClipOp.kIntersect, True)
+    for i in range(6):  # estratos horizontales
+        y = base - alto * 0.9 + i * alto * 0.17
+        pe = P("#000000", 0.05, stroke=8)
+        pe.setMaskFilter(skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle, 5))
+        q = skia.Path()
+        q.moveTo(-300, y)
+        for xx in range(-300, W + 320, 60):
+            q.lineTo(xx, y + 14 * math.sin(xx * 0.01 + i * 1.7))
+        c.drawPath(q, pe)
+    c.restore()
+    for (cx, cy, r) in cuevas:
+        xx = cx + px * f
+        sh = skia.GradientShader.MakeRadial((xx, cy), r * 1.3, [C("#0d0806"), C("#2a1a10"), C("#2a1a10", 0)], [0, 0.7, 1])
+        c.drawOval(skia.Rect(xx - r, cy - r * 1.15, xx + r, cy + r * 0.9), skia.Paint(Shader=sh, AntiAlias=True))
+
+
+def esc_desierto(c, T, k, S):
+    """Acantilados de Qumrán junto al mar Muerto: cielo cálido, cuevas en la roca, polvo y cabras."""
+    px = S.get("_px", 0)
+    hora = S.get("hora", 0.2)
+    degradado(c, ["#6aa0c8" if hora < 0.5 else "#5a3a5e", "#e9c79a" if hora < 0.5 else "#e08a5a", "#f3dcb0"], 0, 1100)
+    _rayos(c, S)
+    _sol(c, W * 0.25 + px * 0.1, lerp(300, 820, hora), 70)
+    _nubes(c, T, 12, 3, 250, 500, "#ffffff", 0.18)
+    c.drawRect(skia.Rect(-300, 960, W + 300, 1010), P("#7fa9b8", 0.8))  # el mar Muerto a lo lejos
+    _acantilado(c, 1050, 300, "#c99a68", 21, px, 0.3)
+    _acantilado(c, 1350, 520, "#b07f50", 22, px, 0.6, cuevas=S.get("cuevas", [(640, 1080, 55), (300, 1150, 38)]))
+    sh = skia.GradientShader.MakeLinear([(0, 1380), (0, H)], [C("#d8b07a"), C("#a27346")])
+    suelo = skia.Path()
+    suelo.addRect(skia.Rect(-300, 1380, W + 300, H + 300))
+    c.drawPath(suelo, skia.Paint(Shader=sh))
+    textura_en(c, suelo, "piedra", 0.5, 1.4)
+    for i in range(S.get("cabras", 0)):
+        cabra(c, 760 + i * 120 + px * 0.9 + 20 * math.sin(T * 0.4 + i), 1520 + i * 30, 0.8, T, seed=i)
+    _personajes(c, T, S)
+    pasto(c, T, 1760, H + 100, px, seed=9, densidad=0.15, seco=True, flores=False)
+    particulas(c, T, seed=22, n=45, color="#fff0c8", a=0.45, vel=(-6, 6), deriva=80)
+
+
+def esc_cueva(c, T, k, S):
+    """Interior de la cueva: roca oscura, boca de luz, vasijas en el suelo. 'lanza' (s): entra una piedra;
+    'rompe' (s): se parte la vasija 'rompe_i'."""
+    px = S.get("_px", 0)
+    c.drawRect(skia.Rect(-300, -300, W + 300, H + 300), P("#1c120c"))
+    roca = skia.Path()
+    roca.addRect(skia.Rect(-300, -300, W + 300, H + 300))
+    textura_en(c, roca, "piedra", 0.7, 0.8)
+    bx, by = 260 + px * 0.3, 380
+    boca = skia.Path()
+    boca.addOval(skia.Rect(bx - 210, by - 190, bx + 210, by + 160))
+    c.drawPath(boca, _grad_cielo())
+    haces(c, bx, by, -32, T, n=4, ancho_=150, color="#ffe2b0", a=0.22, seed=6, largo=1900)
+    suelo = skia.Path()
+    suelo.moveTo(-300, 1500)
+    suelo.quadTo(W / 2, 1400, W + 300, 1520)
+    suelo.lineTo(W + 300, H + 300)
+    suelo.lineTo(-300, H + 300)
+    suelo.close()
+    c.drawPath(suelo, P("#3a2618"))
+    textura_en(c, suelo, "piedra", 0.6, 1.2)
+    vas = S.get("vasijas", [(520, 1560, 1.0), (760, 1600, 1.15), (900, 1540, 0.85)])
+    ri = S.get("rompe_i", 1)
+    t_r = S.get("rompe")
+    for i, (x, y, sc) in enumerate(vas):
+        r = clamp((T - t_r) / 0.9) if (t_r is not None and i == ri and T >= t_r) else 0.0
+        vasija(c, x + px * 0.9, y, sc, r, seed=i, T=T)
+    if "lanza" in S and t_r is not None:
+        x1, y1 = vas[ri][0] + px * 0.9, vas[ri][1] - 160 * vas[ri][2]
+        piedra(c, bx + 40, by + 40, x1, y1, (T - S["lanza"]) / max(0.2, t_r - S["lanza"]), alto=180)
+    _personajes(c, T, S)
+    particulas(c, T, seed=23, n=60, color="#ffe2b0", a=0.55, vel=(-5, 5), deriva=40)
+
+
+def _grad_cielo():
+    return skia.Paint(Shader=skia.GradientShader.MakeLinear([(0, 190), (0, 540)], [C("#fff3d6"), C("#f2c98e")]), AntiAlias=True)
+
+
+def esc_rollo(c, T, k, S):
+    """El rollo bajo un foco, en un santuario oscuro. 'abre' (s) lo desenrolla; 'comparar' muestra al lado un códice."""
+    degradado(c, ["#0e0b10", "#1d1520", "#120c0a"], 0, H)
+    haces(c, W / 2, -120, 0, T, n=3, ancho_=220, color="#fff0cc", a=0.16, seed=8, largo=1800)
+    bokeh(c, T, seed=31, n=10, a=0.14)
+    c.drawRoundRect(skia.Rect(-100, 1180, W + 100, 1260), 10, 10, P("#3b2616"))
+    k_ab = clamp((T - S.get("abre", 0.2)) / 1.6)
+    if S.get("comparar"):
+        rollo(c, 330, 1000, 420, k_ab, T, alto=260, brillo=S.get("brillo", 0.6))
+        codice(c, 820, 1000, 0.8)
+    else:
+        rollo(c, W / 2, 980, S.get("ancho", 900), k_ab, T, alto=360, brillo=S.get("brillo", 0.8))
+    _personajes(c, T, S)
+    particulas(c, T, seed=24, n=50, color="#fff0c8", a=0.55)
+
+
 ESCENAS = {k[4:]: v for k, v in globals().items() if k.startswith("esc_")}
+from cierre_marca import esc_cierre_marca  # noqa: E402
+ESCENAS["cierre_marca"] = esc_cierre_marca

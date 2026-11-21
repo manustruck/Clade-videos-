@@ -196,6 +196,14 @@ for ev in TL["eventos"]:
             k += 1
     elif ev["tipo"] == "subida":
         add(sfx, subida_snd(), tt - 2.2, 0.22)
+    elif ev["tipo"] == "rompe":  # barro que se rompe: golpe + crujido de trozos
+        add(sfx, golpe_suave(), tt, 0.45)
+        nz = rng.standard_normal(int(0.5 * SR)) * np.exp(-np.arange(int(0.5 * SR)) / SR * 9)
+        add(sfx, nz - lowpass(nz, 6), tt, 0.35)
+        for j in range(6):
+            add(sfx, tic(rng.uniform(1500, 3500)), tt + 0.08 + j * rng.uniform(0.04, 0.09), 0.25)
+    elif ev["tipo"] == "lanza":  # zumbido de la piedra en el aire
+        add(sfx, barrido(0.9), tt, 0.12)
     elif ev["tipo"] == "revelar":
         add(sfx, brillo(1.8), tt + 0.2, 0.07)
     elif ev["tipo"] == "trueno":
