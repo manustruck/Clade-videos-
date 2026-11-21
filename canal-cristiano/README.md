@@ -14,7 +14,9 @@ Esta carpeta junta todo lo que aprendimos haciendo videos con Python para no emp
 | `motor_2d/version_anterior_cliente_3am/` | El motor de los videos 2 y 3 (más simple), por si sirve de base |
 | `blender_3d/` | Lo del video 1 en Blender (simulación), más la prueba de render |
 | `notas_originales/` | La guía de estilo y las notas de herramientas tal como quedaron guardadas |
-| `referencias/` | Análisis de los videos virales de referencia |
+| `referencias/` | Análisis de los 8 videos virales de referencia (`ESTILO_REFERENCIAS.md` = lo común) |
+| `RECOMENDACIONES_CANAL.md` | Identidad, pilares, reglas, publicación y qué medir |
+| `herramientas/` | Scripts para medir videos de referencia (color, movimiento, subtítulos) |
 | `skill_shorts_animados/` | La skill de LuisPa de tu repo `Videoviralesyt` (solo código y textos) |
 
 ## Próximo paso
