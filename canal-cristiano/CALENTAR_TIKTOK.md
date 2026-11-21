@@ -9,7 +9,37 @@
 - **Biografía:** «Historias reales de la Biblia, misterios y fe que nadie te contó 📜 Un capítulo nuevo cada día».
 - Usa siempre **el mismo celular, con tu internet normal** (wifi o datos). Sin VPN, sin apps de automatización y sin varias cuentas en el mismo teléfono.
 
-## Días 1 a 5: entrenar el «Para ti» (20–30 min al día, en 2 sesiones)
+## Horario (hora de Ecuador, UTC-5)
+
+Tu público principal está en Latinoamérica y entre los hispanos de EE. UU. Ecuador tiene la misma hora que Colombia, Perú y la costa este de EE. UU., y una hora más que México.
+
+### Fase 1, días 1 a 5: calentar (sin publicar)
+| Hora | Duración | Qué hacer |
+|---|---|---|
+| 7:00–7:20 | 20 min | Buscar y ver videos completos del nicho (devocionales y reflexiones; es cuando más se consumen) |
+| 12:30–12:45 | 15 min | Misterios y arqueología bíblica: ver, guardar 1–2, seguir 3–5 cuentas |
+| 21:00–21:20 | 20 min | Historias de la Biblia: ver completos, 2–3 comentarios reales, seguir 2–5 cuentas |
+
+Fines de semana: igual, más 10 minutos el domingo por la mañana (hay más consumo de contenido cristiano).
+
+### Fase 2, día 5–7 en adelante: publicar
+| Hora | Qué hacer |
+|---|---|
+| 7:00–7:15 | Ver videos del nicho y responder los comentarios de la noche anterior |
+| 18:30–18:50 | Ver videos del nicho (calienta la sesión antes de publicar) |
+| **19:00** | **Publicar el capítulo del día** (portada, texto y comentario fijado) |
+| 19:00–20:00 | Responder todos los comentarios de la primera hora |
+| 21:30 | Revisar las estadísticas del video: retención a los 3 s, porcentaje visto y compartidos |
+
+Si a las 2 semanas las estadísticas muestran que tu público está más activo en otra hora (Herramientas para creadores → Estadísticas → Seguidores), se cambia la hora de publicación.
+
+## Varias cuentas y VPN
+- **Varias cuentas en el mismo iPhone:** TikTok permite cambiar de cuenta en la app, pero cada sesión manda señales al mismo teléfono. Para calentar esta cuenta, úsala sola en esos ratos y no mezcles en ella contenido de otros temas.
+- **VPN de EE. UU. viviendo en Ecuador:** no se recomienda.
+  - **Calentamiento:** TikTok arma el «Para ti» según la región; con IP de EE. UU. te mostrará mucho contenido en inglés y estadounidense, justo lo contrario de lo que queremos para un canal en español.
+  - **Pagos:** los programas de pago de EE. UU. piden residencia, documentos y datos fiscales de EE. UU. al cobrar. Fingir la ubicación va contra las condiciones de TikTok y puede terminar en pagos retenidos o en la cuenta bloqueada, justo cuando ya creció.
+  - **Lo seguro:** usar tu conexión real de Ecuador y revisar en la app qué programas de monetización están disponibles para tu país.
+ (20–30 min al día, en 2 sesiones)
 1. **Busca** términos del nicho y mira videos completos (ver hasta el final es la señal más fuerte):
    - *historias de la Biblia*, *misterios de la Biblia*, *arqueología bíblica*, *rollos del mar Muerto*
    - *reflexiones cristianas*, *versículos de la Biblia*, *Proverbios*, *fe en Dios*
