@@ -1,0 +1,22 @@
+[
+  {"s": "nota1",    "pill": "REGLA 1",            "n": "Regla uno: a las tres de la mañana entra un cliente con paraguas. No le hables."},
+  {"s": "tienda",   "pill": "LUNES · 11:40 PM",   "n": "Lucía tiene veinticuatro años, y hoy es su primera noche sola en la tienda."},
+  {"s": "nota0",    "pill": "LUNES · 11:40 PM",   "n": "Su jefe le dejó una nota pegada en la caja, con tres reglas escritas a mano."},
+  {"s": "nota2",    "pill": "REGLA 2",            "n": "Regla dos: si deja propina, no la toques."},
+  {"s": "nota3",    "pill": "REGLA 3",            "n": "Regla tres: si vuelve a entrar, no es él."},
+  {"s": "risa",     "pill": "LUNES · 11:41 PM",   "n": "Lucía se ríe. Cree que es una broma para la nueva."},
+  {"s": "reloj",    "pill": "2:59 AM",            "n": "Dos y cincuenta y nueve. La calle está vacía. No llueve."},
+  {"s": "puerta1",  "pill": "3:00 AM",            "n": "Tres en punto. Suena la campana de la puerta."},
+  {"s": "hombre",   "pill": "3:00 AM",            "n": "Un hombre alto, con un paraguas negro que gotea. Toma una botella de agua y la pone en la caja."},
+  {"s": "monedas1", "pill": "3:01 AM",            "n": "Lucía no dice nada. Le cobra. Él deja tres monedas de más, y se va."},
+  {"s": "monedas2", "pill": "3:01 AM",            "n": "Ella mira las monedas. Están mojadas. No las toca."},
+  {"s": "puerta2",  "pill": "3:10 AM",            "n": "Tres y diez. La campana suena otra vez."},
+  {"s": "sonrisa",  "pill": "3:10 AM",            "n": "Es el mismo hombre. El mismo paraguas. Pero ahora sonríe demasiado."},
+  {"s": "miedo",    "pill": "3:10 AM",            "n": "Olvidé mi cambio, dice. Lucía no responde. Mira el monitor de la cámara."},
+  {"s": "monitor",  "pill": "CÁMARA 1",           "n": "En la pantalla, frente a la caja, no hay nadie."},
+  {"s": "telefono", "pill": "3:11 AM",            "n": "Su teléfono vibra. Es su jefe."},
+  {"s": "chat",     "pill": "3:11 AM",            "n": "Perdón, olvidé la regla cuatro. Cierra con llave antes de las tres. El cliente de las tres no usa la puerta."},
+  {"s": "candado",  "pill": "3:11 AM",            "n": "Lucía levanta la vista. La puerta está cerrada con llave. Ella misma la cerró a medianoche."},
+  {"s": "detras",   "pill": "REGLA 3 ROTA",       "n": "Y detrás de ella, algo empieza a gotear."},
+  {"s": "final",    "pill": "",                   "n": "¿Tú qué harías? Comenta, y sígueme para la parte dos."}
+]

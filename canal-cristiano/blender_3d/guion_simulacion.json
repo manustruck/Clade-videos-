@@ -1,0 +1,17 @@
+[
+  {"k": "hook",   "c": "¿Y SI NADA\nES REAL?", "n": "¿Y si nada de lo que ves es real?"},
+  {"k": "hook",   "c": "NO ES UNA\nPELÍCULA", "n": "No es una película. Es una hipótesis que filósofos y científicos discuten en serio."},
+  {"k": "intro",  "c": "2003\nNICK BOSTROM\nOXFORD", "n": "En dos mil tres, el filósofo Nick Bostrom, de Oxford, planteó tres opciones."},
+  {"k": "op1",    "c": "1\nNOS EXTINGUIMOS\nANTES", "n": "Uno: las civilizaciones se extinguen antes de poder simular universos."},
+  {"k": "op2",    "c": "2\nPUEDEN, PERO\nNO QUIEREN", "n": "Dos: pueden hacerlo, pero no les interesa."},
+  {"k": "op3",    "c": "3\nMILLONES DE\nSIMULACIONES\n1 REALIDAD", "n": "Tres: lo hacen. Y entonces habría millones de mundos simulados, y un solo mundo real."},
+  {"k": "tu",     "c": "¿EN CUÁL\nESTÁS TÚ?", "n": "Si eso es cierto, ¿en cuál crees que estás tú?"},
+  {"k": "musk",   "c": "ELON MUSK:\n1 ENTRE MILES\nDE MILLONES", "n": "Elon Musk dijo que la probabilidad de vivir en la realidad original es de una entre miles de millones."},
+  {"k": "luz",    "c": "LÍMITE DE\nVELOCIDAD\n299.792 km/s", "n": "Y hay detalles que inquietan. El universo tiene un límite de velocidad: la luz. Nada puede superarlo."},
+  {"k": "pixel",  "c": "¿PÍXELES DEL\nUNIVERSO?", "n": "También tiene un tamaño mínimo, por debajo del cual nuestra física deja de funcionar. Como si fueran píxeles."},
+  {"k": "contra", "c": "CERO\nPRUEBAS", "n": "Pero cuidado. No existe ni una sola prueba."},
+  {"k": "contra", "c": "NO SE PUEDE\nCOMPROBAR", "n": "Muchos físicos dicen que ni siquiera es ciencia, porque no se puede comprobar."},
+  {"k": "contra", "c": "UNA COMPUTADORA\nDEL TAMAÑO\nDEL UNIVERSO", "n": "Y según los críticos, simular cada átomo exigiría una computadora casi tan grande como el propio universo."},
+  {"k": "final",  "c": "¿REALES\nO UN\nVIDEOJUEGO?", "n": "Entonces, ¿somos reales, o somos el videojuego de alguien más?"},
+  {"k": "final",  "c": "COMENTA:\n¿SIMULACIÓN\nO REALIDAD?", "n": "Tú decides. Escribe tu respuesta en los comentarios."}
+]
