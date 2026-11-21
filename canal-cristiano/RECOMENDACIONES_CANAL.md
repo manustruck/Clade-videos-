@@ -21,7 +21,7 @@ Mezclar 4 tipos, con más peso en los que mejor funcionan en las referencias:
 | Parábola moderna que explica una verdad de fe | 15 % | Una comparación cotidiana que lo hace entender |
 | Proverbio del día (formato corto, 25–40 s) | 15 % | Proverbio + situación de hoy |
 
-Decisión pendiente: las dos referencias son **católicas** (santos, Papas, Virgen). Si el canal es para cristianos en general, conviene tener más versículos y parábolas y menos santos, para no perder al público evangélico. Si es católico, los santos y la historia de la Iglesia son lo que más asombro genera.
+Decidido: el canal es **para cristianos en general**. Como las referencias son **católicas** (santos, Papas, Virgen), en la sección de historias reales se usan sobre todo historias bíblicas, arqueología bíblica, manuscritos, misioneros y avivamientos, y pocos santos, para no perder al público evangélico.
 
 ## 3. Reglas de cada video
 
@@ -30,9 +30,9 @@ Decisión pendiente: las dos referencias son **católicas** (santos, Papas, Virg
 3. **Un solo mensaje por video.** El versículo llega después del giro, no al principio.
 4. **El final responde la pregunta del inicio.**
 5. **Duración:** 45–75 s para historias y 25–40 s para proverbios. No estirar.
-6. **Cierre de 3 s** con el logo y «Sígueme para más historias así».
+6. **Cierre de 3 s** con el logo, «Síguenos» y «Compártelo» para el próximo capítulo (plano `cierre` del motor).
 7. **Subtítulos** al estilo de las referencias: karaoke, letra fina, tercio superior y caja en palabras clave. Hay que adaptar el motor: los nuestros eran grandes y amarillos.
-8. **Biblia:** Reina-Valera 1960 (la más usada y de dominio público en muchos países) y cita siempre visible.
+8. **Biblia:** cita siempre visible con la versión. Reina-Valera 1909 es de dominio público; la Reina-Valera 1960 (la más conocida) tiene derechos de Sociedades Bíblicas Unidas, que permiten citar versículos con su nota (revisar condiciones).
 9. **Respeto:** Jesús, la Virgen y los santos dibujados con dignidad. Nada de humor a su costa.
 
 ## 4. Publicación

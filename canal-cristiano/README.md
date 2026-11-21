@@ -10,11 +10,13 @@ Esta carpeta junta todo lo que aprendimos haciendo videos con Python para no emp
 |---|---|
 | `APRENDIZAJES.md` | **Empieza aquí.** La receta, las reglas de retención, la forma de trabajar y las herramientas |
 | `ADAPTACION_CRISTIANA.md` | Cómo pasar lo aprendido (que era de terror) a este canal. Pendiente de completar con tus videos de referencia |
-| `motor_2d/` | El motor del video 4 («El grupo del edificio»): `base.py`, `motor.py`, `narrar.py`, `render.py`, `audio.py` y su `guion.json` de ejemplo |
+| `motor_fe/` | **Motor actual** con el estilo de las referencias (ver su README) |
+| `motor_2d/` | Motor viejo de terror. El motor del video 4 («El grupo del edificio»): `base.py`, `motor.py`, `narrar.py`, `render.py`, `audio.py` y su `guion.json` de ejemplo |
 | `motor_2d/version_anterior_cliente_3am/` | El motor de los videos 2 y 3 (más simple), por si sirve de base |
 | `blender_3d/` | Lo del video 1 en Blender (simulación), más la prueba de render |
 | `notas_originales/` | La guía de estilo y las notas de herramientas tal como quedaron guardadas |
 | `referencias/` | Análisis de los 8 videos virales de referencia (`ESTILO_REFERENCIAS.md` = lo común) |
+| `referencias/CANAL_BASE_UN_CRISTIANO_INQUIETO.md` | Canal base y método de réplica de lo viral |
 | `RECOMENDACIONES_CANAL.md` | Identidad, pilares, reglas, publicación y qué medir |
 | `herramientas/` | Scripts para medir videos de referencia (color, movimiento, subtítulos) |
 | `skill_shorts_animados/` | La skill de LuisPa de tu repo `Videoviralesyt` (solo código y textos) |

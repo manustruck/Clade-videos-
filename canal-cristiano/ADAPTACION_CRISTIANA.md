@@ -28,7 +28,7 @@ Borrador inicial. Se ajusta cuando lleguen los videos de referencia.
 3. **Pasaje bíblico narrado** (60–90 s): la escena bíblica dibujada con el estilo 2D y la cámara en movimiento.
 
 ## Cuidados
-- Citar libro, capítulo y versículo, e indicar la versión (Reina-Valera 1960 es de dominio público en muchos países; NVI y otras tienen derechos: revisar antes de usar el texto exacto).
+- Citar libro, capítulo y versículo, e indicar la versión. La Reina-Valera 1909 es de dominio público. La Reina-Valera 1960 (la más conocida) y la NVI tienen derechos: sus editoriales permiten citar versículos sueltos con la nota de la versión, pero hay que revisar sus condiciones antes de usar mucho texto.
 - Representar a Jesús y a personajes bíblicos con respeto; nada de caricatura burlona.
 - Música: libre de derechos o sintetizada; nunca canciones con derechos en el video que se sube.
 

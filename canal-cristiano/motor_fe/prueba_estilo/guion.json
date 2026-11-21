@@ -1,0 +1,27 @@
+{
+  "nota": "Prueba de estilo del motor. No es un guion del canal: cada plano solo muestra un escenario y un efecto.",
+  "canal": {"nombre": "Nombre del canal", "iniciales": "FE", "proximo": "Capítulo 2 muy pronto"},
+  "planos": [
+    {"esc": "cielo", "tr": "corte", "paloma": true, "cam": {"z": [1.3, 1.08], "y": [-60, 20]},
+     "n": "Prueba de *estilo*: el primer plano ya se mueve desde el cuadro uno."},
+    {"esc": "noche_ciudad", "tr": "zoom", "lluvia": true, "cam": {"z": [1.06, 1.2], "x": [40, -40]},
+     "pers": [{"tipo": "moderno", "x": 380, "hasta_x": 640, "y": 1600, "s": 0.95}],
+     "n": "Ciudad de noche con lluvia, ventanas que parpadean y un personaje que camina."},
+    {"esc": "pueblo", "tr": "desliz", "hora": 0.1, "cam": {"z": [1.1, 1.22], "r": [-1.5, 1]},
+     "pers": [{"tipo": "biblico", "x": 360, "y": 1600, "pose": "senalar"}, {"tipo": "biblica", "x": 720, "y": 1610, "s": 0.95, "mira": -0.6}],
+     "cifra": {"num": "2000", "uni": "años", "en": "dos", "y": 920},
+     "n": "Pueblo bíblico de día. Una cifra que cuenta: *dos* mil años."},
+    {"esc": "cuarto_vela", "tr": "negro", "cam": {"z": [1.18, 1.05], "x": [-30, 30]},
+     "contador": {"n": 3, "en": ["uno", "dos", "tres"], "y": 1060},
+     "n": "Cuarto con vela y haz de luz. Contador: uno, dos y tres."},
+    {"esc": "atardecer", "tr": "fundido", "cam": {"z": [1.05, 1.18], "y": [40, -20]},
+     "pers": [{"tipo": "jesus", "x": 540, "y": 1470, "s": 1.05, "pose": "bendecir", "brillo": 0.6}],
+     "cita": "Proverbios 3:5 (RV 1909)",
+     "pergamino": {"titulo": "Proverbios 3:5", "texto": "Fíate de Jehová de todo tu corazón, y no estribes en tu prudencia.", "en": "Fíate"},
+     "n": "Atardecer en la colina. Fíate de Jehová de todo tu *corazón*."},
+    {"esc": "cruz", "tr": "luz", "cam": {"z": [1.25, 1.06]},
+     "n": "La cruz con rayos que giran, para el _momento_ más fuerte."},
+    {"esc": "cierre", "tr": "fundido", "cam": {"z": [1.04, 1.14]},
+     "n": "Síguenos y compártelo para ver el capítulo dos."}
+  ]
+}

@@ -1,0 +1,8 @@
+# salidas que se regeneran
+**/voz/
+**/test/
+**/timeline.json
+**/audio.wav
+**/*.mp4
+**/partes.txt
+__pycache__/

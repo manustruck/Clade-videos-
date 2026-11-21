@@ -1,0 +1,348 @@
+"""Escenarios. Cada uno es una función esc_<nombre>(c, T, k, S) que dibuja el fondo y sus elementos.
+
+T = segundos desde que empezó el plano, k = avance del plano (0-1), S = el plano del guion (dict).
+Todo escenario tiene algo en movimiento propio (sol, nubes, aves, velas, lluvia, partículas),
+además del movimiento de cámara que pone el motor. 'px' es el paralaje: capas lejanas se mueven menos.
+"""
+import math
+import random
+
+import skia
+
+from estilo import (C, H, P, W, bokeh, brillo_radial, degradado, estrellas, haces, lerp, particulas, suave,
+                    texto, partir, clamp)
+from personajes import ave, paloma, persona
+
+# ------------------------------------------------------------------ piezas reutilizables
+
+
+def _personajes(c, T, S):
+    for i, p in enumerate(S.get("pers", [])):
+        a = 1.0
+        if "entra" in p:  # aparece en el segundo 'entra' del plano
+            a = suave((T - p["entra"]) / 0.4)
+            if a <= 0:
+                continue
+        x = p.get("x", W / 2)
+        if "hasta_x" in p:  # camina de x a hasta_x durante el plano
+            x = lerp(x, p["hasta_x"], suave(T / max(0.1, S.get("_dur", 4))))
+        persona(c, x, p.get("y", 1560), p.get("s", 1.0), p.get("tipo", "biblico"), T, p.get("pose", "abajo"),
+                p.get("mira", 0.0), a, p.get("espaldas", False), "hasta_x" in p, seed=i * 1.7,
+                brillo=p.get("brillo", 0.0), silueta=p.get("silueta", False))
+
+
+def _montes(c, colores, base, amp, seed, px=0.0, T=0.0):
+    rnd = random.Random(seed)
+    for i, col in enumerate(colores):
+        p = skia.Path()
+        y0 = base + i * 90
+        p.moveTo(-300, H + 400)
+        ph = rnd.uniform(0, 6)
+        f = rnd.uniform(0.004, 0.007)
+        off = px * (0.2 + 0.25 * i)
+        for x in range(-300, W + 320, 30):
+            y = y0 - amp * (0.6 - 0.15 * i) * (0.5 + 0.5 * math.sin(x * f + ph)) - 30 * math.sin(x * f * 2.7 + ph * 2)
+            p.lineTo(x + off, y)
+        p.lineTo(W + 300, H + 400)
+        p.close()
+        c.drawPath(p, P(col))
+
+
+def _nubes(c, T, seed, n, y0, y1, col="#ffffff", a=0.18, vel=12):
+    rnd = random.Random(seed)
+    for _ in range(n):
+        x = rnd.uniform(-300, W + 300)
+        y = rnd.uniform(y0, y1)
+        s = rnd.uniform(0.7, 1.6)
+        xx = (x + vel * s * T) % (W + 700) - 350
+        p = P(col, a)
+        p.setMaskFilter(skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle, 18))
+        for dx, dy, r in ((-60, 10, 50), (0, -10, 70), (70, 8, 55), (130, 16, 40)):
+            c.drawCircle(xx + dx * s, y + dy * s, r * s, p)
+
+
+def _sol(c, x, y, r, col="#ffd89a", a=1.0):
+    brillo_radial(c, x, y, r * 5, col, 0.45 * a)
+    brillo_radial(c, x, y, r * 2, "#fff1cf", 0.6 * a)
+    c.drawCircle(x, y, r, P("#fff4dc", a))
+
+
+def _aves(c, T, seed, n, y0, y1, dur=12):
+    rnd = random.Random(seed)
+    for i in range(n):
+        y = rnd.uniform(y0, y1)
+        x = ((T + rnd.uniform(0, dur)) / dur % 1) * (W + 300) - 150
+        ave(c, x, y + 20 * math.sin(T * 1.3 + i), rnd.uniform(0.6, 1.1), T, seed=i)
+
+
+def _vela(c, x, y, s, T, seed=0):
+    fl = 1 + 0.12 * math.sin(T * 13 + seed) + 0.07 * math.sin(T * 23 + seed * 2)
+    brillo_radial(c, x, y - 120 * s, 260 * s * fl, "#ffb85c", 0.42)
+    sh = skia.GradientShader.MakeLinear([(x - 26 * s, 0), (x + 26 * s, 0)], [C("#f6ead2"), C("#d8c7a8")])
+    c.drawRoundRect(skia.Rect(x - 26 * s, y - 110 * s, x + 26 * s, y), 6 * s, 6 * s, skia.Paint(Shader=sh, AntiAlias=True))
+    c.save()
+    c.translate(x, y - 112 * s)
+    c.rotate(5 * math.sin(T * 3 + seed))
+    c.scale(s, s * fl)
+    p = skia.Path()
+    p.moveTo(0, -62)
+    p.quadTo(18, -20, 12, 0)
+    p.quadTo(0, 10, -12, 0)
+    p.quadTo(-18, -20, 0, -62)
+    c.drawPath(p, P("#ffcf6e"))
+    c.drawOval(skia.Rect(-5, -26, 5, 0), P("#fffbe8"))
+    c.restore()
+
+
+# ------------------------------------------------------------------ escenarios
+
+
+def esc_atardecer(c, T, k, S):
+    """Colina al atardecer: degradado púrpura → rosa → naranja, sol que baja, nubes, montes, flores y aves."""
+    px = S.get("_px", 0)
+    degradado(c, ["#2a1f3d", "#6b3a5e", "#c8607a", "#f6a86b", "#ffd59a"], 0, 1250, stops=[0, 0.3, 0.6, 0.85, 1])
+    estrellas(c, T, n=30, y1=350)
+    _sol(c, W * 0.5 + px * 0.1, 980 + 40 * k, 95)
+    _nubes(c, T, 4, 6, 300, 800, "#ffd0b0", 0.16)
+    _montes(c, ["#7a4a6b", "#5a3352", "#3e2340"], 1080, 220, 2, px, T)
+    # colina con hierba
+    p = skia.Path()
+    p.moveTo(-300, H + 300)
+    p.lineTo(-300, 1500)
+    p.quadTo(W / 2 + px * 0.6, 1330, W + 300, 1500)
+    p.lineTo(W + 300, H + 300)
+    p.close()
+    sh = skia.GradientShader.MakeLinear([(0, 1330), (0, H)], [C("#6f8a3e"), C("#2f4421")])
+    c.drawPath(p, skia.Paint(Shader=sh, AntiAlias=True))
+    rnd = random.Random(8)
+    for _ in range(70):  # flores que se mecen
+        x, y = rnd.uniform(-100, W + 100), rnd.uniform(1450, H + 60)
+        sw = 4 * math.sin(T * 1.8 + x * 0.02)
+        col = rnd.choice(["#ffffff", "#e8d6ff", "#ffe9a8"])
+        c.drawCircle(x + sw + px * 0.9, y, rnd.uniform(4, 8), P(col, 0.85))
+    _aves(c, T, 3, 5, 380, 700)
+    haces(c, W * 0.5, 700, -8, T, n=3, ancho_=180, color="#ffe3b0", a=0.09, seed=2)
+    _personajes(c, T, S)
+    particulas(c, T, seed=11, n=40, color="#ffe2a8", a=0.55)
+
+
+def esc_noche_ciudad(c, T, k, S):
+    """Ciudad gris-azulada (el problema: ansiedad, soledad). Ventanas que se encienden, estrellas, lluvia opcional."""
+    px = S.get("_px", 0)
+    degradado(c, ["#0e1324", "#1f2840", "#3b4560"], 0, 1500)
+    estrellas(c, T, n=80, y1=700)
+    rnd = random.Random(4)
+    for capa, (col, base, alto, f) in enumerate((("#2a3350", 1300, 700, 0.3), ("#20283f", 1420, 600, 0.6), ("#161c2e", 1560, 520, 1.0))):
+        x = -260
+        while x < W + 260:
+            w = rnd.uniform(110, 200)
+            h = rnd.uniform(alto * 0.45, alto)
+            xx = x + px * f
+            c.drawRect(skia.Rect(xx, base - h, xx + w - 8, H + 200), P(col))
+            for wy in range(int(base - h + 30), int(base - 40), 54):
+                for wx in range(int(xx + 18), int(xx + w - 30), 40):
+                    on = (math.sin(wx * 0.37 + wy * 0.11 + capa) + math.sin(T * 0.6 + wx * 0.05)) > 1.1
+                    if on:
+                        c.drawRect(skia.Rect(wx, wy, wx + 18, wy + 26), P("#ffcf7a", 0.75 - capa * 0.15))
+            x += w
+    degradado(c, ["#1a1f30", "#0b0e18"], 1560, H + 200)
+    if S.get("lluvia"):
+        rr = random.Random(2)
+        for _ in range(160):
+            x, y = rr.uniform(0, W), rr.uniform(0, H)
+            yy = (y + 1400 * T) % (H + 100) - 50
+            c.drawLine(x, yy, x - 6, yy + 34, P("#9fb4d8", 0.35, stroke=2))
+    _personajes(c, T, S)
+    bokeh(c, T, seed=6, n=10, colores=("#ffcf8a", "#8fb4ff"), a=0.16)
+    particulas(c, T, seed=12, n=25, color="#cfe0ff", a=0.35)
+
+
+def esc_pueblo(c, T, k, S):
+    """Pueblo bíblico de adobe a pleno día o al atardecer ('hora': 0 día → 1 atardecer)."""
+    px = S.get("_px", 0)
+    hora = S.get("hora", 0.0) + 0.25 * k * S.get("avanza_hora", 0)
+    top = "#3d6fae" if hora < 0.5 else "#5a2f52"
+    degradado(c, [top, "#8fb7d8" if hora < 0.5 else "#d9785a", "#f3d7a6"], 0, 1250)
+    _sol(c, W * 0.72 + px * 0.1, lerp(330, 900, hora) + 60 * k, 75)
+    _nubes(c, T, 7, 4, 250, 600, "#ffffff", 0.2)
+    rnd = random.Random(5)
+    for capa, (base, f, col) in enumerate(((1150, 0.35, "#d2a776"), (1300, 0.7, "#c08d5c"))):
+        x = -200
+        while x < W + 200:
+            w, h = rnd.uniform(160, 280), rnd.uniform(150, 300)
+            xx = x + px * f
+            sh = skia.GradientShader.MakeLinear([(xx, 0), (xx + w, 0)], [C(col), C("#a8754a")])
+            c.drawRect(skia.Rect(xx, base - h, xx + w - 14, base + 40), skia.Paint(Shader=sh))
+            c.drawRect(skia.Rect(xx + w * 0.4, base - 90, xx + w * 0.4 + 46, base + 40), P("#6b4426"))
+            c.drawRect(skia.Rect(xx + 20, base - h + 40, xx + 56, base - h + 76), P("#4a2e1a"))
+            x += w
+    sh = skia.GradientShader.MakeLinear([(0, 1320), (0, H)], [C("#d9b07a"), C("#a87a4c")])
+    c.drawRect(skia.Rect(-300, 1320, W + 300, H + 300), skia.Paint(Shader=sh))
+    _personajes(c, T, S)
+    particulas(c, T, seed=13, n=35, color="#fff0c8", a=0.4, vel=(-6, 6), deriva=60)
+
+
+def esc_cuarto_vela(c, T, k, S):
+    """Interior oscuro y cálido: ventana con haz de luz, polvo flotando y vela que titila."""
+    px = S.get("_px", 0)
+    degradado(c, ["#1a110d", "#2c1b14", "#1a100c"], 0, H)
+    wx, wy = 690 + px * 0.4, 520
+    c.drawRect(skia.Rect(wx, wy, wx + 260, wy + 340), P("#ffd99a", 0.85))
+    for i in range(1, 4):
+        c.drawRect(skia.Rect(wx + i * 65 - 6, wy, wx + i * 65 + 6, wy + 340), P("#2c1b14"))
+    c.drawRect(skia.Rect(wx, wy + 164, wx + 260, wy + 176), P("#2c1b14"))
+    haces(c, wx + 130, wy + 170, 32, T, n=4, ancho_=110, color="#ffdca0", a=0.2, seed=4, largo=1800)
+    c.drawRect(skia.Rect(-300, 1500, W + 300, H + 300), P("#120b08"))
+    c.drawRoundRect(skia.Rect(160 + px * 0.8, 1380, 620 + px * 0.8, 1420), 8, 8, P("#5a3a24"))
+    _vela(c, 300 + px * 0.8, 1382, 1.0, T)
+    _personajes(c, T, S)
+    particulas(c, T, seed=14, n=55, color="#ffd9a0", a=0.6, vel=(-8, 8), deriva=40)
+    bokeh(c, T, seed=2, n=8, a=0.12)
+
+
+def esc_cruz(c, T, k, S):
+    """Cruz en la colina con rayos que giran detrás (el momento central)."""
+    px = S.get("_px", 0)
+    degradado(c, ["#3a1a12", "#a4492a", "#f0a050", "#ffe2a0"], 0, 1300)
+    cx, cy = W / 2 + px * 0.3, 900
+    c.save()
+    c.translate(cx, cy)
+    c.rotate(T * 4)
+    for i in range(18):
+        c.rotate(20)
+        p = skia.Path()
+        p.moveTo(0, 0)
+        p.lineTo(-40, -1600)
+        p.lineTo(40, -1600)
+        p.close()
+        c.drawPath(p, P("#fff2cc", 0.09))
+    c.restore()
+    brillo_radial(c, cx, cy, 520, "#fff1c9", 0.6)
+    p = skia.Path()
+    p.moveTo(-300, H + 300)
+    p.lineTo(-300, 1480)
+    p.quadTo(W / 2 + px * 0.6, 1220, W + 300, 1480)
+    p.lineTo(W + 300, H + 300)
+    p.close()
+    c.drawPath(p, P("#1d0f0a"))
+    sh = skia.GradientShader.MakeLinear([(cx - 30, 0), (cx + 30, 0)], [C("#3a2214"), C("#7a4f30"), C("#3a2214")])
+    pc = skia.Paint(Shader=sh, AntiAlias=True)
+    c.drawRect(skia.Rect(cx - 30, 560, cx + 30, 1330), pc)
+    c.drawRect(skia.Rect(cx - 190, 700, cx + 190, 758), P("#5a3a22"))
+    _personajes(c, T, S)
+    particulas(c, T, seed=15, n=50, color="#ffe9b8", a=0.7)
+
+
+def esc_cielo(c, T, k, S):
+    """Cielo nocturno con estrellas, nubes suaves y luz dorada (momentos de reflexión o de Dios)."""
+    degradado(c, ["#0b0f22", "#1d2346", "#3b2f5c", "#6b4a6e"], 0, H)
+    estrellas(c, T, n=160, y1=H)
+    _nubes(c, T, 9, 7, 900, 1700, "#c9b5e8", 0.14, vel=18)
+    brillo_radial(c, W / 2, 700, 700, "#ffe2a8", 0.18 + 0.05 * math.sin(T))
+    if S.get("paloma"):
+        paloma(c, W / 2 + 60 * math.sin(T * 0.7), 760 + 30 * math.sin(T * 1.1), 1.4, T)
+    _personajes(c, T, S)
+    bokeh(c, T, seed=8, n=14, colores=("#ffe6b0", "#c9b5ff"), a=0.2)
+    particulas(c, T, seed=16, n=40, color="#fff3d0", a=0.5)
+
+
+def esc_pergamino(c, T, k, S):
+    """Fondo de papel antiguo con líneas que se escriben solas (para citar la Escritura en grande)."""
+    degradado(c, ["#3a2817", "#5c4024", "#3a2817"], 0, H)
+    c.save()
+    c.translate(W / 2, H * 0.47)
+    c.rotate(-2 + 1.2 * math.sin(T * 0.4))
+    w, h = 900, 1180
+    sh = skia.GradientShader.MakeRadial((0, -100), 900, [C("#f3e2b8"), C("#d9bf8a"), C("#b99560")], [0, 0.7, 1])
+    c.drawRoundRect(skia.Rect(-w / 2, -h / 2, w / 2, h / 2), 16, 16, skia.Paint(Shader=sh, AntiAlias=True))
+    rnd = random.Random(3)
+    for _ in range(40):  # manchas del papel
+        p = P("#8a6438", 0.06)
+        p.setMaskFilter(skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle, 30))
+        c.drawCircle(rnd.uniform(-w / 2, w / 2), rnd.uniform(-h / 2, h / 2), rnd.uniform(30, 120), p)
+    tit = S.get("titulo", "")
+    if tit:
+        texto(c, tit, 0, -h / 2 + 150, "serif", 74, "#7a1f22")
+    cuerpo = S.get("texto", "")
+    lineas = partir(cuerpo, "serif", 62, w - 160)
+    prog = clamp(T / max(0.5, S.get("_dur", 4) * 0.8))
+    total = sum(len(l) for l in lineas)
+    vis = int(total * prog)
+    for i, ln in enumerate(lineas):
+        s = ln[:max(0, vis)]
+        vis -= len(ln)
+        if s:
+            texto(c, s, 0, -h / 2 + 300 + i * 82, "serif", 62, "#2b1d14")
+    c.restore()
+    particulas(c, T, seed=17, n=35, color="#ffe2a8", a=0.45)
+
+
+def esc_cierre(c, T, k, S):
+    """Cierre: logo del canal, 'Síguenos' que pasa a 'Siguiendo ✓', 'Compártelo' y el próximo capítulo."""
+    canal = S.get("_canal", {})
+    degradado(c, ["#120c0a", "#2c1a12", "#4a2a18"], 0, H)
+    haces(c, W / 2, -200, 0, T, n=5, ancho_=160, color="#ffdca0", a=0.12, seed=7)
+    bokeh(c, T, seed=3, n=16, a=0.22)
+    cx, cy = W / 2, 820
+    e = suave(T / 0.6)
+    brillo_radial(c, cx, cy, 380, "#ffd590", 0.5 * e)
+    c.save()
+    c.translate(cx, cy)
+    s = 0.6 + 0.4 * e + 0.02 * math.sin(T * 2.5)
+    c.scale(s, s)
+    c.drawCircle(0, 0, 170, P("#f7efe0", e))
+    c.drawCircle(0, 0, 170, P("dorado", e, stroke=10))
+    texto(c, canal.get("iniciales", "FE"), 0, 46, "black", 132, "#3a2416", e)
+    c.restore()
+    texto(c, canal.get("nombre", "Tu canal"), cx, 1100, "bold", 58, "#f6ead2", e, sombra=1)
+    # botón seguir → siguiendo
+    b = suave((T - 0.8) / 0.4)
+    if b > 0:
+        sig = T > 1.9
+        bw = 330
+        col = "#2a2a2e" if sig else "#fe2c55"
+        r = skia.Rect(cx - bw / 2, 1160, cx + bw / 2, 1250)
+        c.save()
+        sc = 1 + (0.08 * math.sin(clamp((T - 1.9) / 0.3) * math.pi) if T > 1.9 else 0)
+        c.translate(cx, 1205)
+        c.scale(sc * b, sc * b)
+        c.translate(-cx, -1205)
+        c.drawRoundRect(r, 14, 14, P(col))
+        if sig:  # 'Siguiendo' + palomita dibujada (la letra no trae el símbolo)
+            wt = texto(c, "Siguiendo", cx - 22, 1222, "semi", 44, "#ffffff")
+            ck = skia.Path()
+            x0 = cx - 22 + wt / 2 + 18
+            ck.moveTo(x0, 1204)
+            ck.lineTo(x0 + 12, 1216)
+            ck.lineTo(x0 + 34, 1192)
+            c.drawPath(ck, P("#ffffff", 1, stroke=6))
+        else:
+            texto(c, "Síguenos", cx, 1222, "semi", 44, "#ffffff")
+        c.restore()
+    # compartir que late
+    sh = suave((T - 1.4) / 0.4)
+    if sh > 0:
+        y = 1400
+        pul = 1 + 0.08 * math.sin(T * 6)
+        c.save()
+        c.translate(cx - 150, y)
+        c.scale(pul * sh, pul * sh)
+        c.drawCircle(0, 0, 54, P("#f1c66b"))
+        p = skia.Path()  # flecha de compartir
+        p.moveTo(-22, 16)
+        p.quadTo(-20, -14, 14, -14)
+        p.lineTo(14, -30)
+        p.lineTo(36, -6)
+        p.lineTo(14, 18)
+        p.lineTo(14, 2)
+        p.quadTo(-8, 0, -22, 16)
+        c.drawPath(p, P("#3a2416"))
+        c.restore()
+        texto(c, "Compártelo", cx + 50, y + 16, "semi", 46, "#f6ead2", sh, sombra=1)
+    nx = suave((T - 2.0) / 0.5)
+    if nx > 0:
+        texto(c, canal.get("proximo", "Próximo capítulo muy pronto"), cx, 1560 + 20 * (1 - nx), "med", 40, "#e8c98e", nx)
+    particulas(c, T, seed=18, n=50, color="#ffe2a8", a=0.6)
+
+
+ESCENAS = {k[4:]: v for k, v in globals().items() if k.startswith("esc_")}
