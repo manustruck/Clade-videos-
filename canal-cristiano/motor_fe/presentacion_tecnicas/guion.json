@@ -1,0 +1,516 @@
+{
+ "nota": "Video de presentación de las técnicas del manual de dirección (no es un capítulo del canal).",
+ "canal": {
+  "proximo": "Capítulo 1: muy pronto",
+  "grano": 0.035,
+  "crf": 22
+ },
+ "planos": [
+  {
+   "esc": "cruz",
+   "tr": "corte",
+   "trueno": [
+    "rayo"
+   ],
+   "trueno_x": 300,
+   "cam": {
+    "z": [
+     1.32,
+     1.12
+    ]
+   },
+   "voz": {
+    "rate": "+14%",
+    "pitch": "+2Hz"
+   },
+   "n": "Este video empieza por el final: con un *rayo*."
+  },
+  {
+   "esc": "noche_ciudad",
+   "tr": "zoom",
+   "lluvia": 0.8,
+   "cam": {
+    "z": [
+     1.06,
+     1.2
+    ],
+    "x": [
+     40,
+     -40
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "moderno",
+     "x": 380,
+     "hasta_x": 620,
+     "y": 1600,
+     "s": 0.95
+    }
+   ],
+   "n": "Así empieza un capítulo profesional: en mitad de la acción. Se llama *in medias res*."
+  },
+  {
+   "esc": "cielo",
+   "tr": "fundido",
+   "paloma": true,
+   "cam": {
+    "z": [
+     1.25,
+     1.08
+    ],
+    "y": [
+     -40,
+     20
+    ]
+   },
+   "n": "Después, una pregunta que no puedes dejar sin respuesta: el *hueco* de curiosidad."
+  },
+  {
+   "esc": "cuarto_vela",
+   "tr": "negro",
+   "cam": {
+    "z": [
+     1.18,
+     1.05
+    ],
+    "x": [
+     -30,
+     30
+    ]
+   },
+   "n": "Y una promesa: al final verás la técnica más poderosa de todas. Eso es un *bucle* abierto."
+  },
+  {
+   "esc": "pueblo",
+   "tr": "desliz",
+   "revelar": "iris",
+   "revelar_d": 1.4,
+   "cam": {
+    "z": [
+     1.0,
+     1.12
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "biblico",
+     "x": 380,
+     "y": 1600
+    },
+    {
+     "tipo": "biblica",
+     "x": 720,
+     "y": 1610,
+     "s": 0.95
+    }
+   ],
+   "n": "Toda historia necesita ubicarse: el plano general dice dónde estamos."
+  },
+  {
+   "esc": "pueblo",
+   "tr": "corte",
+   "cam": {
+    "z": [
+     2.3,
+     2.5
+    ],
+    "centro": [
+     380,
+     1040
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "biblico",
+     "x": 380,
+     "y": 1600,
+     "mira": 0.6
+    },
+    {
+     "tipo": "biblica",
+     "x": 720,
+     "y": 1610,
+     "s": 0.95
+    }
+   ],
+   "voz": {
+    "rate": "+2%",
+    "pitch": "-2Hz"
+   },
+   "n": "El primer plano muestra lo que siente."
+  },
+  {
+   "esc": "pueblo",
+   "tr": "corte",
+   "cam": {
+    "z": [
+     2.3,
+     2.5
+    ],
+    "centro": [
+     720,
+     1060
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "biblico",
+     "x": 380,
+     "y": 1600
+    },
+    {
+     "tipo": "biblica",
+     "x": 720,
+     "y": 1610,
+     "s": 0.95,
+     "mira": -0.6
+    }
+   ],
+   "n": "Y el plano y contraplano"
+  },
+  {
+   "esc": "pueblo",
+   "tr": "corte",
+   "cam": {
+    "z": [
+     2.5,
+     2.7
+    ],
+    "centro": [
+     380,
+     1040
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "biblico",
+     "x": 380,
+     "y": 1600,
+     "mira": 0.6,
+     "pose": "senalar"
+    },
+    {
+     "tipo": "biblica",
+     "x": 720,
+     "y": 1610,
+     "s": 0.95
+    }
+   ],
+   "n": "convierte una conversación en un *duelo*."
+  },
+  {
+   "esc": "atardecer",
+   "tr": "fundido",
+   "foco": {
+    "fondo": {
+     "v": [
+      0,
+      14
+     ],
+     "en": "personaje"
+    },
+    "frente": {
+     "v": [
+      16,
+      0
+     ],
+     "en": "personaje"
+    }
+   },
+   "cam": {
+    "z": [
+     1.1,
+     1.2
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "moderno",
+     "x": 540,
+     "y": 1600,
+     "s": 1.1
+    }
+   ],
+   "n": "Con el cambio de foco, la mirada viaja del paisaje al *personaje*."
+  },
+  {
+   "esc": "noche_ciudad",
+   "tr": "zoom",
+   "vertigo": 0.62,
+   "latido": true,
+   "bpm": 84,
+   "musica": 0.35,
+   "cam": {
+    "z": [
+     1.25,
+     1.25
+    ],
+    "centro": [
+     540,
+     1200
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "moderna",
+     "x": 540,
+     "y": 1600
+    }
+   ],
+   "subida": "acelera",
+   "n": "Con el efecto vértigo, el mundo se aleja, y el corazón se _acelera_."
+  },
+  {
+   "esc": "cuarto_vela",
+   "tr": "luz",
+   "reloj": {
+    "seg": 5,
+    "en": "cinco",
+    "x": 170
+   },
+   "cam": {
+    "z": [
+     1.1,
+     1.25
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "nino",
+     "x": 640,
+     "y": 1600,
+     "s": 0.8,
+     "pose": "orar"
+    }
+   ],
+   "n": "Un reloj que corre pone presión: *cinco* segundos para decidir."
+  },
+  {
+   "esc": "pueblo",
+   "tr": "fundido",
+   "hora": 0.6,
+   "cam": {
+    "z": [
+     1.1,
+     1.24
+    ],
+    "r": [
+     -1,
+     1
+    ]
+   },
+   "n": "Cada pocos segundos algo cambia, para que nadie se vaya: un corte, un montaje, un *golpe*."
+  },
+  {
+   "esc": "cruz",
+   "tr": "corte",
+   "dur": 0.55,
+   "n": "",
+   "cam": {
+    "z": [
+     1.5,
+     1.32
+    ]
+   }
+  },
+  {
+   "esc": "atardecer",
+   "tr": "corte",
+   "dur": 0.55,
+   "n": "",
+   "cam": {
+    "z": [
+     1.3,
+     1.5
+    ]
+   }
+  },
+  {
+   "esc": "noche_ciudad",
+   "tr": "corte",
+   "dur": 0.55,
+   "n": "",
+   "cam": {
+    "z": [
+     1.45,
+     1.25
+    ]
+   }
+  },
+  {
+   "esc": "cuarto_vela",
+   "tr": "corte",
+   "dur": 0.55,
+   "n": "",
+   "cam": {
+    "z": [
+     1.2,
+     1.4
+    ]
+   }
+  },
+  {
+   "esc": "cuarto_vela",
+   "tr": "fundido",
+   "contador": {
+    "n": 3,
+    "en": [
+     "uno",
+     "dos",
+     "tres"
+    ],
+    "y": 1060
+   },
+   "cam": {
+    "z": [
+     1.12,
+     1.24
+    ]
+   },
+   "n": "La tensión siempre sube: uno, dos, tres escalones. Son las *apuestas* crecientes."
+  },
+  {
+   "esc": "cuarto_vela",
+   "tr": "corte",
+   "cam": {
+    "z": [
+     2.2,
+     2.5
+    ],
+    "centro": [
+     300,
+     1300
+    ]
+   },
+   "n": "Y si al principio aparece una vela, al final tiene que importar. Es la pistola de *Chéjov*."
+  },
+  {
+   "esc": "noche_ciudad",
+   "tr": "negro",
+   "lluvia": 1.0,
+   "musica": 0.4,
+   "cam": {
+    "z": [
+     1.05,
+     1.15
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "moderno",
+     "x": 540,
+     "y": 1600,
+     "s": 0.75,
+     "espaldas": true
+    }
+   ],
+   "voz": {
+    "rate": "-8%",
+    "pitch": "-4Hz"
+   },
+   "n": "La vulnerabilidad nos acerca: alguien solo, bajo la lluvia, que ya no puede más. Aquí la voz se vuelve lenta y grave."
+  },
+  {
+   "esc": "atardecer",
+   "tr": "fundido",
+   "cam": {
+    "z": [
+     1.06,
+     1.16
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "moderno",
+     "x": 330,
+     "y": 1600,
+     "s": 0.85,
+     "mira": 0.6
+    },
+    {
+     "tipo": "jesus",
+     "x": 720,
+     "y": 1560,
+     "s": 0.95,
+     "pose": "bendecir",
+     "brillo": 0.5
+    }
+   ],
+   "n": "Una historia dentro de otra une la Biblia con tu vida."
+  },
+  {
+   "esc": "cielo",
+   "tr": "corte",
+   "silencio": true,
+   "dur": 1.7,
+   "n": "",
+   "cam": {
+    "z": [
+     1.1,
+     1.2
+    ]
+   }
+  },
+  {
+   "esc": "cruz",
+   "tr": "luz",
+   "musica": 1.0,
+   "pre": 0.2,
+   "cam": {
+    "z": [
+     1.25,
+     1.06
+    ]
+   },
+   "cita": "Juan 1:5 (RV 1909)",
+   "pergamino": {
+    "titulo": "Juan 1:5",
+    "texto": "Y la luz en las tinieblas resplandece.",
+    "en": "luz"
+   },
+   "voz": {
+    "rate": "-6%",
+    "pitch": "-3Hz"
+   },
+   "n": "Después del silencio llega la recompensa: la *luz* después de la tormenta."
+  },
+  {
+   "esc": "cuarto_vela",
+   "tr": "fundido",
+   "cam": {
+    "z": [
+     1.3,
+     1.1
+    ],
+    "centro": [
+     300,
+     1300
+    ]
+   },
+   "n": "¿Y la técnica más poderosa? Contar la *verdad* con amor. Por eso la vela sigue encendida."
+  },
+  {
+   "esc": "cruz",
+   "tr": "match",
+   "cam": {
+    "z": [
+     1.32,
+     1.12
+    ]
+   },
+   "n": "Empezamos con un rayo, y terminamos aquí: el final responde al principio."
+  },
+  {
+   "esc": "cierre",
+   "tr": "fundido",
+   "cam": {
+    "z": [
+     1.04,
+     1.14
+    ]
+   },
+   "n": "En el próximo capítulo, todo esto en una historia real. Síguenos y compártelo."
+  }
+ ]
+}

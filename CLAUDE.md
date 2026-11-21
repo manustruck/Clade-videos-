@@ -2,7 +2,7 @@
 
 Videos verticales (TikTok, Facebook Reels, YouTube Shorts). El usuario habla español y recibe los videos en el celular, sin comprimir.
 
-- Canal actual: reflexiones cristianas, pasajes bíblicos y Proverbios, **para cristianos en general** (no solo católicos) → `canal-cristiano/`.
+- Canal: **Fe en Escena** (@cristianonovelas en TikTok; nombre de perfil y logo «Fe en Escena»). Reflexiones cristianas, pasajes bíblicos y Proverbios, **para cristianos en general** (no solo católicos) → `canal-cristiano/`.
 - Canal base para el método de réplica de lo viral: Un Cristiano Inquieto → `canal-cristiano/referencias/CANAL_BASE_UN_CRISTIANO_INQUIETO.md`.
 - Antes de hacer cualquier video, lee `canal-cristiano/APRENDIZAJES.md`, `canal-cristiano/referencias/ESTILO_REFERENCIAS.md` y `canal-cristiano/RECOMENDACIONES_CANAL.md`.
 - Para planear, escribir o producir cualquier capítulo, usa la skill `direccion-capitulo` (`.claude/skills/direccion-capitulo/`), que aplica el manual `canal-cristiano/direccion/`.
@@ -12,3 +12,4 @@ Videos verticales (TikTok, Facebook Reels, YouTube Shorts). El usuario habla esp
 - Reglas fijas del canal:
   - La imagen nunca se queda quieta: zoom, paneo, formas y partículas moviéndose siempre. Comprobarlo con `python motor.py <carpeta> movimiento` (0 tramos quietos).
   - El final pide **seguir y compartir para el próximo capítulo** (plano `cierre`).
+- Voz en la nube: edge-tts necesita el proxy; `narrar.py` lo toma solo de HTTPS_PROXY. Ejecutar con `SSL_CERT_FILE=/root/.ccr/ca-bundle.crt`. El entorno «Clade-videos-» permite speech.platform.bing.com.

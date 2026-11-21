@@ -19,6 +19,9 @@ python render.py mi_video 3               # video en 3 procesos -> final.mp4 a -
 ```
 
 Sin internet: `python narrar.py mi_video --simular` crea tiempos falsos para probar la imagen.
+En la nube de Claude: `SSL_CERT_FILE=/root/.ccr/ca-bundle.crt python narrar.py mi_video` (usa el proxy automáticamente).
+
+`canal.json` tiene la identidad del canal (Fe en Escena, @cristianonovelas, logo), el grano y la calidad (`crf`); cada guion puede cambiar esos valores en su bloque `canal`.
 
 ## Archivos
 

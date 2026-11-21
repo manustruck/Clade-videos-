@@ -44,7 +44,8 @@ async def one(i, text, voz=None):
     import edge_tts
     voz = voz or {}
     com = edge_tts.Communicate(text, voz.get("voice", VOICE), rate=voz.get("rate", RATE), volume=voz.get("volume", "+0%"),
-                               pitch=voz.get("pitch", "+0Hz"), boundary="WordBoundary")
+                               pitch=voz.get("pitch", "+0Hz"), boundary="WordBoundary",
+                               proxy=os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy") or None)
     words = []
     with open(os.path.join(CARPETA, "voz", "{:02d}.mp3".format(i)), "wb") as f:
         async for ch in com.stream():

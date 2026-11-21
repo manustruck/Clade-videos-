@@ -2,7 +2,10 @@
 
 Basadas en los 8 videos de referencia (`referencias/ESTILO_REFERENCIAS.md`) y en lo aprendido con los videos anteriores (`APRENDIZAJES.md`). Ningún método garantiza que un video se haga viral: esto aumenta las probabilidades.
 
-## 1. Identidad del canal (decidir antes del primer video)
+## 1. Identidad del canal
+
+**Decidido:** el canal se llama **Fe en Escena**, con usuario **@cristianonovelas**; el logo es «FE EN ESCENA» (ver `motor_fe/canal.json`).
+
 
 - **Nombre:** corto, que suene a «secreto» o «descubrimiento», como hacen las dos referencias («Inquieto», «Archivo Perdido»). Ideas de la misma familia: «Lo que no te contaron de la fe», «El Pergamino», «Historias de Fe Ocultas», «Fe sin Filtro». Comprueba que esté libre en TikTok, Facebook y YouTube antes de elegirlo.
 - **Logo:** un ícono simple (pergamino, llave, vela o paloma) que se vea a 48 px, para el cierre animado y la foto de perfil.

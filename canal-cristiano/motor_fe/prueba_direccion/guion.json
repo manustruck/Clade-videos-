@@ -1,8 +1,6 @@
 {
  "nota": "Prueba técnica de dirección. No es un guion del canal: cada plano muestra una técnica del manual.",
  "canal": {
-  "nombre": "Nombre del canal",
-  "iniciales": "FE",
   "proximo": "Capítulo 2 muy pronto"
  },
  "planos": [

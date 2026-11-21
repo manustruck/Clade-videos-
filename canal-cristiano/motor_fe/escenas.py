@@ -327,9 +327,17 @@ def esc_cierre(c, T, k, S):
     c.scale(s, s)
     c.drawCircle(0, 0, 170, P("#f7efe0", e))
     c.drawCircle(0, 0, 170, P("dorado", e, stroke=10))
-    texto(c, canal.get("iniciales", "FE"), 0, 46, "black", 132, "#3a2416", e)
+    # logo «Fe en Escena»: cruz pequeña, FE grande y EN ESCENA debajo
+    c.drawRect(skia.Rect(-5, -128, 5, -86), P("#b98a4e", e))
+    c.drawRect(skia.Rect(-18, -116, 18, -107), P("#b98a4e", e))
+    texto(c, canal.get("iniciales", "FE"), 0, 28, "black", 120, "#3a2416", e)
+    texto(c, canal.get("logo_sub", "EN ESCENA"), 0, 82, "bold", 30, "#a3262c", e)
+    c.drawRect(skia.Rect(-128, 70, -108, 73), P("#b98a4e", e))
+    c.drawRect(skia.Rect(108, 70, 128, 73), P("#b98a4e", e))
     c.restore()
-    texto(c, canal.get("nombre", "Tu canal"), cx, 1100, "bold", 58, "#f6ead2", e, sombra=1)
+    texto(c, canal.get("nombre", "Tu canal"), cx, 1088, "bold", 58, "#f6ead2", e, sombra=1)
+    if canal.get("usuario"):
+        texto(c, canal["usuario"], cx, 1140, "med", 34, "#d7af72", e * 0.9)
     # botón seguir → la mano de Cristo baja desde la luz y lo presiona → siguiendo
     T_TOQUE = 2.0
     b = suave((T - 0.8) / 0.4)

@@ -1,8 +1,6 @@
 {
  "nota": "Prueba de estilo del motor. No es un guion del canal: cada plano solo muestra un escenario y un efecto.",
  "canal": {
-  "nombre": "Nombre del canal",
-  "iniciales": "FE",
   "proximo": "Capítulo 2 muy pronto"
  },
  "planos": [

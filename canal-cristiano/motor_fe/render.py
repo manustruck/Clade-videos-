@@ -18,7 +18,7 @@ def parte(carpeta, a, b, out):
     d.cargar(carpeta)
     ff = subprocess.Popen(
         ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgra", "-s", "{}x{}".format(d.W, d.H),
-         "-r", str(d.FPS), "-i", "-", "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-pix_fmt", "yuv420p", out],
+         "-r", str(d.FPS), "-i", "-", "-c:v", "libx264", "-preset", "veryfast", "-crf", str(d.CANAL.get("crf", 19)), "-pix_fmt", "yuv420p", out],
         stdin=subprocess.PIPE)
     s = skia.Surface(d.W, d.H)
     t0 = time.time()
@@ -60,8 +60,15 @@ def main():
     os.remove(lista)
     audio = os.path.join(carpeta, "audio.wav")
     if os.path.exists(audio):
+        # normalización en dos pasadas: medir y luego ajustar exacto a -14 LUFS
+        import json as _json
+        med = subprocess.run(["ffmpeg", "-hide_banner", "-i", audio, "-af", "loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json",
+                              "-f", "null", "-"], capture_output=True, text=True).stderr
+        m = _json.loads(med[med.rindex("{"):med.rindex("}") + 1])
+        filtro = ("loudnorm=I=-14:TP=-1.5:LRA=11:measured_I={input_i}:measured_TP={input_tp}:measured_LRA={input_lra}:"
+                  "measured_thresh={input_thresh}:offset={target_offset}:linear=true").format(**m)
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", imagen, "-i", audio, "-map", "0:v:0", "-map", "1:a:0",
-                        "-c:v", "copy", "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "192k",
+                        "-c:v", "copy", "-af", filtro, "-c:a", "aac", "-b:a", "192k",
                         "-ar", "48000", "-shortest", os.path.join(carpeta, "final.mp4")], check=True)
     print("VIDEO_OK cuadros={} {:.0f}s".format(d.NF, time.time() - t0))
 
