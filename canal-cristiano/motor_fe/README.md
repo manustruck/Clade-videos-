@@ -27,7 +27,8 @@ Sin internet: `python narrar.py mi_video --simular` crea tiempos falsos para pro
 | `estilo.py` | Paleta, letras, degradados, haces de luz, partículas, bokeh, viñeta, caja de palabra clave, pastilla de cifra, pergamino, cita, contador 1-2-3 |
 | `personajes.py` | Personajes planos: `jesus`, `biblico`, `biblica`, `moderno`, `moderna`, `nino`. Poses: `abajo`, `orar`, `senalar`, `levantar`, `bendecir`, `abrazar`, `pensar`, `cargar`. Respiran, parpadean y caminan. También `ave` y `paloma` |
 | `escenas.py` | Escenarios: `atardecer`, `noche_ciudad`, `pueblo`, `cuarto_vela`, `cruz`, `cielo`, `pergamino`, `cierre` |
-| `motor.py` | Tiempos, cámara, transiciones, subtítulos, rótulos y revisión |
+| `texturas.py` | Grano de película, textura de papel, tela, piedra, pasto que se mece, lluvia con salpicaduras, rayos con doble destello y la mano de Cristo que presiona «Seguir» |
+| `motor.py` | Tiempos, cámara, transiciones, clima, subtítulos, rótulos y revisión |
 | `narrar.py` / `audio.py` / `render.py` | Voz, sonido y video final |
 | `canal.json` | Nombre, iniciales y frase de «próximo capítulo» para el cierre (se cambia cuando haya nombre) |
 | `fuentes/` | Poppins y Cormorant Garamond (licencia OFL, libres) |
@@ -49,14 +50,23 @@ Sin internet: `python narrar.py mi_video --simular` crea tiempos falsos para pro
  ]}
 ```
 
-- `esc`: el escenario. El último plano debe ser `cierre`: muestra el logo, «Síguenos» que pasa a «Siguiendo ✓», «Compártelo» que late y el próximo capítulo.
+- `esc`: el escenario. El último plano debe ser `cierre`: muestra el logo; la mano de Cristo entra desde la luz y presiona «Síguenos», que pasa a «Siguiendo ✓» con un anillo de luz; luego «Compártelo» late y aparece el próximo capítulo.
 - `tr`: transición de entrada: `fundido`, `zoom`, `desliz`, `luz`, `negro` o `corte` (solo para el primer plano).
 - `cam`: zoom `z`, desplazamiento `x`/`y` y giro `r`, cada uno `[inicio, fin]`. Si falta, se pone uno automático. Aunque pongas el mismo zoom al inicio y al final, el motor siempre agrega movimiento.
 - `pers`: personajes. Con `hasta_x` caminan; con `entra` aparecen en ese segundo del plano; también aceptan `espaldas`, `silueta` y `mira`.
 - `en`: la palabra de la voz en la que aparece el rótulo.
 - En el texto, `*palabra*` lleva caja azul (palabra clave) y `_palabra_` va en rojo (peligro o pecado).
 - `pre`: silencio antes del plano (para el momento fuerte).
+- `lluvia`: intensidad (`1.0` normal, `0.5` llovizna), en cualquier escenario. Suena como lluvia continua.
+- `trueno`: lista de palabras (o segundos del plano) donde cae un rayo: rayo detrás del paisaje, doble destello, sacudida de cámara y sonido de trueno. `trueno_x` fija dónde cae.
 - Parámetros propios de cada escenario: `lluvia` (noche_ciudad), `hora` y `avanza_hora` (pueblo), `paloma` (cielo), `titulo` y `texto` (pergamino).
+
+## Texturas y relleno
+
+- Toda la imagen lleva **textura de papel** y **grano de película** (el grano cambia en cada cuadro). La fuerza del grano está en `canal.json` (`grano`, 0,05 por defecto: más grano = archivo más pesado).
+- **Ropa:** trama de tela, sombra del lado contrario a la luz, pliegues que se mueven al respirar y **desgaste de uso diario** (polvo en el borde, manchas, dobladillo deshilachado y remiendo cosido en los personajes bíblicos).
+- **Personajes:** sombra en la cara, sombra larga proyectada en el suelo y sombra de contacto.
+- **Paredes, suelo y madera** con textura de piedra o veta. **Pasto** de verdad (hojas que se mecen, más grandes y oscuras adelante) y pasto seco en el pueblo y en la cruz.
 
 ## Cómo garantiza el movimiento continuo
 
@@ -67,6 +77,8 @@ Sin internet: `python narrar.py mi_video --simular` crea tiempos falsos para pro
 5. Las transiciones siguen moviendo la cámara mientras cruzan.
 6. `python motor.py <carpeta> movimiento` lo comprueba: en la prueba de estilo dio **0 tramos quietos** en 1.038 cuadros.
 
-## Tiempos de render
+## Tiempos de render y peso
 
-En el servidor de pruebas (4 núcleos): 35 s de video en ~1 minuto. En tu laptop de 2 núcleos, calcula de 3 a 5 veces más.
+En el servidor de pruebas (4 núcleos): 35 s de video en ~2 minutos (las texturas lo hicieron más lento). En tu laptop de 2 núcleos, calcula de 3 a 5 veces más.
+
+Peso: ~15 MB por cada 35 s (calidad crf 19). Un video de 70 s quedará cerca de 30 MB, que es el límite para enviarlo al celular desde la app; si se pasa, baja `grano` a 0,03.

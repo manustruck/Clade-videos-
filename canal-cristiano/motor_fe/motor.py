@@ -28,6 +28,7 @@ import skia
 from estilo import (H, W, C, P, ancho, caja_clave, cita, clamp, contador, font, pastilla, pergamino, suave,
                     vineta, vivo)
 from escenas import ESCENAS
+from texturas import grano, lluvia, papel, trueno
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FPS = 30
@@ -105,6 +106,8 @@ def cargar(carpeta):
         BLOQUES.append(cur)
     for b in BLOQUES:
         b[0]["_bloque_ini"] = b[0]["t"] - 0.08
+    for i, S in enumerate(PLANOS):  # truenos: segundos del plano o palabra en la que caen
+        S["_truenos"] = [CUTS[i] + x if isinstance(x, (int, float)) else t_palabra(i, x) for x in S.get("trueno", [])]
     with open(os.path.join(CARPETA, "timeline.json"), "w", encoding="utf-8") as f:
         json.dump(timeline(), f, ensure_ascii=False, indent=1)
 
@@ -146,6 +149,10 @@ def timeline():
                     ev.append(dict(t=t_palabra(i, en) if en else STARTS[i], tipo=key))
         if S["esc"] == "cierre":
             ev.append(dict(t=CUTS[i], tipo="cierre"))
+        for tt in S.get("_truenos", []):
+            ev.append(dict(t=tt, tipo="trueno"))
+        if S.get("lluvia"):
+            ev.append(dict(t=CUTS[i], tipo="lluvia", fin=CUTS[i + 1], fuerza=float(S["lluvia"])))
     return dict(total=TOTAL, starts=STARTS, ends=ENDS, cuts=CUTS, eventos=sorted(ev, key=lambda e: e["t"]))
 
 
@@ -180,7 +187,15 @@ def camara(i, t):
     # respiración: nunca un cuadro congelado
     zz *= 1 + 0.008 * math.sin(t * 2 * math.pi / 3.3)
     rot = v("r") + 0.35 * math.sin(t * 2 * math.pi / 5.1)
-    return zz, v("x") + 6 * math.sin(t * 0.9), v("y") + 5 * math.cos(t * 0.7), rot
+    sx = sy = 0.0
+    for tt in S.get("_truenos", []):  # sacudida que se apaga en 0,5 s
+        d = t - tt
+        if 0 <= d < 0.5:
+            amp = 18 * (1 - d / 0.5)
+            sx += amp * math.sin(d * 90)
+            sy += amp * 0.7 * math.cos(d * 77)
+            zz *= 1 + 0.02 * (1 - d / 0.5)
+    return zz, v("x") + 6 * math.sin(t * 0.9) + sx, v("y") + 5 * math.cos(t * 0.7) + sy, rot
 
 
 def dibuja_plano(c, i, t, extra_z=1.0, dy=0.0):
@@ -189,6 +204,8 @@ def dibuja_plano(c, i, t, extra_z=1.0, dy=0.0):
     S["_canal"] = CANAL
     z, x, y, r = camara(i, t)
     S["_px"] = x * 0.8
+    S["_t"] = t
+    S["_i"] = i
     c.save()
     c.translate(W / 2, H / 2 + dy)
     c.rotate(r)
@@ -200,6 +217,14 @@ def dibuja_plano(c, i, t, extra_z=1.0, dy=0.0):
 
 
 # ------------------------------------------------------------------ rótulos del plano
+def clima(c, i, t):
+    S = PLANOS[i]
+    if S.get("lluvia"):
+        lluvia(c, t, float(S["lluvia"]), suelo=S.get("suelo", 1640))
+    for k, tt in enumerate(S.get("_truenos", [])):
+        trueno(c, t - tt, seed=k + i * 5, rayo=False)
+
+
 def rotulos(c, i, t):
     S = PLANOS[i]
     a, b = CUTS[i], CUTS[i + 1]
@@ -304,6 +329,7 @@ def draw_frame(c, t):
                 tr_i, e, tipo = j, (t - (CUTS[j] - d / 2)) / d, tipo_j
     if tr_i is None:
         dibuja_plano(c, i, t)
+        clima(c, i, t)
         rotulos(c, i, t)
     else:
         a, b = tr_i - 1, tr_i
@@ -333,8 +359,11 @@ def draw_frame(c, t):
         elif tipo == "luz":
             dibuja_plano(c, a if e < 0.5 else b, t, extra_z=1 + 0.08 * math.sin(e * math.pi))
             c.drawRect(skia.Rect(0, 0, W, H), P("#fff2d2", math.sin(e * math.pi) * 0.95))
+        clima(c, a if e < 0.5 else b, t)
         rotulos(c, a if e < 0.5 else b, t)
+    papel(c, 0.18)
     vineta(c)
+    grano(c, t, CANAL.get("grano", 0.05))
     subtitulos(c, t)
     # entrada y salida del video
     if t < 0.25:

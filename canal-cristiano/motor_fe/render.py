@@ -18,7 +18,7 @@ def parte(carpeta, a, b, out):
     d.cargar(carpeta)
     ff = subprocess.Popen(
         ["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgra", "-s", "{}x{}".format(d.W, d.H),
-         "-r", str(d.FPS), "-i", "-", "-c:v", "libx264", "-preset", "veryfast", "-crf", "17", "-pix_fmt", "yuv420p", out],
+         "-r", str(d.FPS), "-i", "-", "-c:v", "libx264", "-preset", "veryfast", "-crf", "19", "-pix_fmt", "yuv420p", out],
         stdin=subprocess.PIPE)
     s = skia.Surface(d.W, d.H)
     t0 = time.time()

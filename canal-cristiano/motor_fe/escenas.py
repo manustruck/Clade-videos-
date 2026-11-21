@@ -12,6 +12,7 @@ import skia
 from estilo import (C, H, P, W, bokeh, brillo_radial, degradado, estrellas, haces, lerp, particulas, suave,
                     texto, partir, clamp)
 from personajes import ave, paloma, persona
+from texturas import mano_divina, onda_presion, pasto, textura_en, trueno
 
 # ------------------------------------------------------------------ piezas reutilizables
 
@@ -94,6 +95,12 @@ def _vela(c, x, y, s, T, seed=0):
     c.restore()
 
 
+def _rayos(c, S, y1=1150):
+    """Rayos en el cielo (detrás de edificios y personajes). El destello de pantalla lo pone el motor."""
+    for k, tt in enumerate(S.get("_truenos", [])):
+        trueno(c, S.get("_t", 0) - tt, seed=k + S.get("_i", 0) * 5, x=S.get("trueno_x"), y1=y1, destello=False)
+
+
 # ------------------------------------------------------------------ escenarios
 
 
@@ -103,6 +110,7 @@ def esc_atardecer(c, T, k, S):
     degradado(c, ["#2a1f3d", "#6b3a5e", "#c8607a", "#f6a86b", "#ffd59a"], 0, 1250, stops=[0, 0.3, 0.6, 0.85, 1])
     estrellas(c, T, n=30, y1=350)
     _sol(c, W * 0.5 + px * 0.1, 980 + 40 * k, 95)
+    _rayos(c, S)
     _nubes(c, T, 4, 6, 300, 800, "#ffd0b0", 0.16)
     _montes(c, ["#7a4a6b", "#5a3352", "#3e2340"], 1080, 220, 2, px, T)
     # colina con hierba
@@ -114,15 +122,12 @@ def esc_atardecer(c, T, k, S):
     p.close()
     sh = skia.GradientShader.MakeLinear([(0, 1330), (0, H)], [C("#6f8a3e"), C("#2f4421")])
     c.drawPath(p, skia.Paint(Shader=sh, AntiAlias=True))
-    rnd = random.Random(8)
-    for _ in range(70):  # flores que se mecen
-        x, y = rnd.uniform(-100, W + 100), rnd.uniform(1450, H + 60)
-        sw = 4 * math.sin(T * 1.8 + x * 0.02)
-        col = rnd.choice(["#ffffff", "#e8d6ff", "#ffe9a8"])
-        c.drawCircle(x + sw + px * 0.9, y, rnd.uniform(4, 8), P(col, 0.85))
+    textura_en(c, p, "piedra", 0.35, 1.2)
+    pasto(c, T, 1400, 1560, px, seed=4, densidad=0.5)          # pasto detrás del personaje
     _aves(c, T, 3, 5, 380, 700)
     haces(c, W * 0.5, 700, -8, T, n=3, ancho_=180, color="#ffe3b0", a=0.09, seed=2)
     _personajes(c, T, S)
+    pasto(c, T, 1560, H + 120, px, seed=5, densidad=0.9)       # pasto delante (tapa los pies, da profundidad)
     particulas(c, T, seed=11, n=40, color="#ffe2a8", a=0.55)
 
 
@@ -131,6 +136,7 @@ def esc_noche_ciudad(c, T, k, S):
     px = S.get("_px", 0)
     degradado(c, ["#0e1324", "#1f2840", "#3b4560"], 0, 1500)
     estrellas(c, T, n=80, y1=700)
+    _rayos(c, S)
     rnd = random.Random(4)
     for capa, (col, base, alto, f) in enumerate((("#2a3350", 1300, 700, 0.3), ("#20283f", 1420, 600, 0.6), ("#161c2e", 1560, 520, 1.0))):
         x = -260
@@ -138,7 +144,10 @@ def esc_noche_ciudad(c, T, k, S):
             w = rnd.uniform(110, 200)
             h = rnd.uniform(alto * 0.45, alto)
             xx = x + px * f
-            c.drawRect(skia.Rect(xx, base - h, xx + w - 8, H + 200), P(col))
+            ed = skia.Path()
+            ed.addRect(skia.Rect(xx, base - h, xx + w - 8, H + 200))
+            c.drawPath(ed, P(col))
+            textura_en(c, ed, "piedra", 0.3, 0.8)
             for wy in range(int(base - h + 30), int(base - 40), 54):
                 for wx in range(int(xx + 18), int(xx + w - 30), 40):
                     on = (math.sin(wx * 0.37 + wy * 0.11 + capa) + math.sin(T * 0.6 + wx * 0.05)) > 1.1
@@ -146,12 +155,9 @@ def esc_noche_ciudad(c, T, k, S):
                         c.drawRect(skia.Rect(wx, wy, wx + 18, wy + 26), P("#ffcf7a", 0.75 - capa * 0.15))
             x += w
     degradado(c, ["#1a1f30", "#0b0e18"], 1560, H + 200)
-    if S.get("lluvia"):
-        rr = random.Random(2)
-        for _ in range(160):
-            x, y = rr.uniform(0, W), rr.uniform(0, H)
-            yy = (y + 1400 * T) % (H + 100) - 50
-            c.drawLine(x, yy, x - 6, yy + 34, P("#9fb4d8", 0.35, stroke=2))
+    for i in range(5):  # charcos que reflejan las ventanas
+        x = 120 + i * 230 + px * 0.9
+        c.drawOval(skia.Rect(x - 90, 1700 + (i % 2) * 70, x + 90, 1730 + (i % 2) * 70), P("#ffcf7a", 0.08 + 0.04 * math.sin(T * 2 + i)))
     _personajes(c, T, S)
     bokeh(c, T, seed=6, n=10, colores=("#ffcf8a", "#8fb4ff"), a=0.16)
     particulas(c, T, seed=12, n=25, color="#cfe0ff", a=0.35)
@@ -163,8 +169,10 @@ def esc_pueblo(c, T, k, S):
     hora = S.get("hora", 0.0) + 0.25 * k * S.get("avanza_hora", 0)
     top = "#3d6fae" if hora < 0.5 else "#5a2f52"
     degradado(c, [top, "#8fb7d8" if hora < 0.5 else "#d9785a", "#f3d7a6"], 0, 1250)
+    c.drawRect(skia.Rect(-300, 1250, W + 300, 1400), P("#e9c896"))
     _sol(c, W * 0.72 + px * 0.1, lerp(330, 900, hora) + 60 * k, 75)
     _nubes(c, T, 7, 4, 250, 600, "#ffffff", 0.2)
+    _rayos(c, S)
     rnd = random.Random(5)
     for capa, (base, f, col) in enumerate(((1150, 0.35, "#d2a776"), (1300, 0.7, "#c08d5c"))):
         x = -200
@@ -172,13 +180,22 @@ def esc_pueblo(c, T, k, S):
             w, h = rnd.uniform(160, 280), rnd.uniform(150, 300)
             xx = x + px * f
             sh = skia.GradientShader.MakeLinear([(xx, 0), (xx + w, 0)], [C(col), C("#a8754a")])
-            c.drawRect(skia.Rect(xx, base - h, xx + w - 14, base + 40), skia.Paint(Shader=sh))
+            muro = skia.Path()
+            muro.addRect(skia.Rect(xx, base - h, xx + w - 14, base + 40))
+            c.drawPath(muro, skia.Paint(Shader=sh))
+            textura_en(c, muro, "piedra", 0.55, 0.7)
+            c.drawRect(skia.Rect(xx + w - 40, base - h, xx + w - 14, base + 40), P("#000000", 0.15))
             c.drawRect(skia.Rect(xx + w * 0.4, base - 90, xx + w * 0.4 + 46, base + 40), P("#6b4426"))
             c.drawRect(skia.Rect(xx + 20, base - h + 40, xx + 56, base - h + 76), P("#4a2e1a"))
             x += w
     sh = skia.GradientShader.MakeLinear([(0, 1320), (0, H)], [C("#d9b07a"), C("#a87a4c")])
-    c.drawRect(skia.Rect(-300, 1320, W + 300, H + 300), skia.Paint(Shader=sh))
+    suelo = skia.Path()
+    suelo.addRect(skia.Rect(-300, 1320, W + 300, H + 300))
+    c.drawPath(suelo, skia.Paint(Shader=sh))
+    textura_en(c, suelo, "piedra", 0.5, 1.4)
+    pasto(c, T, 1330, 1400, px, seed=6, densidad=0.12, seco=True, flores=False)
     _personajes(c, T, S)
+    pasto(c, T, 1800, H + 100, px, seed=7, densidad=0.18, seco=True, flores=False)
     particulas(c, T, seed=13, n=35, color="#fff0c8", a=0.4, vel=(-6, 6), deriva=60)
 
 
@@ -186,6 +203,9 @@ def esc_cuarto_vela(c, T, k, S):
     """Interior oscuro y cálido: ventana con haz de luz, polvo flotando y vela que titila."""
     px = S.get("_px", 0)
     degradado(c, ["#1a110d", "#2c1b14", "#1a100c"], 0, H)
+    pared = skia.Path()
+    pared.addRect(skia.Rect(-300, -300, W + 300, 1500))
+    textura_en(c, pared, "piedra", 0.6, 0.9)
     wx, wy = 690 + px * 0.4, 520
     c.drawRect(skia.Rect(wx, wy, wx + 260, wy + 340), P("#ffd99a", 0.85))
     for i in range(1, 4):
@@ -193,7 +213,10 @@ def esc_cuarto_vela(c, T, k, S):
     c.drawRect(skia.Rect(wx, wy + 164, wx + 260, wy + 176), P("#2c1b14"))
     haces(c, wx + 130, wy + 170, 32, T, n=4, ancho_=110, color="#ffdca0", a=0.2, seed=4, largo=1800)
     c.drawRect(skia.Rect(-300, 1500, W + 300, H + 300), P("#120b08"))
-    c.drawRoundRect(skia.Rect(160 + px * 0.8, 1380, 620 + px * 0.8, 1420), 8, 8, P("#5a3a24"))
+    mesa = skia.Path()
+    mesa.addRoundRect(skia.Rect(160 + px * 0.8, 1380, 620 + px * 0.8, 1420), 8, 8)
+    c.drawPath(mesa, P("#5a3a24"))
+    textura_en(c, mesa, "tela", 0.6, 0.4)
     _vela(c, 300 + px * 0.8, 1382, 1.0, T)
     _personajes(c, T, S)
     particulas(c, T, seed=14, n=55, color="#ffd9a0", a=0.6, vel=(-8, 8), deriva=40)
@@ -218,6 +241,7 @@ def esc_cruz(c, T, k, S):
         c.drawPath(p, P("#fff2cc", 0.09))
     c.restore()
     brillo_radial(c, cx, cy, 520, "#fff1c9", 0.6)
+    _rayos(c, S)
     p = skia.Path()
     p.moveTo(-300, H + 300)
     p.lineTo(-300, 1480)
@@ -225,10 +249,15 @@ def esc_cruz(c, T, k, S):
     p.lineTo(W + 300, H + 300)
     p.close()
     c.drawPath(p, P("#1d0f0a"))
+    pasto(c, T, 1300, 1420, px, seed=8, densidad=0.35, colores=("#2a160e", "#3a2214", "#24130c", "#4a2c18"), flores=False)
     sh = skia.GradientShader.MakeLinear([(cx - 30, 0), (cx + 30, 0)], [C("#3a2214"), C("#7a4f30"), C("#3a2214")])
     pc = skia.Paint(Shader=sh, AntiAlias=True)
-    c.drawRect(skia.Rect(cx - 30, 560, cx + 30, 1330), pc)
-    c.drawRect(skia.Rect(cx - 190, 700, cx + 190, 758), P("#5a3a22"))
+    madera = skia.Path()
+    madera.addRect(skia.Rect(cx - 30, 560, cx + 30, 1330))
+    madera.addRect(skia.Rect(cx - 190, 700, cx + 190, 758))
+    c.drawPath(madera, pc)
+    textura_en(c, madera, "tela", 0.7, 0.35)
+    textura_en(c, madera, "piedra", 0.5, 0.5)
     _personajes(c, T, S)
     particulas(c, T, seed=15, n=50, color="#ffe9b8", a=0.7)
 
@@ -238,6 +267,7 @@ def esc_cielo(c, T, k, S):
     degradado(c, ["#0b0f22", "#1d2346", "#3b2f5c", "#6b4a6e"], 0, H)
     estrellas(c, T, n=160, y1=H)
     _nubes(c, T, 9, 7, 900, 1700, "#c9b5e8", 0.14, vel=18)
+    _rayos(c, S)
     brillo_radial(c, W / 2, 700, 700, "#ffe2a8", 0.18 + 0.05 * math.sin(T))
     if S.get("paloma"):
         paloma(c, W / 2 + 60 * math.sin(T * 0.7), 760 + 30 * math.sin(T * 1.1), 1.4, T)
@@ -255,6 +285,9 @@ def esc_pergamino(c, T, k, S):
     w, h = 900, 1180
     sh = skia.GradientShader.MakeRadial((0, -100), 900, [C("#f3e2b8"), C("#d9bf8a"), C("#b99560")], [0, 0.7, 1])
     c.drawRoundRect(skia.Rect(-w / 2, -h / 2, w / 2, h / 2), 16, 16, skia.Paint(Shader=sh, AntiAlias=True))
+    hoja = skia.Path()
+    hoja.addRoundRect(skia.Rect(-w / 2, -h / 2, w / 2, h / 2), 16, 16)
+    textura_en(c, hoja, "papel", 0.6, 1.0)
     rnd = random.Random(3)
     for _ in range(40):  # manchas del papel
         p = P("#8a6438", 0.06)
@@ -295,34 +328,40 @@ def esc_cierre(c, T, k, S):
     texto(c, canal.get("iniciales", "FE"), 0, 46, "black", 132, "#3a2416", e)
     c.restore()
     texto(c, canal.get("nombre", "Tu canal"), cx, 1100, "bold", 58, "#f6ead2", e, sombra=1)
-    # botón seguir → siguiendo
+    # botón seguir → la mano de Cristo baja desde la luz y lo presiona → siguiendo
+    T_TOQUE = 2.0
     b = suave((T - 0.8) / 0.4)
     if b > 0:
-        sig = T > 1.9
+        sig = T > T_TOQUE
         bw = 330
         col = "#2a2a2e" if sig else "#fe2c55"
-        r = skia.Rect(cx - bw / 2, 1160, cx + bw / 2, 1250)
+        r = skia.Rect(cx - bw / 2, 1195, cx + bw / 2, 1285)
         c.save()
-        sc = 1 + (0.08 * math.sin(clamp((T - 1.9) / 0.3) * math.pi) if T > 1.9 else 0)
-        c.translate(cx, 1205)
+        sc = 1 - 0.1 * math.sin(clamp((T - T_TOQUE + 0.12) / 0.3) * math.pi) if T > T_TOQUE - 0.12 else 1
+        c.translate(cx, 1240)
         c.scale(sc * b, sc * b)
-        c.translate(-cx, -1205)
+        c.translate(-cx, -1240)
         c.drawRoundRect(r, 14, 14, P(col))
         if sig:  # 'Siguiendo' + palomita dibujada (la letra no trae el símbolo)
-            wt = texto(c, "Siguiendo", cx - 22, 1222, "semi", 44, "#ffffff")
+            wt = texto(c, "Siguiendo", cx - 22, 1257, "semi", 44, "#ffffff")
             ck = skia.Path()
             x0 = cx - 22 + wt / 2 + 18
-            ck.moveTo(x0, 1204)
-            ck.lineTo(x0 + 12, 1216)
-            ck.lineTo(x0 + 34, 1192)
+            ck.moveTo(x0, 1239)
+            ck.lineTo(x0 + 12, 1251)
+            ck.lineTo(x0 + 34, 1227)
             c.drawPath(ck, P("#ffffff", 1, stroke=6))
         else:
-            texto(c, "Síguenos", cx, 1222, "semi", 44, "#ffffff")
+            texto(c, "Síguenos", cx, 1257, "semi", 44, "#ffffff")
         c.restore()
+    onda_presion(c, cx + 60, 1240, (T - T_TOQUE) / 0.8)
+    # la mano: llega (1.0 → 1.9 s), presiona (1.9 → 2.15 s), se queda un momento y se retira
+    lleg = clamp((T - 1.0) / 0.9) if T < 2.6 else 1 - clamp((T - 2.6) / 0.9)
+    pres = math.sin(clamp((T - 1.88) / 0.3) * math.pi) if 1.88 < T < 2.18 else 0.0
+    mano_divina(c, cx + 60, 1236, lleg, pres)
     # compartir que late
     sh = suave((T - 1.4) / 0.4)
     if sh > 0:
-        y = 1400
+        y = 1420
         pul = 1 + 0.08 * math.sin(T * 6)
         c.save()
         c.translate(cx - 150, y)
@@ -341,7 +380,7 @@ def esc_cierre(c, T, k, S):
         texto(c, "Compártelo", cx + 50, y + 16, "semi", 46, "#f6ead2", sh, sombra=1)
     nx = suave((T - 2.0) / 0.5)
     if nx > 0:
-        texto(c, canal.get("proximo", "Próximo capítulo muy pronto"), cx, 1560 + 20 * (1 - nx), "med", 40, "#e8c98e", nx)
+        texto(c, canal.get("proximo", "Próximo capítulo muy pronto"), cx, 1580 + 20 * (1 - nx), "med", 40, "#e8c98e", nx)
     particulas(c, T, seed=18, n=50, color="#ffe2a8", a=0.6)
 
 

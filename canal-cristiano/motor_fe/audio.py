@@ -126,8 +126,35 @@ def golpe_suave():
     return np.sin(2 * np.pi * 55 * q * (1 - 0.3 * q)) * np.exp(-3.5 * q)
 
 
+def trueno_snd(d=4.0):
+    """Chasquido seco + retumbo grave que se aleja."""
+    n = int(d * SR)
+    q = np.arange(n) / SR
+    nz = rng.standard_normal(n)
+    crack = nz * np.exp(-14 * q)
+    retumbo = lowpass(nz, 220) * 9 * (np.exp(-0.9 * q) * (1 + 0.6 * np.sin(2 * np.pi * 1.3 * q) * np.sin(2 * np.pi * 0.4 * q)))
+    grave = np.sin(2 * np.pi * 38 * q + 3 * np.sin(2 * np.pi * 0.7 * q)) * np.exp(-1.1 * q) * 0.6
+    return (crack * 0.5 + retumbo + grave) * env(n, 0.002, 0.8)
+
+
+def lluvia_snd(d):
+    """Lluvia: ruido filtrado continuo con gotas sueltas."""
+    n = int(d * SR)
+    nz = rng.standard_normal(n)
+    base = (lowpass(nz, 3) - lowpass(nz, 40)) * 0.6 + lowpass(nz, 12) * 0.4
+    gotas = np.zeros(n)
+    for _ in range(int(d * 25)):
+        a = rng.integers(0, max(1, n - 400))
+        gotas[a:a + 300] += rng.standard_normal(300) * np.exp(-np.arange(300) / 40) * rng.uniform(0.3, 1)
+    return (base + gotas * 0.3) * env(n, 0.6, 0.6)
+
+
 for ev in TL["eventos"]:
     tt = ev["t"]
+    if ev["tipo"] == "trueno":
+        add(sfx, trueno_snd(), tt, 0.5)
+    elif ev["tipo"] == "lluvia":
+        add(sfx, lluvia_snd(ev["fin"] - tt + 0.6), tt - 0.3, 0.07 * ev.get("fuerza", 1.0))
     if ev["tipo"] == "transicion":
         add(sfx, barrido(0.7 if ev.get("tr") != "luz" else 1.0), tt - 0.35, 0.18)
         if ev.get("tr") == "luz":

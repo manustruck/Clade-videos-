@@ -1,5 +1,6 @@
 {
   "nombre": "Nombre del canal",
   "iniciales": "FE",
-  "proximo": "Próximo capítulo muy pronto"
+  "proximo": "Próximo capítulo muy pronto",
+  "grano": 0.05
 }

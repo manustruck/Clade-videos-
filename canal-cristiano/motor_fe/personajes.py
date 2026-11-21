@@ -9,11 +9,12 @@ import math
 import skia
 
 from estilo import C, P, brillo_radial, clamp, suave
+from texturas import textura_en
 
 TIPOS = {
-    "jesus":   dict(tunica=("#f4efe6", "#d9d0c2"), manto=("#a3262c", "#6f1519"), pelo="#5b3a22", barba=True, piel="#d9a47c", largo=True),
-    "biblico": dict(tunica=("#7a8f4f", "#4f6234"), manto=("#7a5130", "#4d311c"), pelo="#3a2618", barba=True, piel="#c98e63", largo=False),
-    "biblica": dict(tunica=("#5b7fa6", "#38587a"), manto=("#d8c7a5", "#b29d76"), pelo="#2e1d12", barba=False, piel="#c98e63", largo=True, velo=True),
+    "jesus":   dict(tunica=("#f4efe6", "#d9d0c2"), manto=("#a3262c", "#6f1519"), pelo="#5b3a22", barba=True, piel="#d9a47c", largo=True, desgaste=0.1),
+    "biblico": dict(tunica=("#7a8f4f", "#4f6234"), manto=("#7a5130", "#4d311c"), pelo="#3a2618", barba=True, piel="#c98e63", largo=False, desgaste=0.8),
+    "biblica": dict(tunica=("#5b7fa6", "#38587a"), manto=("#d8c7a5", "#b29d76"), pelo="#2e1d12", barba=False, piel="#c98e63", largo=True, velo=True, desgaste=0.6),
     "moderno": dict(tunica=("#2f8f9d", "#1f5f6a"), manto=None, pelo="#1d1410", barba=False, piel="#c98e63", largo=False, pantalon="#2d3550"),
     "moderna": dict(tunica=("#c0566b", "#8c3a4c"), manto=None, pelo="#3a2216", barba=False, piel="#e0a77a", largo=True, pantalon="#2d3550"),
     "nino":    dict(tunica=("#e0a44a", "#b47a26"), manto=None, pelo="#2b1a10", barba=False, piel="#d9a47c", largo=False, pantalon="#3b4a6b"),
@@ -32,6 +33,50 @@ def _brazo(c, x, y, ang, largo, grosor, col, piel, a):
     c.rotate(ang)
     c.drawRoundRect(skia.Rect(-grosor / 2, 0, grosor / 2, largo), grosor / 2, grosor / 2, P(col, a))
     c.drawCircle(0, largo + grosor * 0.15, grosor * 0.55, P(piel, a))
+    c.restore()
+
+
+def _relleno_tela(c, path, y0, y1, a, desgaste=0.3, T=0.0, seed=0):
+    """Rellena la ropa: trama de tela, sombra del lado derecho, pliegues, brillo del borde y desgaste de uso diario."""
+    textura_en(c, path, "tela", 0.3, 0.45)
+    b = path.getBounds()
+    c.save()
+    c.clipPath(path, skia.ClipOp.kIntersect, True)
+    # sombra lateral (la luz viene de la izquierda)
+    sh = skia.GradientShader.MakeLinear([(b.left(), 0), (b.right(), 0)], [C("#ffffff", 0.10 * a), C("#000000", 0), C("#000000", 0.30 * a)], [0, 0.45, 1])
+    c.drawRect(b, skia.Paint(Shader=sh))
+    # pliegues verticales que se mueven con la respiración
+    for i, fx in enumerate((0.22, 0.4, 0.62, 0.8)):
+        x = b.left() + b.width() * fx + 3 * math.sin(T * 1.4 + i + seed)
+        pl = skia.Path()
+        pl.moveTo(x, y0 + (y1 - y0) * 0.25)
+        pl.quadTo(x + 14 * math.sin(i * 2.1), (y0 + y1) / 2, x - 6, y1)
+        pp = P("#000000", 0.16 * a, stroke=7)
+        pp.setMaskFilter(skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle, 4))
+        c.drawPath(pl, pp)
+        c.drawPath(pl, P("#ffffff", 0.06 * a, stroke=2))
+    if desgaste > 0:
+        # suciedad del uso diario abajo (polvo del camino) y manchas
+        sd = skia.GradientShader.MakeLinear([(0, y1 - 170), (0, y1)], [C("#5a3d22", 0), C("#5a3d22", 0.55 * desgaste * a)])
+        c.drawRect(skia.Rect(b.left(), y1 - 170, b.right(), y1 + 4), skia.Paint(Shader=sd))
+        import random as _r
+        rnd = _r.Random(seed * 7 + 3)
+        for _ in range(int(6 * desgaste)):
+            mp = P("#3b2a18", 0.12 * a)
+            mp.setMaskFilter(skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle, 9))
+            c.drawCircle(rnd.uniform(b.left(), b.right()), rnd.uniform(y0 + 60, y1), rnd.uniform(10, 26), mp)
+        # dobladillo deshilachado
+        x = b.left()
+        while x < b.right():
+            c.drawLine(x, y1 - 2, x + 3, y1 + 9 + 5 * rnd.random(), P("#2c1e12", 0.45 * desgaste * a, stroke=2))
+            x += 9
+        # remiendo cosido (solo con mucho desgaste)
+        if desgaste >= 0.6:
+            rx, ry = b.left() + b.width() * 0.28, y0 + (y1 - y0) * 0.62
+            c.drawRect(skia.Rect(rx, ry, rx + 46, ry + 40), P("#8a6a44", 0.85 * a))
+            st = P("#e9d9b6", 0.8 * a, stroke=2)
+            st.setPathEffect(skia.DashPathEffect.Make([6, 5], 0))
+            c.drawRect(skia.Rect(rx + 4, ry + 4, rx + 42, ry + 36), st)
     c.restore()
 
 
@@ -54,9 +99,16 @@ def persona(c, x, y, s=1.0, tipo="biblico", T=0.0, pose="abajo", mira=0.0, a=1.0
     if brillo > 0:
         brillo_radial(c, 0, -330, 420, "#fff1c4", 0.45 * brillo)
     # sombra de contacto
-    sp = P("#000000", 0.35 * a)
-    sp.setMaskFilter(skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle, 10))
-    c.drawOval(skia.Rect(-120, -16, 120, 16), sp)
+    sp = P("#000000", 0.22 * a)
+    sp.setMaskFilter(skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle, 18))
+    c.save()  # sombra larga hacia la derecha (luz de la izquierda)
+    c.skew(-1.3, 0)
+    c.scale(1, 0.22)
+    c.drawRoundRect(skia.Rect(-95, -560, 95, 0), 80, 80, sp)
+    c.restore()
+    sp2 = P("#000000", 0.4 * a)
+    sp2.setMaskFilter(skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle, 10))
+    c.drawOval(skia.Rect(-120, -16, 120, 16), sp2)
     if silueta:
         t = dict(t, tunica=("#120c0a", "#120c0a"), manto=("#120c0a", "#120c0a") if t["manto"] else None,
                  pelo="#120c0a", piel="#120c0a", pantalon="#120c0a")
@@ -66,7 +118,11 @@ def persona(c, x, y, s=1.0, tipo="biblico", T=0.0, pose="abajo", mira=0.0, a=1.0
     if "pantalon" in t:
         for sx, ph in ((-1, 0), (1, math.pi)):
             dx = 26 * math.sin(T * 7.0 + seed + ph) if camina else 0
-            c.drawRoundRect(skia.Rect(sx * 44 - 26 + dx, cadera - 10, sx * 44 + 26 + dx, -28), 22, 22, P(t["pantalon"], a))
+            pierna = skia.Path()
+            pierna.addRoundRect(skia.Rect(sx * 44 - 26 + dx, cadera - 10, sx * 44 + 26 + dx, -28), 22, 22)
+            c.drawPath(pierna, P(t["pantalon"], a))
+            if not silueta:
+                textura_en(c, pierna, "tela", 0.55, 0.45)
             c.drawRoundRect(skia.Rect(sx * 44 - 34 + dx * 1.2, -40, sx * 44 + 38 + dx * 1.2, 0), 16, 16, P("#f2efe9" if not silueta else "#120c0a", a))
         cuerpo_bot = cadera + 10
     else:
@@ -81,6 +137,8 @@ def persona(c, x, y, s=1.0, tipo="biblico", T=0.0, pose="abajo", mira=0.0, a=1.0
     path.quadTo(0, cuerpo_bot + 16, -112 if "pantalon" not in t else -92, cuerpo_bot)
     path.close()
     c.drawPath(path, _grad(t["tunica"][0], t["tunica"][1], torso_top, cuerpo_bot, a))
+    if not silueta:
+        _relleno_tela(c, path, torso_top, cuerpo_bot, a, t.get("desgaste", 0.2), T, seed)
     # manto cruzado
     if t["manto"]:
         m = skia.Path()
@@ -90,6 +148,8 @@ def persona(c, x, y, s=1.0, tipo="biblico", T=0.0, pose="abajo", mira=0.0, a=1.0
         m.lineTo(-96, cuerpo_bot - 30)
         m.close()
         c.drawPath(m, _grad(t["manto"][0], t["manto"][1], torso_top, cuerpo_bot, a))
+        if not silueta:
+            _relleno_tela(c, m, torso_top, cuerpo_bot - 30, a, t.get("desgaste", 0.2) * 0.7, T, seed + 1)
         c.drawRect(skia.Rect(-82, -300, 82, -286), P(t["manto"][1], a * 0.8))  # cinturón
     # brazos según pose
     la, ra = POSES.get(pose, POSES["abajo"])
@@ -109,7 +169,16 @@ def persona(c, x, y, s=1.0, tipo="biblico", T=0.0, pose="abajo", mira=0.0, a=1.0
     if t.get("velo") and not silueta:
         c.drawRoundRect(skia.Rect(-82, -78, 82, 110), 60, 60, _grad("#e9dcc0", "#bfae8a", -78, 110, a))
     sh = skia.GradientShader.MakeRadial((-18, -20), 110, [C(t["piel"], a), C(_oscuro(t["piel"]), a)])
-    c.drawOval(skia.Rect(-60, -70, 60, 74), skia.Paint(Shader=sh, AntiAlias=True))
+    cara = skia.Path()
+    cara.addOval(skia.Rect(-60, -70, 60, 74))
+    c.drawPath(cara, skia.Paint(Shader=sh, AntiAlias=True))
+    if not silueta:
+        c.save()
+        c.clipPath(cara, skia.ClipOp.kIntersect, True)
+        shc = skia.GradientShader.MakeLinear([(-10, 0), (64, 0)], [C("#000000", 0), C("#4a2416", 0.32 * a)])
+        c.drawRect(skia.Rect(-60, -70, 64, 76), skia.Paint(Shader=shc))
+        c.restore()
+        textura_en(c, cara, "papel", 0.25, 0.5)
     if not espaldas and not silueta:
         # ojos que parpadean y miran
         parp = 1.0 if (T * 0.55 + seed * 0.37) % 3.1 > 0.12 else 0.15
