@@ -18,6 +18,8 @@ from texturas import mano_divina, onda_presion, pasto, textura_en, trueno
 
 
 def _personajes(c, T, S):
+    if S.get("_capa") == "fondo":  # al dibujar por capas, los personajes van en la capa del frente
+        return
     for i, p in enumerate(S.get("pers", [])):
         a = 1.0
         if "entra" in p:  # aparece en el segundo 'entra' del plano

@@ -87,6 +87,13 @@ else:
             nota = (np.sin(2 * np.pi * f * qq) + 0.3 * np.sin(2 * np.pi * f * 2 * qq)) * np.exp(-2.2 * qq) * env(nn, 0.005, 0.2)
             add(mus, nota * 0.09, k * dur + j * 1.0)
 
+# nivel de música por plano (contraste emocional) y silencios totales, con rampas suaves
+niv = np.ones(N)
+for m in TL.get("musica", []):
+    niv[int(m["t0"] * SR):int(m["t1"] * SR)] = m["nivel"]
+niv = np.convolve(niv, np.ones(int(0.35 * SR)) / int(0.35 * SR), mode="same")
+mus *= niv
+
 # ducking: la música baja cuando habla la voz
 v_env = lowpass(np.abs(voz), 4000)
 duck = 1 - 0.55 * np.clip(v_env / (v_env.max() + 1e-9) * 4, 0, 1)
@@ -149,9 +156,49 @@ def lluvia_snd(d):
     return (base + gotas * 0.3) * env(n, 0.6, 0.6)
 
 
+def latido_snd():
+    """Un latido: 'lub-dub' grave."""
+    n = int(0.6 * SR)
+    q = np.arange(n) / SR
+    g = lambda t0, f, a: a * np.sin(2 * np.pi * f * (q - t0)) * np.exp(-28 * np.clip(q - t0, 0, None)) * (q >= t0)
+    return g(0.0, 52, 1.0) + g(0.16, 46, 0.7)
+
+
+def tic(f=3200):
+    n = int(0.05 * SR)
+    q = np.arange(n) / SR
+    return (np.sin(2 * np.pi * f * q) + 0.5 * rng.standard_normal(n)) * np.exp(-140 * q)
+
+
+def subida_snd(d=2.2):
+    """Riser: ruido y tono que suben hasta el momento clave (termina justo en la palabra)."""
+    n = int(d * SR)
+    q = np.arange(n) / SR
+    f = 120 * (1 + 7 * (q / d) ** 2)
+    tono = np.sin(2 * np.pi * np.cumsum(f) / SR)
+    nz = lowpass(rng.standard_normal(n), 6)
+    return (tono * 0.6 + nz * 0.5) * (q / d) ** 2.2
+
+
 for ev in TL["eventos"]:
     tt = ev["t"]
-    if ev["tipo"] == "trueno":
+    if ev["tipo"] == "latido":
+        per = 60 / ev.get("bpm", 72)
+        x = tt
+        while x < ev["fin"]:
+            add(sfx, latido_snd(), x, 0.55)
+            x += per
+    elif ev["tipo"] == "reloj":
+        x, k = tt, 0
+        while x < ev["fin"]:
+            add(sfx, tic(3200 if k % 2 == 0 else 2600), x, 0.18)
+            x += 0.5
+            k += 1
+    elif ev["tipo"] == "subida":
+        add(sfx, subida_snd(), tt - 2.2, 0.22)
+    elif ev["tipo"] == "revelar":
+        add(sfx, brillo(1.8), tt + 0.2, 0.07)
+    elif ev["tipo"] == "trueno":
         add(sfx, trueno_snd(), tt, 0.5)
     elif ev["tipo"] == "lluvia":
         add(sfx, lluvia_snd(ev["fin"] - tt + 0.6), tt - 0.3, 0.07 * ev.get("fuerza", 1.0))

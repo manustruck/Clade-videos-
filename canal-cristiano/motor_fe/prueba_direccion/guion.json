@@ -1,0 +1,240 @@
+{
+ "nota": "Prueba técnica de dirección. No es un guion del canal: cada plano muestra una técnica del manual.",
+ "canal": {
+  "nombre": "Nombre del canal",
+  "iniciales": "FE",
+  "proximo": "Capítulo 2 muy pronto"
+ },
+ "planos": [
+  {
+   "esc": "pueblo",
+   "tr": "corte",
+   "revelar": "iris",
+   "revelar_d": 1.4,
+   "cam": {
+    "z": [
+     1.0,
+     1.12
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "biblico",
+     "x": 380,
+     "y": 1600
+    },
+    {
+     "tipo": "biblica",
+     "x": 720,
+     "y": 1610,
+     "s": 0.95
+    }
+   ],
+   "n": "Plano de ubicación con revelación en iris."
+  },
+  {
+   "esc": "pueblo",
+   "tr": "corte",
+   "cam": {
+    "z": [
+     2.3,
+     2.45
+    ],
+    "centro": [
+     380,
+     1040
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "biblico",
+     "x": 380,
+     "y": 1600,
+     "mira": 0.6
+    },
+    {
+     "tipo": "biblica",
+     "x": 720,
+     "y": 1610,
+     "s": 0.95
+    }
+   ],
+   "voz": {
+    "rate": "-6%",
+    "pitch": "-3Hz"
+   },
+   "n": "Plano: él habla."
+  },
+  {
+   "esc": "pueblo",
+   "tr": "corte",
+   "cam": {
+    "z": [
+     2.3,
+     2.45
+    ],
+    "centro": [
+     720,
+     1060
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "biblico",
+     "x": 380,
+     "y": 1600
+    },
+    {
+     "tipo": "biblica",
+     "x": 720,
+     "y": 1610,
+     "s": 0.95,
+     "mira": -0.6
+    }
+   ],
+   "n": "Contraplano: ella responde."
+  },
+  {
+   "esc": "atardecer",
+   "tr": "fundido",
+   "foco": {
+    "fondo": {
+     "v": [
+      0,
+      14
+     ],
+     "en": "ahora"
+    },
+    "frente": {
+     "v": [
+      16,
+      0
+     ],
+     "en": "ahora"
+    }
+   },
+   "cam": {
+    "z": [
+     1.1,
+     1.2
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "moderno",
+     "x": 540,
+     "y": 1600,
+     "s": 1.1
+    }
+   ],
+   "n": "Foco en el fondo, y ahora el foco pasa al personaje."
+  },
+  {
+   "esc": "noche_ciudad",
+   "tr": "zoom",
+   "vertigo": 0.62,
+   "latido": true,
+   "bpm": 80,
+   "musica": 0.3,
+   "cam": {
+    "z": [
+     1.25,
+     1.25
+    ],
+    "centro": [
+     540,
+     1200
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "moderna",
+     "x": 540,
+     "y": 1600,
+     "s": 1.0
+    }
+   ],
+   "subida": "vértigo",
+   "n": "Efecto vértigo con latido: el mundo se aleja y ella se queda. *Vértigo.*"
+  },
+  {
+   "esc": "cielo",
+   "tr": "corte",
+   "silencio": true,
+   "dur": 1.6,
+   "n": ""
+  },
+  {
+   "esc": "cuarto_vela",
+   "tr": "corte",
+   "dur": 0.6,
+   "n": "",
+   "cam": {
+    "z": [
+     1.4,
+     1.6
+    ]
+   }
+  },
+  {
+   "esc": "cruz",
+   "tr": "corte",
+   "dur": 0.6,
+   "n": "",
+   "cam": {
+    "z": [
+     1.5,
+     1.3
+    ]
+   }
+  },
+  {
+   "esc": "pueblo",
+   "tr": "corte",
+   "dur": 0.6,
+   "n": "",
+   "cam": {
+    "z": [
+     1.2,
+     1.4
+    ]
+   }
+  },
+  {
+   "esc": "cuarto_vela",
+   "tr": "luz",
+   "reloj": {
+    "seg": 6,
+    "en": "Seis",
+    "x": 170
+   },
+   "cam": {
+    "z": [
+     1.1,
+     1.25
+    ]
+   },
+   "pers": [
+    {
+     "tipo": "nino",
+     "x": 640,
+     "y": 1600,
+     "s": 0.8,
+     "pose": "orar"
+    }
+   ],
+   "n": "Reloj que corre. Seis segundos para la respuesta, y cada segundo pesa."
+  },
+  {
+   "esc": "cierre",
+   "tr": "fundido",
+   "cam": {
+    "z": [
+     1.04,
+     1.14
+    ]
+   },
+   "n": "Síguenos y compártelo para ver el capítulo dos."
+  }
+ ]
+}

@@ -33,7 +33,7 @@ from texturas import grano, lluvia, papel, trueno
 HERE = os.path.dirname(os.path.abspath(__file__))
 FPS = 30
 LEAD, GAP, TAIL = 0.25, 0.18, 0.6
-TR = {"fundido": 0.45, "zoom": 0.5, "desliz": 0.45, "luz": 0.6, "negro": 0.7, "corte": 0.0}
+TR = {"fundido": 0.45, "zoom": 0.5, "desliz": 0.45, "luz": 0.6, "negro": 0.7, "corte": 0.0, "match": 0.0}
 
 CARPETA = None
 GUION = PLANOS = CANAL = None
@@ -60,7 +60,7 @@ def cargar(carpeta):
     for i in range(len(PLANOS)):
         with open(os.path.join(CARPETA, "voz", "{:02d}.json".format(i)), encoding="utf-8") as f:
             voces.append(json.load(f))
-    ENDS = [v[-1]["t"] + v[-1]["d"] if v else 1.0 for v in voces]
+    ENDS = [v[-1]["t"] + v[-1]["d"] if v else float(PLANOS[i].get("dur", 1.5)) for i, v in enumerate(voces)]
     STARTS, t = [], LEAD
     for i, e in enumerate(ENDS):
         t += PLANOS[i].get("pre", 0.0)
@@ -72,8 +72,10 @@ def cargar(carpeta):
     # palabras del guion (con *clave* y _peligro_) alineadas con los tiempos de la voz
     PALABRAS = []
     for i, S in enumerate(PLANOS):
-        orig = S["n"].split()
+        orig = S.get("n", "").split()
         tts = voces[i]
+        if not tts:
+            continue
         for j, w in enumerate(orig):
             # posición proporcional por caracteres entre el texto escrito y el leído
             if len(tts) == len(orig):
@@ -153,7 +155,19 @@ def timeline():
             ev.append(dict(t=tt, tipo="trueno"))
         if S.get("lluvia"):
             ev.append(dict(t=CUTS[i], tipo="lluvia", fin=CUTS[i + 1], fuerza=float(S["lluvia"])))
-    return dict(total=TOTAL, starts=STARTS, ends=ENDS, cuts=CUTS, eventos=sorted(ev, key=lambda e: e["t"]))
+        if S.get("latido"):
+            ev.append(dict(t=CUTS[i], tipo="latido", fin=CUTS[i + 1], bpm=float(S.get("bpm", 72))))
+        if S.get("reloj"):
+            q = S["reloj"]
+            t0 = t_palabra(i, q["en"]) if q.get("en") else CUTS[i] + 0.2
+            ev.append(dict(t=t0, tipo="reloj", fin=min(CUTS[i + 1], t0 + float(q.get("seg", 10)))))
+        if S.get("subida"):
+            ev.append(dict(t=t_palabra(i, S["subida"]), tipo="subida"))
+        if S.get("revelar"):
+            ev.append(dict(t=CUTS[i], tipo="revelar"))
+    musica = [dict(t0=CUTS[i], t1=CUTS[i + 1], nivel=0.0 if S.get("silencio") else float(S.get("musica", 1.0)))
+              for i, S in enumerate(PLANOS)]
+    return dict(total=TOTAL, starts=STARTS, ends=ENDS, cuts=CUTS, musica=musica, eventos=sorted(ev, key=lambda e: e["t"]))
 
 
 # ------------------------------------------------------------------ cámara
@@ -187,6 +201,10 @@ def camara(i, t):
     # respiración: nunca un cuadro congelado
     zz *= 1 + 0.008 * math.sin(t * 2 * math.pi / 3.3)
     rot = v("r") + 0.35 * math.sin(t * 2 * math.pi / 5.1)
+    if S.get("latido"):  # el cuadro late con el corazón (dos golpes por ciclo)
+        bpm = float(S.get("bpm", 72)) / 60
+        ph = (t * bpm) % 1
+        zz *= 1 + 0.012 * (math.exp(-((ph - 0.0) / 0.05) ** 2) + 0.7 * math.exp(-((ph - 0.18) / 0.05) ** 2))
     sx = sy = 0.0
     for tt in S.get("_truenos", []):  # sacudida que se apaga en 0,5 s
         d = t - tt
@@ -198,7 +216,35 @@ def camara(i, t):
     return zz, v("x") + 6 * math.sin(t * 0.9) + sx, v("y") + 5 * math.cos(t * 0.7) + sy, rot
 
 
+def _rampa(par, i, t):
+    """Valor [inicio, fin] que cambia en 0,6 s a partir de la palabra 'en' (o a lo largo de todo el plano)."""
+    v = par if isinstance(par, list) else [par, par]
+    en = None
+    if isinstance(par, dict):
+        v, en = par["v"], par.get("en")
+    if en:
+        f = suave((t - t_palabra(i, en)) / 0.6)
+    else:
+        f = vivo((t - CUTS[i]) / max(0.1, CUTS[i + 1] - CUTS[i]))
+    return v[0] + (v[1] - v[0]) * f
+
+
+def _transformar(c, z, x, y, r, centro, dy=0.0):
+    cx, cy = centro
+    c.translate(W / 2, H / 2 + dy)
+    c.rotate(r)
+    c.scale(z, z)
+    c.translate(-cx + x, -cy + y)
+
+
 def dibuja_plano(c, i, t, extra_z=1.0, dy=0.0):
+    """Dibuja el plano i con su cámara.
+
+    Extras de dirección:
+      cam.centro [x, y] (o [[x0, y0], [x1, y1]]): punto al que mira el zoom (primer plano, plano detalle, plano-contraplano).
+      foco {"fondo": [s0, s1], "frente": [s0, s1], "en": palabra}: desenfoque por capas (rack focus).
+      vertigo 1.35: el fondo se acerca o aleja mientras el personaje queda igual (dolly zoom / efecto vértigo).
+    """
     S = dict(PLANOS[i])
     S["_dur"] = CUTS[i + 1] - CUTS[i]
     S["_canal"] = CANAL
@@ -206,17 +252,105 @@ def dibuja_plano(c, i, t, extra_z=1.0, dy=0.0):
     S["_px"] = x * 0.8
     S["_t"] = t
     S["_i"] = i
-    c.save()
-    c.translate(W / 2, H / 2 + dy)
-    c.rotate(r)
-    c.scale(z * extra_z, z * extra_z)
-    c.translate(-W / 2 + x, -H / 2 + y)
     T = t - CUTS[i]
-    ESCENAS[S["esc"]](c, T, clamp(T / max(0.1, S["_dur"])), S)
+    k = clamp(T / max(0.1, S["_dur"]))
+    cen = S.get("cam", {}).get("centro", [W / 2, H / 2])
+    if isinstance(cen[0], list):
+        f = vivo((t - CUTS[i]) / max(0.1, S["_dur"]))
+        cen = [cen[0][0] + (cen[1][0] - cen[0][0]) * f, cen[0][1] + (cen[1][1] - cen[0][1]) * f]
+    if "foco" not in S and "vertigo" not in S:
+        c.save()
+        _transformar(c, z * extra_z, x, y, r, cen, dy)
+        ESCENAS[S["esc"]](c, T, k, S)
+        c.restore()
+        return
+    # ---- por capas: fondo (escenario) y frente (personajes)
+    foco = S.get("foco", {})
+    s_fondo = _rampa(foco.get("fondo", [0, 0]), i, t) if foco else 0.0
+    s_frente = _rampa(foco.get("frente", [0, 0]), i, t) if foco else 0.0
+    z_frente = z
+    z_fondo = z
+    if "vertigo" in S:
+        # dolly zoom: el personaje se queda del mismo tamaño (zoom del inicio del plano + respiración)
+        # y el fondo se aleja (vertigo < 1) o se viene encima (vertigo > 1)
+        z0 = camara(i, CUTS[i])[0]
+        z_frente = z0 * (1 + 0.008 * math.sin(t * 2 * math.pi / 3.3))
+        z_fondo = z_frente * (1 + (float(S["vertigo"]) - 1) * vivo(k))
+    capa_fondo = dict(S, _capa="fondo")
+    p = skia.Paint()
+    if s_fondo > 0.3:
+        p.setImageFilter(skia.ImageFilters.Blur(s_fondo, s_fondo))
+    c.saveLayer(None, p)
+    _transformar(c, z_fondo * extra_z, x, y, r, cen, dy)
+    ESCENAS[S["esc"]](c, T, k, capa_fondo)
+    c.restore()
+    p2 = skia.Paint()
+    if s_frente > 0.3:
+        p2.setImageFilter(skia.ImageFilters.Blur(s_frente, s_frente))
+    c.saveLayer(None, p2)
+    _transformar(c, z_frente * extra_z, x, y, r, cen, dy)
+    from escenas import _personajes
+    _personajes(c, T, dict(S, _capa="frente"))
     c.restore()
 
 
-# ------------------------------------------------------------------ rótulos del plano
+def revelar(c, i, t):
+    """Revelación lenta: iris que se abre, cortina que se separa o niebla que se disipa."""
+    S = PLANOS[i]
+    modo = S.get("revelar")
+    if not modo:
+        return
+    d = float(S.get("revelar_d", 1.6))
+    f = suave((t - CUTS[i]) / d)
+    if f >= 1:
+        return
+    if modo == "iris":
+        r = 40 + f * 1300
+        path = skia.Path()
+        path.addRect(skia.Rect(-10, -10, W + 10, H + 10))
+        path.addCircle(W / 2, H * 0.5, r)
+        path.setFillType(skia.PathFillType.kEvenOdd)
+        p = P("#000000")
+        p.setMaskFilter(skia.MaskFilter.MakeBlur(skia.kNormal_BlurStyle, 30))
+        c.drawPath(path, p)
+    elif modo == "cortina":
+        w = W / 2 * (1 - f)
+        c.drawRect(skia.Rect(0, 0, w, H), P("#000000"))
+        c.drawRect(skia.Rect(W - w, 0, W, H), P("#000000"))
+    elif modo == "niebla":
+        c.drawRect(skia.Rect(0, 0, W, H), P("#e9e4dc", 0.95 * (1 - f)))
+    elif modo == "luz":
+        c.drawRect(skia.Rect(0, 0, W, H), P("#fff3d6", 1 - f))
+
+
+def reloj(c, i, t):
+    """Reloj que corre (ticking clock): anillo que se vacía y segundos que bajan; rojo en los últimos 3."""
+    S = PLANOS[i]
+    q = S.get("reloj")
+    if not q:
+        return
+    t0 = t_palabra(i, q["en"]) if q.get("en") else CUTS[i] + 0.2
+    dur = float(q.get("seg", 10))
+    if t < t0:
+        return
+    rest = max(0.0, dur - (t - t0))
+    k = suave((t - t0) / 0.4)
+    x, y, r = q.get("x", W - 150), q.get("y", 560), 74
+    rojo = rest < 3
+    c.drawCircle(x, y, r + 10, P("#120c0a", 0.75 * k))
+    c.drawCircle(x, y, r, P("#ffffff", 0.18 * k, stroke=10))
+    arco = skia.Path()
+    arco.addArc(skia.Rect(x - r, y - r, x + r, y + r), -90, 360 * rest / dur)
+    c.drawPath(arco, P("#ff5d5d" if rojo else "#f1c66b", k, stroke=10))
+    from estilo import texto
+    pul = 1 + (0.12 * max(0, math.sin((t - t0) * math.pi * 2)) if rojo else 0)
+    c.save()
+    c.translate(x, y)
+    c.scale(pul, pul)
+    texto(c, str(int(math.ceil(rest))), 0, 24, "bold", 66, "#ff7070" if rojo else "#ffffff", k)
+    c.restore()
+
+
 def clima(c, i, t):
     S = PLANOS[i]
     if S.get("lluvia"):
@@ -330,7 +464,9 @@ def draw_frame(c, t):
     if tr_i is None:
         dibuja_plano(c, i, t)
         clima(c, i, t)
+        revelar(c, i, t)
         rotulos(c, i, t)
+        reloj(c, i, t)
     else:
         a, b = tr_i - 1, tr_i
         es = suave(e)
@@ -361,6 +497,7 @@ def draw_frame(c, t):
             c.drawRect(skia.Rect(0, 0, W, H), P("#fff2d2", math.sin(e * math.pi) * 0.95))
         clima(c, a if e < 0.5 else b, t)
         rotulos(c, a if e < 0.5 else b, t)
+        reloj(c, a if e < 0.5 else b, t)
     papel(c, 0.18)
     vineta(c)
     grano(c, t, CANAL.get("grano", 0.05))

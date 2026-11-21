@@ -61,6 +61,25 @@ Sin internet: `python narrar.py mi_video --simular` crea tiempos falsos para pro
 - `trueno`: lista de palabras (o segundos del plano) donde cae un rayo: rayo detrás del paisaje, doble destello, sacudida de cámara y sonido de trueno. `trueno_x` fija dónde cae.
 - Parámetros propios de cada escenario: `lluvia` (noche_ciudad), `hora` y `avanza_hora` (pueblo), `paloma` (cielo), `titulo` y `texto` (pergamino).
 
+## Parámetros de dirección (ver `../direccion/`)
+
+| Parámetro del plano | Técnica | Ejemplo |
+|---|---|---|
+| `cam.centro` | Primer plano, plano detalle, plano-contraplano, reencuadre | `"cam": {"z": [2.3, 2.45], "centro": [380, 1040]}` o `[[x0, y0], [x1, y1]]` para desplazarse |
+| `tr: "corte"` / `"match"` | Corte seco / match cut (mismo `centro` y `z` en los dos planos) | `"tr": "match"` |
+| `foco` | Rack focus (desenfoque por capas: fondo y personajes) | `"foco": {"fondo": {"v": [0, 14], "en": "ahora"}, "frente": {"v": [16, 0], "en": "ahora"}}` |
+| `vertigo` | Dolly zoom: el personaje queda igual y el fondo se aleja (<1) o se viene encima (>1) | `"vertigo": 0.62` |
+| `revelar` | Slow reveal: `iris`, `cortina`, `niebla`, `luz` | `"revelar": "iris", "revelar_d": 1.4` |
+| `"n": "", "dur": 0.6` | Plano sin voz: montaje rápido o silencio | varios seguidos con `tr: "corte"` |
+| `silencio: true` | Silencio como emoción (la música se apaga) | con `"n": ""` y `dur` 1–2 s |
+| `musica: 0.3` | Nivel de música del plano (contraste emocional) | 0 a 1 |
+| `subida: "palabra"` | Riser que termina en esa palabra | `"subida": "vértigo"` |
+| `latido: true, bpm: 80` | Latido sonoro y la imagen que late | tensión íntima |
+| `reloj: {"seg": 10, "en": "tres", "x": 170, "y": 560}` | Ticking clock en pantalla con tic-tac | plazos y cuentas atrás |
+| `voz: {"rate", "pitch", "volume", "voice"}` | Dirección de voz por plano | `{"rate": "-10%", "pitch": "-4Hz"}` |
+
+La prueba `prueba_direccion/` muestra cada una (texto de relleno, no es un guion).
+
 ## Texturas y relleno
 
 - Toda la imagen lleva **textura de papel** y **grano de película** (el grano cambia en cada cuadro). La fuerza del grano está en `canal.json` (`grano`, 0,05 por defecto: más grano = archivo más pesado).
