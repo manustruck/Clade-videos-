@@ -1,7 +1,8 @@
 """Cierre de marca «Fe en Escena»: degradado verde azulado → lima con grano, logo negro, botón «Seguir»
 que presiona un dedo índice, redes con @cristianonovelas y el llamado a compartir para el próximo capítulo.
 
-Uso (desde motor_fe/):  python cierre_marca.py [carpeta_salida]
+Uso (desde motor_fe/):  python cierre_marca.py [verde|claro] [carpeta_salida]
+  verde = degradado verde-lima con grano; claro = fondo crema con el logo real (diseno/marca/logo_claro.png)
   -> cuadros clave PNG (1080x1920) del cierre y una tira con todos.
 La función cuadro(c, T, canal) sirve también para el escenario 'cierre_marca' del motor.
 """
@@ -61,6 +62,39 @@ def fondo(c, T):
     rnd = random.Random(int(T * 24))
     capa_textura(c, skia.Rect(0, 0, W, H), "grano", 0.55, 1.2, skia.BlendMode.kOverlay, rnd.uniform(0, 256), rnd.uniform(0, 256))
     capa_textura(c, skia.Rect(0, 0, W, H), "papel", 0.18, 2.0, skia.BlendMode.kOverlay)
+
+
+CREMA_FONDO = "#f0efeb"
+_LOGO_IMG = {}
+
+
+def fondo_claro(c, T):
+    """Tema claro: crema liso como el logo, con un grano muy suave y una luz que se mueve despacio."""
+    c.drawRect(skia.Rect(0, 0, W, H), P(CREMA_FONDO))
+    brillo_radial(c, W / 2 + 120 * math.sin(T * 0.4), 700 + 80 * math.cos(T * 0.3), 900, "#ffffff", 0.35)
+
+
+def grano_claro(c, T):
+    rnd = random.Random(int(T * 24))
+    capa_textura(c, skia.Rect(0, 0, W, H), "grano", 0.22, 1.2, skia.BlendMode.kOverlay, rnd.uniform(0, 256), rnd.uniform(0, 256))
+    capa_textura(c, skia.Rect(0, 0, W, H), "papel", 0.10, 2.0, skia.BlendMode.kOverlay)
+
+
+def logo_imagen(c, cx, top, k=1.0, escala=1.0):
+    """Dibuja el logo real del canal (diseno/marca/logo_transparente.png: solo la tinta, sacada de logo_claro.png)."""
+    ruta = os.path.join(HERE, "..", "diseno", "marca", "logo_transparente.png")
+    if not os.path.exists(ruta):
+        return False
+    if ruta not in _LOGO_IMG:
+        _LOGO_IMG[ruta] = skia.Image.open(ruta)
+    im = _LOGO_IMG[ruta]
+    src = skia.Rect(250, 230, 830, 850)              # cruz + FE + EN ESCENA con margen
+    s = (0.86 + 0.14 * rebote(k)) * escala * 1.08
+    w, h = src.width() * s, src.height() * s
+    p = skia.Paint(AntiAlias=True)
+    p.setAlphaf(clamp(k * 1.6))
+    c.drawImageRect(im, src, skia.Rect(cx - w / 2, top, cx + w / 2, top + h), skia.SamplingOptions(skia.FilterMode.kLinear), p)
+    return True
 
 
 # ------------------------------------------------------------------ logo
@@ -272,12 +306,15 @@ def mano_indice(c, tx, ty, k_llegar, k_presion, ang=-18.0, escala=1.0):
 T_TOQUE = 2.0
 
 
-def cuadro(c, T, canal=None):
+def cuadro(c, T, canal=None, tema=None):
     canal = canal or {}
-    fondo(c, T)
+    tema = tema or canal.get("tema_cierre", "verde")
+    claro = tema == "claro"
+    (fondo_claro if claro else fondo)(c, T)
     # logo: entra con rebote y respira despacio
     k_logo = clamp(T / 0.6)
-    logo(c, W / 2, 430 + 8 * math.sin(T * 1.3), k_logo, 1 + 0.01 * math.sin(T * 2.0))
+    if not logo_imagen(c, W / 2, 360 + 8 * math.sin(T * 1.3), k_logo, 1 + 0.01 * math.sin(T * 2.0)):
+        logo(c, W / 2, 430 + 8 * math.sin(T * 1.3), k_logo, 1 + 0.01 * math.sin(T * 2.0))
     # botón seguir
     bx, by = W / 2, 1290
     k_btn = clamp((T - 0.55) / 0.45)
@@ -313,7 +350,7 @@ def cuadro(c, T, canal=None):
         fl.lineTo(8, 11)
         fl.lineTo(8, 1)
         fl.quadTo(-5, 0, -13, 10)
-        c.drawPath(fl, P("#d9f26a"))
+        c.drawPath(fl, P(CREMA_FONDO if claro else "#d9f26a"))
         c.restore()
         c.drawString(txt, x0 + 76, y, f, P(NEGRO, k_sh))
         f2 = font("semi", 38)
@@ -322,18 +359,21 @@ def cuadro(c, T, canal=None):
     # el dedo índice llega, presiona y se va
     lleg = clamp((T - 1.0) / 0.9) if T < 2.6 else 1 - clamp((T - 2.6) / 0.8)
     mano_indice(c, bx + 182, by - 4, lleg, pres)
+    if claro:
+        grano_claro(c, T)
 
 
 def main():
     import json
-    out = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else os.path.join(HERE, "cierre_marca_cuadros")
+    tema = sys.argv[1] if len(sys.argv) > 1 else "verde"
+    out = os.path.abspath(sys.argv[2]) if len(sys.argv) > 2 else os.path.join(HERE, "..", "diseno", "cierre" if tema == "verde" else "cierre_" + tema)
     os.makedirs(out, exist_ok=True)
     canal = json.load(open(os.path.join(HERE, "canal.json"), encoding="utf-8"))
     momentos = [(0.45, "1_logo"), (1.6, "2_dedo_llega"), (1.96, "3_presiona"), (2.3, "4_siguiendo"), (3.6, "5_compartir")]
     imgs = []
     for T, nombre in momentos:
         s = skia.Surface(W, H)
-        cuadro(s.getCanvas(), T, canal)
+        cuadro(s.getCanvas(), T, canal, tema)
         im = s.makeImageSnapshot()
         im.save(os.path.join(out, nombre + ".png"), skia.kPNG)
         imgs.append(im)
